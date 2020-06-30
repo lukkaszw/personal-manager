@@ -5,6 +5,7 @@ const MainLayout = ({ children }) => {
   return ( 
     <>
       <Header />
+      {children}
     </>
    );
 }
