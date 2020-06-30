@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+#developing
+nodemon.json
+.env
+
 # production
 /build
 

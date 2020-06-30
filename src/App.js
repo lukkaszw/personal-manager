@@ -13,4 +13,12 @@ function App() {
   );
 }
 
-export default App;
+const RootApp = () => {
+  return (
+    <React.Suspense fallback='...'>
+      <App />
+    </React.Suspense>
+  )
+}
+
+export default RootApp;

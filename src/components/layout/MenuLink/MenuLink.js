@@ -2,8 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Li } from './MenuLink.styles';
+import { useTranslation } from 'react-i18next';
 
 const MenuLink = ({ to, name }) => {
+  const { t, i18n } = useTranslation();
+
   return ( 
     <Li>
       <NavLink 
@@ -11,7 +14,7 @@ const MenuLink = ({ to, name }) => {
         activeClassName='active'
         exact
       >
-        {name}
+        {t(name)}
       </NavLink>
     </Li>
   );

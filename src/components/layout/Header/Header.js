@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuDesktop from 'components/layout/MenuDesktop';
 import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './Header.styles';
-import LoginLink from 'components/layout/LoginLink';
+import MenuRight from 'components/layout/MenuRight';
 
 
 const Header = () => {
@@ -27,7 +27,7 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
             <MenuDesktop isAuth={false}/>
-            <LoginLink isAuth={false}/>
+            <MenuRight />
           </Toolbar>
         </Container>
       </AppBar>
