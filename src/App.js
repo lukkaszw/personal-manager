@@ -1,22 +1,70 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MainLayout from 'components/layout/MainLayout';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import Main from 'components/pages/Main';
+import Contact from 'components/pages/Contact';
+import Tasks from 'components/pages/Tasks';
+import Budget from 'components/pages/Budget';
+import Notes from 'components/pages/Notes';
+import Calendar from 'components/pages/Calendar';
+import Adverts from 'components/pages/Adverts';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 
-function App() {
+function App({ isAuth }) {
+
+  const router = !isAuth ?
+  (
+    <Switch>
+      <Route exact path='/'>
+        <Main />  
+      </Route>
+      <Route exact path='/contact'>
+        <Contact />
+      </Route>
+      <Redirect to="/" />
+    </Switch>
+  )
+  :
+  (
+    <Switch>
+      <Route exact path='/tasks'>
+        <Tasks />
+      </Route>
+      <Route exact path='/budget'>
+        <Budget />
+      </Route>
+      <Route exact path='/notes'>
+        <Notes />
+      </Route>
+      <Route exact path='/calendar'>
+        <Calendar />
+      </Route>
+      <Route exact path='/calendar'>
+        <Adverts />
+      </Route>
+      <Redirect to="/" />
+    </Switch>
+  );
+
   return (
     <Router>
       <MainLayout>
+        {router}
       </MainLayout>
     </Router>
    
   );
 }
 
+App.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+}
+
 const RootApp = () => {
   return (
     <React.Suspense fallback={<MainLoaderIndicator />}>
-      <App />
+      <App isAuth={false}/>
     </React.Suspense>
   )
 }
