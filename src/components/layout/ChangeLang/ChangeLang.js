@@ -1,36 +1,31 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import { ModalContainer } from './ChangeLang.styles';
+import Button from '@material-ui/core/Button';
+import { ModalContainer, Title } from './ChangeLang.styles';
 import { useTranslation } from 'react-i18next';
 
 const ChangeLang = ({ isOpen, onClose }) => {
   const { t, i18n } = useTranslation();
 
   const langValue = i18n.language;
-  const onChange = useCallback((event) => i18n.changeLanguage(event.target.value), [i18n]);
+  const setPolish = useCallback(() => i18n.changeLanguage('pl-PL'), [i18n]);
+  const setEnglish = useCallback(() => i18n.changeLanguage('eng-ENG'), [i18n]);
 
   return ( 
-      <Modal
-        open={isOpen}
-        onClose={onClose}
-        aria-labelledby="Modal to change language"
-      >
-        <ModalContainer>
-          <RadioGroup value={langValue} onChange={onChange}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">App language:</FormLabel>
-                <FormControlLabel value="eng-ENG" control={<Radio />} label="english" />
-                <FormControlLabel value="pl-PL" control={<Radio />} label="polish" />
-            </FormControl>
-          </RadioGroup>
-        </ModalContainer>
-      </Modal>
+    <Modal
+      open={isOpen}
+      onClose={onClose}
+      aria-labelledby="Modal to change language"
+    >
+      <ModalContainer>
+        <div>
+          <Title>{t('App language')}</Title>
+          <Button onClick={setEnglish} variant={langValue === 'eng-ENG' ? 'contained' : 'outlined'} color="primary">{t('english')}</Button>
+          <Button onClick={setPolish} variant={langValue === 'pl-PL' ? 'contained' : 'outlined'} color="secondary">{t('polish')}</Button>
+        </div>
+      </ModalContainer>
+    </Modal>
    );
 }
 

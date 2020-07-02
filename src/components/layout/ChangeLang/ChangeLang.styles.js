@@ -12,3 +12,9 @@ export const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Title = styled.h3`
+  text-align: center;
+  margin-bottom: 16px;
+  color: #555;
+`;
