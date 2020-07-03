@@ -9,6 +9,8 @@ import Budget from 'components/pages/Budget';
 import Notes from 'components/pages/Notes';
 import Calendar from 'components/pages/Calendar';
 import Adverts from 'components/pages/Adverts';
+import Auth from 'components/pages/Auth';
+import Logout from 'components/pages/Logout';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 
 function App({ isAuth }) {
@@ -21,6 +23,9 @@ function App({ isAuth }) {
       </Route>
       <Route exact path='/contact'>
         <Contact />
+      </Route>
+      <Route exact path='/auth'>
+        <Auth />
       </Route>
       <Redirect to="/" />
     </Switch>
@@ -42,6 +47,12 @@ function App({ isAuth }) {
       </Route>
       <Route exact path='/calendar'>
         <Adverts />
+      </Route>
+      <Route exact path='/contact'>
+        <Contact />
+      </Route>
+      <Route exact path='/logout'>
+        <Logout />
       </Route>
       <Redirect to="/" />
     </Switch>
