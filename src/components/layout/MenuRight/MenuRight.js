@@ -8,7 +8,7 @@ import useStyles from './MenuRight.styles';
 const MenuRight = () => {
   const classes = useStyles();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const lang = i18n.language.split('-')[0];
 

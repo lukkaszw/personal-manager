@@ -5,7 +5,7 @@ import { Li } from './MenuLink.styles';
 import { useTranslation } from 'react-i18next';
 
 const MenuLink = ({ to, name }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return ( 
     <Li>
