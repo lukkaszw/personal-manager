@@ -7,30 +7,37 @@ import MenuDesktop from 'components/layout/MenuDesktop';
 import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './Header.styles';
 import MenuRight from 'components/layout/MenuRight';
+import MobileMenu from 'components/layout/MobileMenu';
 
 
 const Header = () => {
   const classes = useStyles();
   const [isMenuActive, setMenuActiveness] = useState(false);
-  const toggleMenu = useCallback(() => setMenuActiveness(!isMenuActive), [isMenuActive]);
-
+  const openMenu = useCallback(() => setMenuActiveness(true), [setMenuActiveness]);
+  const closeMenu = useCallback(() => setMenuActiveness(false), [setMenuActiveness]);
   return ( 
-      <AppBar position="static" className={classes.root}>
-        <Container>
-          <Toolbar className={classes.toolbar}>
-            <IconButton 
-              onClick={toggleMenu}
-              edge="start" 
-              className={classes.menuButton} 
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <MenuDesktop isAuth={false}/>
-            <MenuRight />
-          </Toolbar>
-        </Container>
-      </AppBar>
+    <>
+        <AppBar position="static" className={classes.root}>
+          <Container>
+            <Toolbar className={classes.toolbar}>
+              <IconButton 
+                onClick={openMenu}
+                edge="start" 
+                className={classes.menuButton} 
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <MenuDesktop isAuth={false}/>
+              <MenuRight />
+            </Toolbar>
+          </Container>
+          <MobileMenu 
+            onCloseMenu={closeMenu}
+            isActive={isMenuActive}
+          />
+        </AppBar>
+      </>
    );
 }
  

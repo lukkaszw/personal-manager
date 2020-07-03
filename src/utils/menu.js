@@ -14,16 +14,21 @@ export const notAuthenticatedMenu = [
 export const authenticatedMenu = [
   {
     id: 1,
+    name: 'Main',
+    to: '/',
+  },
+  {
+    id: 2,
     name: 'Tasks',
     to: '/tasks',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Budget',
     to: '/budget',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Notes',
     to: '/notes',
   },

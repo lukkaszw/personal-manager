@@ -12,6 +12,8 @@ import Adverts from 'components/pages/Adverts';
 import Auth from 'components/pages/Auth';
 import Logout from 'components/pages/Logout';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
+import { ThemeProvider } from 'styled-components';
+import theme from './App.styles';
 
 function App({ isAuth }) {
 
@@ -33,6 +35,9 @@ function App({ isAuth }) {
   :
   (
     <Switch>
+      <Route exact path='/'>
+        <Main />  
+      </Route>
       <Route exact path='/tasks'>
         <Tasks />
       </Route>
@@ -45,7 +50,7 @@ function App({ isAuth }) {
       <Route exact path='/calendar'>
         <Calendar />
       </Route>
-      <Route exact path='/calendar'>
+      <Route exact path='/adverts'>
         <Adverts />
       </Route>
       <Route exact path='/contact'>
@@ -59,11 +64,14 @@ function App({ isAuth }) {
   );
 
   return (
-    <Router>
-      <MainLayout>
-        {router}
-      </MainLayout>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <MainLayout>
+          {router}
+        </MainLayout>
+      </Router>
+    </ThemeProvider>
+
    
   );
 }
