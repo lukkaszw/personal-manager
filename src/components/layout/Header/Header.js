@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Container from '@material-ui/core/Container';
@@ -8,9 +10,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './Header.styles';
 import MenuRight from 'components/layout/MenuRight';
 import MobileMenu from 'components/layout/MobileMenu';
+import SELECTORS from 'redux/selectors';
 
 
-const Header = () => {
+const Header = ({ isAuth }) => {
   const classes = useStyles();
   const [isMenuActive, setMenuActiveness] = useState(false);
   const openMenu = useCallback(() => setMenuActiveness(true), [setMenuActiveness]);
@@ -28,17 +31,26 @@ const Header = () => {
               >
                 <MenuIcon />
               </IconButton>
-              <MenuDesktop isAuth={false}/>
+              <MenuDesktop isAuth={isAuth}/>
               <MenuRight />
             </Toolbar>
           </Container>
           <MobileMenu 
             onCloseMenu={closeMenu}
             isActive={isMenuActive}
+            isAuth={isAuth}
           />
         </AppBar>
       </>
    );
 }
+
+Header.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  isAuth: SELECTORS.getIsAuth(state),
+});
  
-export default Header;
+export default connect(mapStateToProps)(Header);
