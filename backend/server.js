@@ -1,4 +1,5 @@
 const express = require('express');
+require('./database');
 
 const port = process.env.PORT || 8000;
 
