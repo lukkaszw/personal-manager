@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './Header.styles';
 import MenuRight from 'components/layout/MenuRight';
 import MobileMenu from 'components/layout/MobileMenu';
-import SELECTORS from 'redux/selectors';
+import SELECTORS from 'store/selectors';
 
 
 const Header = ({ isAuth }) => {

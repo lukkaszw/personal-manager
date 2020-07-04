@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import initialState from './initialState';
 
-import userReducer from 'redux/reducers/user';
+import userReducer from 'store/reducers/user';
 
 const reducers = {
   user: userReducer,
@@ -27,4 +27,3 @@ const store = createStore(
 );
 
 export default store;
-
