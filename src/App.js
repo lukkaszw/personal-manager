@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import MainLayout from 'components/layout/MainLayout';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
@@ -16,8 +16,13 @@ import { ThemeProvider } from 'styled-components';
 import theme from './App.styles';
 import { connect } from 'react-redux';
 import SELECTORS from 'store/selectors';
+import API from 'store/api';
 
-function App({ isAuth }) {
+function App({ isAuth, onTryLoginOnStart }) {
+  useEffect(() => {
+    onTryLoginOnStart();
+  }, [onTryLoginOnStart]);
+
 
   const router = !isAuth ?
   (
@@ -86,7 +91,11 @@ const mapStateToProps = (state) => ({
   isAuth: SELECTORS.user.getIsAuth(state),
 });
 
-const ConnectedApp = connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  onTryLoginOnStart: () => dispatch(API.user.tryLoginOnStart()),
+})
+
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 const RootApp = () => {
   return (

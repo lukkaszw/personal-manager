@@ -5,6 +5,7 @@ const api = {
       register: 'user',
       login: 'user/login',
       logout: 'user/logout',
+      getData: 'user/me',
     }
   }
 }

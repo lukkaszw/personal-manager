@@ -41,6 +41,10 @@ const signIn = async (req, res) => {
   }
 }
 
+const getUserData = (req, res) => {
+  res.json(req.user);
+}
+
 const logout = async (req, res) => {
   try {
     req.user.tokens = req.user.tokens
@@ -58,4 +62,5 @@ module.exports = {
   signUp,
   signIn,
   logout,
+  getUserData,
 };

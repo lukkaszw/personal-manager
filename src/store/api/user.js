@@ -37,12 +37,33 @@ export const sendCredentials = (data, destination) => {
   }
 }
 
+export const tryLoginOnStart = () => {
+  const token = localStorage.getItem('tkn');
+  return dispatch => {
+    if(token) {
+      const url = `${api.baseUrl}/${api.endpoints.user.getData}`;
+      const config = generateAuthConfig(token);
+      
+          return axios.get(url, config)
+            .then(res => {
+              dispatch(login({ token, user: res.data }));
+            })
+            .catch(() => {
+              localStorage.removeItem('tkn');
+            });
+    } 
+
+    return null;
+  }
+}
+
 export const logoutUser = (token) => {
   const url = `${api.baseUrl}/${api.endpoints.user.logout}`;
 
   const config = generateAuthConfig(token);
 
   return dispatch => {
+    localStorage.removeItem('tkn');
     dispatch(logout());
     return axios.post(url, {}, config)
       .then(res => {
