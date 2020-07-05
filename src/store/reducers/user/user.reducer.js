@@ -54,6 +54,17 @@ const userReducer = (statePart = {}, action = {}) => {
         }
       }
     }
+    case ACTIONS.user.LOGOUT: {
+      return {
+        token: null,
+        data: {},
+        request: {
+          isActive: false,
+          isSuccess: false,
+          error: null,
+        }
+      }
+    }
     default: 
       return statePart;
   }

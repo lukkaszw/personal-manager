@@ -41,7 +41,21 @@ const signIn = async (req, res) => {
   }
 }
 
+const logout = async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens
+      .filter(token => token.token.toString() !== req.token);
+    await req.user.save();
+    res.json({
+      message: 'Successfull logout!',
+    });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
+  logout,
 };
