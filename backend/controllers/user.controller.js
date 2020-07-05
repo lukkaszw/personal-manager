@@ -24,9 +24,9 @@ const signIn = async (req, res) => {
 
   try {
     const user = await User.findByCredentials(login, password);
-    console.log(user);
+
     const token = await user.generateAuthToken();
-    console.log(token);
+    
     res.json({ token, user });
   } catch (error) {
     if(error.message === 'Incorrect login or password!') {
