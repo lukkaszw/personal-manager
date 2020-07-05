@@ -17,8 +17,10 @@ app.listen(port, () => {
 });
 
 const userRouter = require('./routes/user.router');
+const langRouter = require('./routes/lang.router');
 
 app.use('/user', userRouter);
+app.use('/lang', langRouter);
 
 app.get('*', (req, res) => {                       
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));                               

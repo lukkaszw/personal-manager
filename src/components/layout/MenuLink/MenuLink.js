@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 
 const MenuLink = ({ to, name }) => {
   const { t } = useTranslation();
-
   return ( 
     <Li>
       <NavLink 

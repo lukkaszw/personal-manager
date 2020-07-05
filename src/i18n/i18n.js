@@ -4,9 +4,6 @@ import { initReactI18next } from 'react-i18next';
 import CustomBackend from './CustomBackend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-const token = process.env.REACT_APP_POE_E_TOKEN;
-const id = process.env.REACT_APP_POE_E_ID;
-
 i18n
   .use(CustomBackend)
   .use(LanguageDetector)
@@ -20,8 +17,8 @@ i18n
 
     backend: {
       // cors-anywhere is a trick. Don't use it in production
-      loadPath: 'https://cors-anywhere.herokuapp.com/https://api.poeditor.com/v2/terms/list',
-      addPath: 'https://cors-anywhere.herokuapp.com/https://api.poeditor.com/v2/terms/add',
+      loadPath: process.env.NODE_ENV === 'production' ? '/lang' : 'http://localhost:8000/lang',
+      addPath: process.env.NODE_ENV === 'production' ? '/lang/add' : 'http://localhost:8000/lang/add',
       crossDomain: true,
       parse: data => {
         const parsedData = JSON.parse(data);
@@ -40,18 +37,14 @@ i18n
           term: key,
         }];
         const payload = {
-          api_token: token,
           data: JSON.stringify(data),
-          id,
         };
 
         return payload;
       },
       parseLoadPayload: ({ lng }) => {
         const payload = {
-          api_token: token,
           language: lng,
-          id,
         };
 
         return payload;

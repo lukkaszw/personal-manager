@@ -1,15 +1,40 @@
 const axios = require('axios');
 
-const getLanguage = async (req, res) => {
-  const params = new URLSearchParams();
-  params.append('api_token', "21ec921cf653dcc37017e1d87d44f49a");
-  params.append('id', 354473);
-  params.append('language', 'en');
-  const response = await axios.post('https://api.poeditor.com/v2/terms/list', params);
+const apiToken = process.env.POE_API_TOKEN;
+const apiId = process.env.POE_API_ID;
 
-  console.log(response.data.result);
+const getTerms = async (req, res) => {
+  const lang = req.body.language;
+  try {
+    const params = new URLSearchParams();
+    params.append('api_token', apiToken);
+    params.append('id', apiId);
+    params.append('language', lang);
+    const response = await axios.post('https://api.poeditor.com/v2/terms/list', params);
+  
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
+const addTerms = async (req, res) => {
+  console.log(req.body);
+  
+  try {
+    const params = new URLSearchParams();
+    params.append('api_token', apiToken);
+    params.append('id', apiId);
+    params.append('data', req.body.data);
+    const response = await axios.post('https://api.poeditor.com/v2/terms/add', params);
+    
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 module.exports = {
-  getLanguage,
+  getTerms,
+  addTerms,
 };
