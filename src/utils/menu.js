@@ -33,12 +33,12 @@ export const authenticatedMenu = [
     to: '/notes',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Calendar',
     to: '/calendar',
   },
   {
-    id: 5,
+    id: 6,
     name: 'Adverts',
     to: '/adverts'
   }

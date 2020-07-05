@@ -1,1 +1,0 @@
-export const getIsAuth = ({ user }) => !!user.token;

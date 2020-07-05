@@ -1,8 +1,8 @@
-import { getIsAuth } from './auth';
+import * as user from './user';
 
 
 const SELECTORS = {
-  getIsAuth,
+  user,
 };
 
 export default SELECTORS;

@@ -32,7 +32,7 @@ const Header = ({ isAuth }) => {
                 <MenuIcon />
               </IconButton>
               <MenuDesktop isAuth={isAuth}/>
-              <MenuRight />
+              <MenuRight isAuth={isAuth} />
             </Toolbar>
           </Container>
           <MobileMenu 
@@ -50,7 +50,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isAuth: SELECTORS.getIsAuth(state),
+  isAuth: SELECTORS.user.getIsAuth(state),
 });
  
 export default connect(mapStateToProps)(Header);

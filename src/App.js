@@ -14,6 +14,8 @@ import Logout from 'components/pages/Logout';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import { ThemeProvider } from 'styled-components';
 import theme from './App.styles';
+import { connect } from 'react-redux';
+import SELECTORS from 'store/selectors';
 
 function App({ isAuth }) {
 
@@ -80,10 +82,16 @@ App.propTypes = {
   isAuth: PropTypes.bool.isRequired,
 }
 
+const mapStateToProps = (state) => ({
+  isAuth: SELECTORS.user.getIsAuth(state),
+});
+
+const ConnectedApp = connect(mapStateToProps)(App);
+
 const RootApp = () => {
   return (
     <React.Suspense fallback={<MainLoaderIndicator />}>
-      <App isAuth={false}/>
+      <ConnectedApp isAuth={false}/>
     </React.Suspense>
   )
 }
