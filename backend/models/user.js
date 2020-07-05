@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const _v = require('validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const ERRORS = require('../errors/user.errors');
 
 //must be 8 char long and contain at least one: capital letter, small letter, number, special char
 const passwordRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
@@ -73,11 +75,23 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
+userSchema.methods.generateAuthToken = async function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_KEY );
+
+  user.tokens.push({token});
+  await user.save();
+  
+  return token;
+}
+
 userSchema.statics.sendRegistrationErrors = (error, res) => {
   
   if(error.message === 'Passwords do not match!') {
-    return res.status(400).json({ 
+    return res.json({
+      isError: true, 
       message: error.message, 
+      errorCode: ERRORS.BAD_REQUEST,
     });
   }
 
@@ -86,18 +100,51 @@ userSchema.statics.sendRegistrationErrors = (error, res) => {
     const errorTopic = login || password || name || surname;
     let message = 'Error occured!';
     if(errorTopic) {
-      message += errorTopic.message;
+      message = errorTopic.message;
     }
 
-    return res.status(400).json({ message });
+    return res.json({ isError: true, message, errorCode: ERRORS.BAD_REQUEST });
   }
 
 
   if(error.message.indexOf('duplicate key error') !== -1) {
-    return res.status(400).json({ message: 'Provided email is in use!'});
+    return res.json({ isError: true, message: 'Provided email is in use!', errorCode: ERRORS.USER_EXISTS });
   }
 
-  res.status(500).json({ message: error.message });
+  res.status(500).json({ message: error.message, errorCode: ERRORS.SERVER_ERROR });
+}
+
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+
+  userObject.email = userObject.login;
+
+  delete userObject.login;
+  delete userObject.password;
+  delete userObject.tokens;
+  delete userObject.tasks;
+  delete userObject.notes;
+  delete userObject.adverts;
+  delete userObject.budgets;
+
+  return userObject;
+}
+
+userSchema.statics.findByCredentials = async (login, password) => {
+  const user = await User.findOne({ login: { $eq: login }  });
+  const errorMessage = 'Incorrect login or password!';
+  if(!user) {
+    throw new Error(errorMessage);
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if(!isMatch) {
+    throw new Error(errorMessage);
+  }
+
+  return user;
 }
 
 userSchema.pre('save', async function (next) {
