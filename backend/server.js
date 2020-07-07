@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 require('./database');
+const auth = require('./middlewares/auth');
 
 const port = process.env.PORT || 8000;
 
@@ -18,9 +19,11 @@ app.listen(port, () => {
 
 const userRouter = require('./routes/user.router');
 const langRouter = require('./routes/lang.router');
+const tasksRouter = require('./routes/task.router');
 
 app.use('/user', userRouter);
 app.use('/lang', langRouter);
+app.use('/tasks', auth, tasksRouter);
 
 app.get('*', (req, res) => {                       
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));                               
