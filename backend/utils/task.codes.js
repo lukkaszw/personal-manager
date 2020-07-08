@@ -1,17 +1,17 @@
-const PRORITY = {
-  LOW: 1,
-  NORMAL: 2,
-  HIGH: 3,
-  VERY_HIGH: 4,
+const PRIORITY = {
+  low: 1,
+  normal: 2,
+  high: 3,
+  very_high: 4,
 };
 
 const STATUS = {
-  IN_PROGRESS: 1,
-  DONE: 2,
-  FAILED: 3,
+  in_progress: 1,
+  done: 2,
+  failed: 3,
 };
 
 module.exports = {
-  PRORITY,
+  PRIORITY,
   STATUS,
 };

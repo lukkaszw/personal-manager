@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const TASK_CODES = require('../utils/task.codes');
-const { PRORITY, STATUS } = TASK_CODES;
+const { PRIORITY, STATUS } = TASK_CODES;
 
 const taskSchema = new mongoose.Schema({
   userId: {
@@ -21,7 +21,7 @@ const taskSchema = new mongoose.Schema({
   },
   priority: {
     type: Number,
-    enum: [PRORITY.LOW, PRORITY.NORMAL, PRORITY.HIGH, PRORITY.VERY_HIGH],
+    enum: [PRIORITY.low, PRIORITY.normal, PRIORITY.high, PRIORITY.very_high],
     required: true,
   },
   startDate: {
@@ -34,8 +34,8 @@ const taskSchema = new mongoose.Schema({
   },
   status: {
     type: Number,
-    enum: [STATUS.IN_PROGRESS, STATUS.DONE, STATUS.FAILED],
-    default: STATUS.IN_PROGRESS,
+    enum: [STATUS.in_progress, STATUS.done, STATUS.failed],
+    default: STATUS.in_progress,
   }
 }, {
   timestamps: true,

@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const taskController = require('../controllers/tast.controller');
+const taskController = require('../controllers/task.controller');
 
-router.get('', taskController.getAllTasks);
+router.get('', taskController.getTasks);
 
 router.get('/:id', taskController.getOneTask);
-
-router.get('/done', taskController.getDoneTasks);
-
-router.get('/failed', taskController.getFailedTasks);
-
-router.get('/inprogress', taskController.getInProgressTasks);
 
 router.post('', taskController.addTask);
 
