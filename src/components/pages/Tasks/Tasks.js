@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useQuery } from 'react-query';
 import TasksList from './components/TasksList';
-import API from 'store/api';
 import SELECTORS from 'store/selectors';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
 

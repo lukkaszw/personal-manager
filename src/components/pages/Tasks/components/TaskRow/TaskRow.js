@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import { useStyles } from '../TasksList/TasksList.styles';
+import { useStyles, LinkTitle } from '../TasksList/TasksList.styles';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 
@@ -33,12 +33,14 @@ const TaskRow = ({  _id, nr, title, priority, status, endDate, lang }) => {
 
   return ( 
     <TableRow>
-      <TableCell className={classes.cell}>{nr}</TableCell>
-      <TableCell className={classes.cell}>{title}</TableCell>
-      <TableCell className={clsx([classes.cell, classes.statuses, classes[`priority_${PRIORITY[priority]}`]])}>
+      <TableCell className={clsx([classes.cell, classes.nr])}>{nr}</TableCell>
+      <TableCell className={clsx([classes.cell, classes.title])}>
+        <LinkTitle to={`/tasks/${_id}`}>{title}</LinkTitle>
+      </TableCell>
+      <TableCell className={clsx([classes.cell, classes[`priority_${PRIORITY[priority]}`]])}>
         {t(PRIORITY[priority])}
       </TableCell>
-      <TableCell className={clsx([classes.cell, classes.statuses, classes[`status_${STATUS[status]}`]])}>
+      <TableCell className={clsx([classes.cell, classes[`status_${STATUS[status]}`]])}>
         {t(STATUS[status])}
       </TableCell>
       <TableCell className={classes.cell}>{dateString}</TableCell>

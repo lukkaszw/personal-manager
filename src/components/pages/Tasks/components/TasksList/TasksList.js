@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useStyles } from './TasksList.styles';
 import { useQuery } from 'react-query';
 import API from 'store/api';
+import clsx from 'clsx';
 
 const TasksList = ({ token }) => {
   const { t, i18n } = useTranslation();
@@ -23,8 +24,8 @@ const TasksList = ({ token }) => {
       <Table className={classes.table} aria-label="tasks table">
         <TableHead>
           <TableRow className={classes.tr}>
-            <TableCell  className={classes.cell}>Nr</TableCell>
-            <TableCell  className={classes.cell}>{t('Title')}</TableCell>
+            <TableCell  className={clsx([classes.cell, classes.nr])}>Nr</TableCell>
+            <TableCell  className={clsx([classes.cell, classes.titleCell])}>{t('Title')}</TableCell>
             <TableCell  className={classes.cell}>{t('Priority')}</TableCell>
             <TableCell  className={classes.cell}>Status</TableCell>
             <TableCell  className={classes.cell}>{t('End time')}</TableCell>

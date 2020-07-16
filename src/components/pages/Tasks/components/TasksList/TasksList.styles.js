@@ -1,4 +1,6 @@
 import { makeStyles  } from '@material-ui/core/styles';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const useStyles = makeStyles({
   table: {
@@ -8,8 +10,22 @@ export const useStyles = makeStyles({
   cell: {
     textAlign: 'center',
   },
-  statuses: {
+  nr: {
+    width: '20px',
+    padding: 0,
+  },  
+  titleCell: {
+    minWidth: '120px',
+  }, 
+  title: {
+    maxWidth: '150px',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  bold: {
     fontWeight: 'bold',
+    width: '100px',
   },
   priority_low: {
     color: 'lightgreen',
@@ -33,3 +49,14 @@ export const useStyles = makeStyles({
     color: 'red',
   },
 });
+
+
+export const LinkTitle = styled(Link)`
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    color: ${props => props.theme.colors.mainLighten};
+  }
+`;
