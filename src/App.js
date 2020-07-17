@@ -18,6 +18,9 @@ import theme from './App.styles';
 import { connect } from 'react-redux';
 import SELECTORS from 'store/selectors';
 import API from 'store/api';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
+import moment from 'moment';
 
 const Tasks = React.lazy(() => import('components/pages/Tasks'));
 
@@ -81,14 +84,16 @@ function App({ isAuth, onTryLoginOnStart }) {
 
   return (
     <ReactQueryConfigProvider config={queryConfig}>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <MainLayout>
-            {router}
-          </MainLayout>
-        </Router>
-      </ThemeProvider>
-    </ReactQueryConfigProvider>
+      <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <MainLayout>
+              {router}
+            </MainLayout>
+          </Router>
+        </ThemeProvider>
+        </MuiPickersUtilsProvider>
+      </ReactQueryConfigProvider>
   );
 }
 
