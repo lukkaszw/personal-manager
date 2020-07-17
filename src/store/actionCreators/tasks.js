@@ -1,0 +1,6 @@
+import ACTIONS from '../actions';
+
+export const setPriority = (priority) => ({ payload: priority, type: ACTIONS.tasks.SET_PRIORITY });
+export const setStatus = (status) => ({ payload: status, type: ACTIONS.tasks.SET_STATUS});
+export const setDateFrom = (dateFrom) => ({ payload: dateFrom, type: ACTIONS.tasks.SET_DATE_FROM});
+export const setDateTo = (dateTo) => ({ payload: dateTo, type: ACTIONS.tasks.SET_DATE_TO });

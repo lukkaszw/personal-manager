@@ -1,4 +1,4 @@
-import { makeStyles  } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 

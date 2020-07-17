@@ -5,9 +5,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import initialState from './initialState';
 
 import userReducer from 'store/reducers/user';
+import tasksReducer from 'store/reducers/tasks';
 
 const reducers = {
   user: userReducer,
+  tasks: tasksReducer,
 };
 
 Object.keys(initialState).forEach(item => {

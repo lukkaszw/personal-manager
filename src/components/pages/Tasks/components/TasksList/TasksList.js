@@ -13,10 +13,10 @@ import { useQuery } from 'react-query';
 import API from 'store/api';
 import clsx from 'clsx';
 
-const TasksList = ({ token }) => {
+const TasksList = ({ token, status, priority, title, dateFrom, dateTo, sort }) => {
   const { t, i18n } = useTranslation();
   const classes = useStyles();
-  const { data: tasks } = useQuery(['tasks', { token }], API.tasks.getTasks,  { suspense: true });
+  const { data: tasks } = useQuery(['tasks', { token, priority, status, dateTo, dateFrom }], API.tasks.getTasks,  { suspense: true });
   const lang = i18n.language === 'pl-PL' ? i18n.language : 'eng-Gb';
 
   return ( 
@@ -50,6 +50,11 @@ const TasksList = ({ token }) => {
 
 TasksList.propTypes = {
   token: PropTypes.string.isRequired,
+  status: PropTypes.string,
+  priority: PropTypes.string,
+  title: PropTypes.string,
+  date: PropTypes.string,
+  sort: PropTypes.string,
 };
 
 export default TasksList;

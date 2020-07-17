@@ -8,6 +8,16 @@ const initialState = {
       error: null,
     },
   },
+  tasks: {
+    query: {
+      status: 'all',
+      priority: 'all',
+      title: null,
+      dateFrom: null,
+      dateTo: null,
+      sort: null,
+    }
+  }
 };
 
 export default initialState;
