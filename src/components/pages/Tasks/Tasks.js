@@ -8,8 +8,8 @@ import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
 import QuerySettings from './components/QuerySettings';
 
 const Tasks = ({ 
-  token, status, priority, title, dateFrom, dateTo, sort, page,
-  onChangePriority, onChangeStatus, onChangeDateFrom, onChangeDateTo, onChangePage,
+  token, status, priority, dateFrom, dateTo, sortBy, sortOrder, page,
+  onChangePriority, onChangeStatus, onChangeDateFrom, onChangeDateTo, onChangePage, onChangeSort,
 }) => {
 
   return ( 
@@ -31,7 +31,10 @@ const Tasks = ({
         dateFrom={dateFrom}
         dateTo={dateTo}
         page={page}
+        sortBy={sortBy}
+        sortOrder={sortOrder}
         onChangePage={onChangePage}
+        onChangeSort={onChangeSort}
       />
     </SuspenseErrorBundary>
    );
@@ -43,13 +46,15 @@ Tasks.propTypes = {
   priority: PropTypes.string.isRequired,
   dateFrom: PropTypes.any,
   dateTo: PropTypes.any,
-  sort: PropTypes.string,
+  sortBy: PropTypes.string,
+  sortOrder: PropTypes.string,
   page: PropTypes.number.isRequired,
   onChangePriority: PropTypes.func.isRequired,
   onChangeStatus: PropTypes.func.isRequired,
   onChangeDateFrom: PropTypes.func.isRequired,
   onChangeDateTo: PropTypes.func.isRequired,
   onChangePage: PropTypes.func.isRequired,
+  onChangeSort: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -58,7 +63,8 @@ const mapStateToProps = (state) => ({
   priority: SELECTORS.tasks.getQueryPriority(state),
   dateFrom: SELECTORS.tasks.getQueryDateFrom(state),
   dateTo: SELECTORS.tasks.getQueryDateTo(state),
-  sort: SELECTORS.tasks.getQuerySort(state),
+  sortBy: SELECTORS.tasks.getQuerySortBy(state),
+  sortOrder: SELECTORS.tasks.getQuerySortOrder(state),
   page: SELECTORS.tasks.getQueryPage(state),
 });
 
@@ -68,6 +74,7 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeDateFrom: (dateFrom) => dispatch(ACTION_CREATORS.tasks.setDateFrom(dateFrom)),
   onChangeDateTo: (dateTo) => dispatch(ACTION_CREATORS.tasks.setDateTo(dateTo)),
   onChangePage: (page) => dispatch(ACTION_CREATORS.tasks.setPage(page)),
+  onChangeSort: (sortBy) => dispatch(ACTION_CREATORS.tasks.setSort(sortBy)),
 });
  
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

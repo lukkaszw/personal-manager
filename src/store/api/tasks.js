@@ -4,7 +4,7 @@ import generateAuthConfig from 'utils/generateAuthConfig';
 import moment from 'moment';
 import { pages } from 'utils/pages.config';
 
-export const getTasks = async (key ,{ token, priority, status, dateFrom, dateTo, page }) => {
+export const getTasks = async (key ,{ token, priority, status, dateFrom, dateTo, page, sortBy, sortOrder }) => {
   const url = `${api.baseUrl}/${api.endpoints.tasks}`;
 
   const config = generateAuthConfig(token);
@@ -20,6 +20,10 @@ export const getTasks = async (key ,{ token, priority, status, dateFrom, dateTo,
     limit: pages.tasks.maxPerPage,
     skip: (page - 1) * pages.tasks.maxPerPage,
   };
+
+  if(sortBy && sortOrder) {
+    config.params.sort = `${sortBy}_${sortOrder}`;
+  }
 
   const res = await axios.get(url, config);
   return res.data;

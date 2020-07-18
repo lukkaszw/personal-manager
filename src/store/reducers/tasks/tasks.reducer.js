@@ -51,6 +51,16 @@ const tasksReducer = (statePart = {}, action = {}) => {
        } 
       }
     }
+    case ACTIONS.tasks.SET_SORT: {
+      return {
+        ...statePart,
+        query: {
+          ...statePart.query,
+          sortBy: action.payload,
+          sortOrder: statePart.query.sortOrder === 'asc' ? 'desc' : 'asc', 
+        }
+      }
+    }
     default: 
       return statePart;
   }

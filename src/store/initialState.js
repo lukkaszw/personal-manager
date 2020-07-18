@@ -14,7 +14,8 @@ const initialState = {
       priority: 'all',
       dateFrom: null,
       dateTo: null,
-      sort: null,
+      sortBy: null,
+      sortOrder: null,
       page: 1,
     }
   }
