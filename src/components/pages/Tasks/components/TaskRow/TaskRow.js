@@ -37,10 +37,10 @@ const TaskRow = ({  _id, nr, title, priority, status, endDate, lang }) => {
       <TableCell className={clsx([classes.cell, classes.title])}>
         <LinkTitle to={`/tasks/${_id}`}>{title}</LinkTitle>
       </TableCell>
-      <TableCell className={clsx([classes.cell, classes[`priority_${PRIORITY[priority]}`]])}>
+      <TableCell className={clsx([classes.cell, classes.statusCell, classes[`priority_${PRIORITY[priority]}`]])}>
         {t(PRIORITY[priority])}
       </TableCell>
-      <TableCell className={clsx([classes.cell, classes[`status_${STATUS[status]}`]])}>
+      <TableCell className={clsx([classes.cell, classes.statusCell, classes[`status_${STATUS[status]}`]])}>
         {t(STATUS[status])}
       </TableCell>
       <TableCell className={classes.cell}>{dateString}</TableCell>

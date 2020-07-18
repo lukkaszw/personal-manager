@@ -54,17 +54,19 @@ const getTasks = async (req, res) => {
   }  
 
   try {
+    const amount = await Task.countDocuments(match);
+
     const tasks = await Task.find(match)
       .limit(Number(req.query.limit))
       .skip(Number(req.query.skip))
       .sort(sort);
 
     if(!tasks) {
-      res.json([]);
+      res.json({amount: 0, tasks: []});
       return;
     }
 
-    res.json(tasks);
+    res.json({ amount, tasks });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);

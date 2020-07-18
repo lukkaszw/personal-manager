@@ -12,10 +12,10 @@ const initialState = {
     query: {
       status: 'all',
       priority: 'all',
-      title: null,
       dateFrom: null,
       dateTo: null,
       sort: null,
+      page: 1,
     }
   }
 };

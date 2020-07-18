@@ -8,6 +8,7 @@ const tasksReducer = (statePart = {}, action = {}) => {
         query: {
           ...statePart.query,
           priority: action.payload,
+          page: 1,
         },
       };
     }
@@ -17,6 +18,7 @@ const tasksReducer = (statePart = {}, action = {}) => {
         query: {
           ...statePart.query,
           status: action.payload,
+          page: 1,
         }
       }
     }
@@ -26,6 +28,7 @@ const tasksReducer = (statePart = {}, action = {}) => {
         query: {
           ...statePart.query,
           dateFrom: action.payload,
+          page: 1,
         }
       }
     }
@@ -35,7 +38,17 @@ const tasksReducer = (statePart = {}, action = {}) => {
         query: {
           ...statePart.query,
           dateTo: action.payload,
+          page: 1,
         }
+      }
+    }
+    case ACTIONS.tasks.SET_PAGE: {
+      return {
+       ...statePart,
+       query: {
+         ...statePart.query,
+         page: action.payload,
+       } 
       }
     }
     default: 
