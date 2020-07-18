@@ -14,7 +14,8 @@ export const useStyles = makeStyles({
     textAlign: 'center',
   },
   statusCell: {
-    minWidth: '100px',
+    fontWeight: 'bold',
+    padding: '5px',
   },
   nr: {
     width: '20px',
