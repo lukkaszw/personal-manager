@@ -20,7 +20,7 @@ import { useStyles } from './QuerySettings.styles';
 
 const QuerySettings = ({ 
   priority, status, dateFrom, dateTo,
-  onChangePriority, onChangeStatus, onChangeDateTo, onChangeDateFrom,
+  onChangePriority, onChangeStatus, onChangeDateTo, onChangeDateFrom, onResetQuerySettings,
 }) => {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -33,7 +33,6 @@ const QuerySettings = ({
   
   const onFromDateChange = useCallback((date) => onChangeDateFrom(date), [onChangeDateFrom]);
   const onToDateChange = useCallback((date) => onChangeDateTo(date), [onChangeDateTo]);
-
 
   return ( 
     <Root>
@@ -113,7 +112,10 @@ const QuerySettings = ({
           </Form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseSettings} color="primary">
+          <Button onClick={onResetQuerySettings} color="primary">
+            {t('Reset')}
+          </Button>
+          <Button onClick={handleCloseSettings} color="secondary">
             {t('Close')}
           </Button>
         </DialogActions>
@@ -127,6 +129,7 @@ QuerySettings.propTypes = {
   status: PropTypes.string.isRequired,
   onChangePriority: PropTypes.func.isRequired,
   onChangeStatus: PropTypes.func.isRequired,
+  onResetQuerySettings: PropTypes.func.isRequired,
 };
  
 export default QuerySettings;

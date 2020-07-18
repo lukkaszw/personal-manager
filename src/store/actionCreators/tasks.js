@@ -6,3 +6,4 @@ export const setDateFrom = (dateFrom) => ({ payload: dateFrom, type: ACTIONS.tas
 export const setDateTo = (dateTo) => ({ payload: dateTo, type: ACTIONS.tasks.SET_DATE_TO });
 export const setPage = (page) => ({ payload: page, type: ACTIONS.tasks.SET_PAGE });
 export const setSort = (sortBy) => ({ payload: sortBy, type: ACTIONS.tasks.SET_SORT });
+export const resetQuerySettings = () => ({ type: ACTIONS.tasks.RESET_QUERY_SETTINGS });

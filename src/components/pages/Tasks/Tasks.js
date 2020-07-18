@@ -9,7 +9,7 @@ import QuerySettings from './components/QuerySettings';
 
 const Tasks = ({ 
   token, status, priority, dateFrom, dateTo, sortBy, sortOrder, page,
-  onChangePriority, onChangeStatus, onChangeDateFrom, onChangeDateTo, onChangePage, onChangeSort,
+  onChangePriority, onChangeStatus, onChangeDateFrom, onChangeDateTo, onChangePage, onChangeSort, onResetQuerySettings,
 }) => {
 
   return ( 
@@ -23,6 +23,7 @@ const Tasks = ({
         dateTo={dateTo}
         onChangeDateFrom={onChangeDateFrom}
         onChangeDateTo={onChangeDateTo}
+        onResetQuerySettings={onResetQuerySettings}
       />
       <TasksList
         token={token}
@@ -55,6 +56,7 @@ Tasks.propTypes = {
   onChangeDateTo: PropTypes.func.isRequired,
   onChangePage: PropTypes.func.isRequired,
   onChangeSort: PropTypes.func.isRequired,
+  onResetQuerySettings: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -75,6 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeDateTo: (dateTo) => dispatch(ACTION_CREATORS.tasks.setDateTo(dateTo)),
   onChangePage: (page) => dispatch(ACTION_CREATORS.tasks.setPage(page)),
   onChangeSort: (sortBy) => dispatch(ACTION_CREATORS.tasks.setSort(sortBy)),
+  onResetQuerySettings: () => dispatch(ACTION_CREATORS.tasks.resetQuerySettings()),
 });
  
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

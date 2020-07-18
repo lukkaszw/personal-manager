@@ -2,6 +2,20 @@ import ACTIONS from '../../actions';
 
 const tasksReducer = (statePart = {}, action = {}) => {
   switch (action.type) {
+    case ACTIONS.tasks.RESET_QUERY_SETTINGS: {
+      return {
+        ...statePart,
+        query: {
+          status: 'all',
+          priority: 'all',
+          dateFrom: null,
+          dateTo: null,
+          sortBy: null,
+          sortOrder: null,
+          page: 1,
+        }
+      }
+    }
     case ACTIONS.tasks.SET_PRIORITY: {
       return {
         ...statePart,
