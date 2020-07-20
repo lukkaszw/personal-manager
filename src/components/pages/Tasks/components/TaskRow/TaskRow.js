@@ -5,19 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import { useStyles, LinkTitle } from '../TasksList/TasksList.styles';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-
-const STATUS = {
-  1: 'in_progress',
-  2: 'done',
-  3: 'failed'
-};
-
-const PRIORITY = {
-  1: 'low',
-  2: 'normal',
-  3: 'high',
-  4: 'v_high',
-};
+import { STATUS, PRIORITY } from 'utils/tasks.statuses';
 
 
 const TaskRow = ({  _id, nr, title, priority, status, endDate, lang }) => {

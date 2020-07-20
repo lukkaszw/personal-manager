@@ -25,7 +25,7 @@ const TasksList = ({
   const { data } = useQuery([
     'tasks', 
     { token, priority, status, dateTo, dateFrom, page, sortBy, sortOrder, }
-  ], API.tasks.getTasks,  { suspense: true });
+  ], API.tasks.getTasks,  { suspense: true, cacheTime: 0 });
   const lang = i18n.language === 'pl-PL' ? i18n.language : 'eng-Gb';
   const handleChangePage = useCallback((e, value) => onChangePage(value), [onChangePage]);
 

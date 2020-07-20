@@ -21,12 +21,19 @@ import API from 'store/api';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Tasks = React.lazy(() => import('components/pages/Tasks'));
+const Task = React.lazy(() => import('components/pages/Task'));
 
 const queryConfig = {
   suspense: true,
+  cacheTime: -1,
 };
+
+toast.configure();
 
 function App({ isAuth, onTryLoginOnStart }) {
   useEffect(() => {
@@ -58,6 +65,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/tasks'>
           <Tasks />
+        </Route>
+        <Route exact path='/tasks/:id'>
+          <Task />
         </Route>
         <Route exact path='/budget'>
           <Budget />

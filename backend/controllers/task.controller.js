@@ -3,6 +3,7 @@ const TASK_CODES = require('../utils/task.codes');
 const { PRIORITY, STATUS } = TASK_CODES;
 
 const getTasks = async (req, res) => {
+  res.set('Cache-Control', 'no-cache');
   const userId = req.user._id;
 
   const match = {
@@ -65,7 +66,6 @@ const getTasks = async (req, res) => {
       res.json({amount: 0, tasks: []});
       return;
     }
-
     res.json({ amount, tasks });
   } catch (error) {
     console.log(error);
@@ -85,7 +85,6 @@ const getOneTask = async (req, res) => {
       });
       return;
     }
-
     res.json(task);
   } catch (error) {
     res.status(500).json(error);

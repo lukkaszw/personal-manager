@@ -21,6 +21,7 @@ export const authenticatedMenu = [
     id: 2,
     name: 'Tasks',
     to: '/tasks',
+    exact: false,
   },
   {
     id: 3,
