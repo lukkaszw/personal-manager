@@ -9,14 +9,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import { faCheck, faTimes, faTrash, faEdit  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Root, useStyles, ButtonsWrapper } from './TaskActions.styles';
+import { TaskActionsRoot, useStyles, ButtonsWrapper } from '../../Task.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
 import API from 'store/api';
 import clsx from 'clsx';
 
-const TaskActions = ({ id, token }) => {
+const TaskActions = ({ id, token, status }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const history = useHistory();
@@ -62,16 +62,16 @@ const TaskActions = ({ id, token }) => {
 
 
   return ( 
-    <Root>
+    <TaskActionsRoot>
       <LoaderIndicator isOpen={isSending}/>
       <IconButton
         className={classes.iconButton}
         aria-label={t('done')}
         onClick={handleSetTaskAsDone}
-        disabled={isSending}
+        disabled={isSending || (status === 2)}
       >
         <FontAwesomeIcon 
-          className={clsx('positive', isSending && 'disabled')}
+          className='positive'
           icon={faCheck}
         />
       </IconButton>
@@ -79,10 +79,10 @@ const TaskActions = ({ id, token }) => {
         className={classes.iconButton}
         aria-label={t('failed')}
         onClick={handleSetTaskAsFailed}
-        disabled={isSending}
+        disabled={isSending || (status === 3)}
       >
         <FontAwesomeIcon 
-          className={clsx('negative', isSending && 'disabled')}
+          className='negative'
           icon={faTimes}
         />
       </IconButton>
@@ -105,7 +105,7 @@ const TaskActions = ({ id, token }) => {
         disabled={isSending}
       >
         <FontAwesomeIcon 
-          className={clsx('negative', isSending && 'disabled')}
+          className='negative'
           icon={faTrash}
         />
       </IconButton>
@@ -136,13 +136,14 @@ const TaskActions = ({ id, token }) => {
           </ButtonsWrapper>
         </DialogContent>
       </Dialog>
-    </Root>
+    </TaskActionsRoot>
    );
 }
 
 TaskActions.propTypes = {
   id: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
+  status: PropTypes.number.isRequired,
 };
  
 export default TaskActions;

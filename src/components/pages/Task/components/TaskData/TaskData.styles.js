@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const Root = styled.div`
-  padding: 30px 0;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
 export const StartDate = styled.p`
   font-size: 12px;
   text-align: right;

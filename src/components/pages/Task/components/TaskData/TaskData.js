@@ -4,17 +4,33 @@ import { useQuery } from 'react-query';
 import API from 'store/api';
 import TaskActions from '../TaskActions/TaskActions';
 import { 
-  Root, Title, Description, StatusName,
+  Title, Description, StatusName,
   StatusContent, StartDate, Header, EndTime } from './TaskData.styles';
+import { TaskDataRoot } from '../../Task.styles';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { STATUS, PRIORITY } from 'utils/tasks.statuses';
+import clsx from 'clsx';
+
+const TASK_CLASSES = {
+  status: {
+    1: null,
+    2: 'positive',
+    3: 'negative',
+  },
+  priority: {
+    1: 'positive',
+    2: 'positive',
+    3: 'negative',
+    4: 'negative',
+  }
+};
 
 const TaskData = ({ id, token }) => {
   const { t, i18n } = useTranslation();
  
   const { data } = useQuery(['task', { id, token }], API.tasks.getTask, { suspense: true });
-  const { endDate, updateDate, daysFromNow } = useMemo(() => {
+  const { endDate, updateDate, daysFromNow, isFarFromNow } = useMemo(() => {
     const lang = i18n.language === 'pl-PL' ? i18n.language : 'eng-Gb';
     const dateForUpdate = new Date(data.updatedAt);
     const dateForEnd = new Date(data.endDate);
@@ -26,12 +42,14 @@ const TaskData = ({ id, token }) => {
 
     const daysFromNow = (fromNowDiff > 1 || (fromNowDiff === 0)) ? `${fromNowDiff} ${t('days')}` :
       (fromNowDiff > 0 ? `${fromNowDiff} ${t('day')}` : t('expired'));
+
+    const isFarFromNow = fromNowDiff > 1;
  
-    return { endDate, updateDate, daysFromNow };
+    return { endDate, updateDate, daysFromNow, isFarFromNow };
   }, [i18n.language, data, t]);
 
   return ( 
-    <Root>
+    <TaskDataRoot>
       <div>
         <Header>
           <StartDate>
@@ -52,14 +70,18 @@ const TaskData = ({ id, token }) => {
               </strong>
             </span>
             <span>
-              {t('left')}: <strong className='value'>{daysFromNow}</strong>
+              {t('left')}: <strong 
+                className={clsx(['value', isFarFromNow ? 'positive' : 'negative'])}
+              >
+                {daysFromNow}
+              </strong>
             </span>
           </EndTime>
           <div>
             <StatusName>
               {t('Priority').toLowerCase()}:
             </StatusName> 
-            <strong className='value'>
+            <strong className={clsx('value', TASK_CLASSES.priority[data.priority])}>
               {t(PRIORITY[data.priority])}
             </strong>
           </div>
@@ -67,7 +89,7 @@ const TaskData = ({ id, token }) => {
             <StatusName>
               status:
             </StatusName> 
-            <strong className='value'>
+            <strong className={clsx('value', TASK_CLASSES.status[data.status])}>
               {t(STATUS[data.status])}
             </strong>
           </div>
@@ -79,8 +101,9 @@ const TaskData = ({ id, token }) => {
       <TaskActions 
         id={id}
         token={token}
+        status={data.status || 0}
       />
-    </Root>
+    </TaskDataRoot>
    );
 }
 
