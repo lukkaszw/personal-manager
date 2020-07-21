@@ -8,8 +8,10 @@ export const useStyles = makeStyles({
 });
 
 export const Root = styled.div`
+  margin-top: 30px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Form = styled.form`

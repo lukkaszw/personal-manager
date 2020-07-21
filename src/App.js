@@ -11,6 +11,7 @@ import Calendar from 'components/pages/Calendar';
 import Adverts from 'components/pages/Adverts';
 import Auth from 'components/pages/Auth';
 import Logout from 'components/pages/Logout';
+import TaskAdd from 'components/pages/TaskAdd';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { ThemeProvider } from 'styled-components';
@@ -65,6 +66,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/tasks'>
           <Tasks />
+        </Route>
+        <Route exact path='/tasks/add'>
+          <TaskAdd />
         </Route>
         <Route exact path='/tasks/:id'>
           <Task />

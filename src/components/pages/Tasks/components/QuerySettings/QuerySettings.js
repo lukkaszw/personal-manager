@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Root, Form } from './QuerySettings.styles';
 import { useTranslation } from 'react-i18next';
@@ -36,12 +37,26 @@ const QuerySettings = ({
 
   return ( 
     <Root>
-      <IconButton 
-        onClick={handleOpenSettings}
-        aria-label={t('open tasks settings')}
-      >
-        <FontAwesomeIcon icon={faCog} />
-      </IconButton>
+      <div>
+        <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<FontAwesomeIcon icon={faPlus}/>}
+          size="small"
+          component={Link}
+          to='/tasks/add'
+        >
+          {t('Add task')}
+        </Button>
+      </div>
+      <div>
+        <IconButton 
+          onClick={handleOpenSettings}
+          aria-label={t('open tasks settings')}
+        >
+          <FontAwesomeIcon icon={faCog} />
+        </IconButton>
+      </div>
       <Dialog
         fullWidth={true}
         maxWidth='md'
