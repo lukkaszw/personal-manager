@@ -1,7 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TaskForm from 'components/common/TaskForm';
+import API from 'store/api';
+import SELECTORS from 'store/selectors';
 
-const TaskAdd = () => {
+const TaskAdd = ({ token }) => {
   const initialValues = {
     title: '',
     priority: 1,
@@ -9,8 +13,20 @@ const TaskAdd = () => {
   };
 
   return ( 
-    <TaskForm initialValues={initialValues}/>
+    <TaskForm 
+      token={token}
+      apiAction={API.tasks.addTask}
+      initialValues={initialValues}
+    />
    );
 }
+
+TaskAdd.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  token: SELECTORS.user.getToken(state),
+});
  
-export default TaskAdd;
+export default connect(mapStateToProps)(TaskAdd);

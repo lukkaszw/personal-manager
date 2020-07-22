@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
@@ -9,18 +10,35 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import DateField from 'components/common/DateField';
+import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Root, FieldContent, ButtonWrapper, useStyles } from './TaskForm.styles';
 import { validateTask } from 'utils/validators';
+import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 
-const TaskForm = ({ initialValues }) => {
+const TaskForm = ({ token, initialValues, apiAction }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const history = useHistory();
+
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
+    onSuccess: data => {
+      history.goBack();
+      toast.success(`${t(`You have added a task`)}!`);
+    },
+    onError: data => {
+      toast.error(`${t('You can not add a task now')}! ${t('Try again later')}!`);
+    }
+  });
+
+  const handleSubmit = useCallback((data) => submitAction({ data, token }), [submitAction, token]);
 
   return ( 
     <Root>
+      <LoaderIndicator isOpen={isSending}/>
       <Form
-        onSubmit={(data) => console.log(data)}
+        onSubmit={handleSubmit}
         initialValues={initialValues}
         validate={validateTask}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
@@ -85,7 +103,7 @@ const TaskForm = ({ initialValues }) => {
                 variant="contained"
                 color="primary"
                 type="submit" 
-                disabled={false}
+                disabled={isSending}
               >
                 {t('Add task')}
               </Button>
@@ -98,6 +116,8 @@ const TaskForm = ({ initialValues }) => {
 }
 
 TaskForm.propTypes = {
+  token: PropTypes.string.isRequired,
+  apiAction: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
 };
  

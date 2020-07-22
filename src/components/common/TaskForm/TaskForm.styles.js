@@ -17,6 +17,7 @@ export const Root = styled.div`
 `;
 
 export const FieldContent = styled.div`
+  min-height: 70px;
   margin: 20px 0;
 `;
 

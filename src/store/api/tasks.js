@@ -40,6 +40,16 @@ export const getTask = async (key, { token, id }) => {
   return res.data;
 }
 
+export const addTask = async ({ data, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.tasks}`;
+
+  const config = generateAuthConfig(token);
+
+  const res = await axios.post(url, data, config);
+
+  return res.data;
+}
+
 export const updateTask= async ({ token, id, data }) => {
 
   const url = `${api.baseUrl}/${api.endpoints.tasks}/${id}`;
