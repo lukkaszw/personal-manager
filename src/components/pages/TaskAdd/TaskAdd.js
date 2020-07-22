@@ -1,13 +1,15 @@
 import React from 'react';
 import TaskForm from 'components/common/TaskForm';
-import PropTypes from 'prop-types';
 
 const TaskAdd = () => {
+  const initialValues = {
+    title: '',
+    priority: 1,
+    description: '',
+  };
+
   return ( 
-    <>
-      <p>Task add</p>
-      <TaskForm />
-    </>
+    <TaskForm initialValues={initialValues}/>
    );
 }
  

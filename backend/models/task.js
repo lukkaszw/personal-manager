@@ -24,10 +24,6 @@ const taskSchema = new mongoose.Schema({
     enum: [PRIORITY.low, PRIORITY.normal, PRIORITY.high, PRIORITY.very_high],
     required: true,
   },
-  startDate: {
-    type: Date,
-    required: true,
-  },
   endDate: {
     type: Date,
     required: true,

@@ -31,3 +31,21 @@ export const validateAuthInputs = (values, destination) => {
 
     return errors
 }
+
+export const validateTask = (values) => {
+
+  const errors = {};
+  if(!values.title) {
+    errors.title = 'Required';
+  }
+
+  if(!values.endDate) {
+    errors.endDate = 'Required';
+  }
+
+  if(!values.description) {
+    errors.description = 'Required';
+  }
+
+  return errors;
+}
