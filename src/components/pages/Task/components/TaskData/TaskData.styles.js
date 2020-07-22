@@ -26,6 +26,7 @@ export const Description = styled.p`
   font-size: 16px;
   text-align: justify;
   line-height: 1.7;
+  word-wrap: break-word;
 `;
 
 export const StatusContent = styled.div`

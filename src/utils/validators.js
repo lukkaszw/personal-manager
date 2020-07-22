@@ -37,6 +37,8 @@ export const validateTask = (values) => {
   const errors = {};
   if(!values.title) {
     errors.title = 'Required';
+  } else if (values.title.length > 70) {
+    errors.title = 'Max 70!';
   }
 
   if(!values.endDate) {
@@ -45,6 +47,8 @@ export const validateTask = (values) => {
 
   if(!values.description) {
     errors.description = 'Required';
+  } else if (values.description.length > 3000) {
+    errors.description = 'Max 3000!';
   }
 
   return errors;
