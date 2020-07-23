@@ -22,13 +22,6 @@ export const Title = styled.h2`
   font-size: 24px;
 `;
 
-export const Description = styled.p`
-  font-size: 16px;
-  text-align: justify;
-  line-height: 1.7;
-  word-wrap: break-word;
-`;
-
 export const StatusContent = styled.div`
   margin: 20px 0;
 

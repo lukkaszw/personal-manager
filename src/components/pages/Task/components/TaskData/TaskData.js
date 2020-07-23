@@ -4,8 +4,9 @@ import { useQuery } from 'react-query';
 import API from 'store/api';
 import TaskActions from '../TaskActions/TaskActions';
 import { 
-  Title, Description, StatusName,
+  Title, StatusName,
   StatusContent, StartDate, Header, EndTime } from './TaskData.styles';
+import Description from 'components/common/Description';
 import { TaskDataRoot } from '../../Task.styles';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
@@ -94,9 +95,7 @@ const TaskData = ({ id, token }) => {
             </strong>
           </div>
         </StatusContent>
-        <Description>
-          {data.description}
-        </Description>
+        <Description text={data.description} />
       </div>
       <TaskActions 
         id={id}
