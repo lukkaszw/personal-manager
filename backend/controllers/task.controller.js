@@ -93,10 +93,10 @@ const getOneTask = async (req, res) => {
 
 const addTask = async (req, res) => {
   const userId = req.user._id;
-  const { title, description,  priority, startDate, endDate } = req.body;
+  const { title, description,  priority, endDate } = req.body;
 
   try {
-    const task = new Task({ userId, title, description, priority, startDate, endDate });
+    const task = new Task({ userId, title, description, priority, endDate });
     await task.save();
     res.json(task);
   } catch (error) {
@@ -107,7 +107,7 @@ const addTask = async (req, res) => {
 const editTask = async (req, res) => {
   const userId = req.user.id;
   const taskId = req.params.id;
-  const allowedUpdates = ['title', 'description', 'status', 'priority', 'startDate', 'endDate'];
+  const allowedUpdates = ['title', 'description', 'status', 'priority', 'endDate'];
   const data = req.body;
   const triedChanges = Object.keys(data);
   const isMatch = triedChanges.every(change => allowedUpdates.includes(change));
