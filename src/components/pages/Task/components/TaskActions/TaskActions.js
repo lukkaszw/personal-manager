@@ -90,7 +90,7 @@ const TaskActions = ({ id, token, status }) => {
         className={classes.iconButton}
         aria-label={t('edit')}
         component={Link}
-        to="/tasks"
+        to={`/tasks/edit/${id}`}
         disabled={isSending}
       >
         <FontAwesomeIcon 

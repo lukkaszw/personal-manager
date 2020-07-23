@@ -13,26 +13,32 @@ import DateField from 'components/common/DateField';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Root, FieldContent, ButtonWrapper, useStyles } from './TaskForm.styles';
 import { validateTask } from 'utils/validators';
-import { useMutation } from 'react-query';
+import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
+import { STATUS, PRIORITY } from 'utils/tasks.statuses';
 
 
-const TaskForm = ({ token, initialValues, apiAction }) => {
+const TaskForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const history = useHistory();
 
   const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
+      if(isForEdit) {
+        queryCache.setQueryData(['task', { id, token }], data);
+      }
       history.goBack();
-      toast.success(`${t(`You have added a task`)}!`);
+      const message = isForEdit ? 'You have edited the task' : 'You have added a task'; 
+      toast.success(`${t(message)}!`);
     },
     onError: data => {
-      toast.error(`${t('You can not add a task now')}! ${t('Try again later')}!`);
+      const message = isForEdit ? 'You can not edit a task now' : 'You can not add a task now';
+      toast.error(`${t(message)}! ${t('Try again later')}!`);
     }
   });
 
-  const handleSubmit = useCallback((data) => submitAction({ data, token }), [submitAction, token]);
+  const handleSubmit = useCallback((data) => submitAction({ data, token, id }), [submitAction, token, id]);
 
   return ( 
     <Root>
@@ -62,22 +68,57 @@ const TaskForm = ({ token, initialValues, apiAction }) => {
               {({ input, meta }) => (
                 <FieldContent>
                    <FormControl>
-                    <InputLabel id="demo-simple-select-label">{t('Priority')}</InputLabel>
+                    <InputLabel id="priority-label">{t('Priority')}</InputLabel>
                     <Select
                       className={classes.select}
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
+                      labelId="priority-label"
+                      id="priority-select"
                       {...input}
                     >
-                      <MenuItem value={1}>{t('low')}</MenuItem>
-                      <MenuItem value={2}>{t('normal')}</MenuItem>
-                      <MenuItem value={3}>{t('high')}</MenuItem>
-                      <MenuItem value={4}>{t('v_high')}</MenuItem>
+                      {
+                        Object.entries(PRIORITY).map(([value, text]) => (
+                          <MenuItem 
+                            key={text}
+                            value={value}
+                          >
+                            {t(text)}
+                          </MenuItem>
+                        ))
+                      }
                     </Select>
                   </FormControl>
                 </FieldContent>
               )}
             </Field>
+            {
+              isForEdit &&
+              <Field name="status">
+                {({ input, meta }) => (
+                  <FieldContent>
+                    <FormControl>
+                      <InputLabel id="status-label">Status</InputLabel>
+                      <Select
+                        className={classes.select}
+                        labelId="status-label"
+                        id="status-select"
+                        {...input}
+                      >
+                        {
+                          Object.entries(STATUS).map(([value, text]) => (
+                            <MenuItem 
+                              key={text}
+                              value={value}
+                            >
+                              {t(text)}
+                            </MenuItem>
+                          ))
+                        }
+                      </Select>
+                    </FormControl>
+                  </FieldContent>
+                )}
+              </Field>
+            }
             <Field name="endDate" component={DateField}>
             </Field>
             <Field name="description">
@@ -105,7 +146,7 @@ const TaskForm = ({ token, initialValues, apiAction }) => {
                 type="submit" 
                 disabled={isSending}
               >
-                {t('Add task')}
+                {isForEdit ? t('Edit task') : t('Add task')}
               </Button>
             </ButtonWrapper>
           </form>
@@ -119,6 +160,8 @@ TaskForm.propTypes = {
   token: PropTypes.string.isRequired,
   apiAction: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
+  isForEdit: PropTypes.bool,
+  id: PropTypes.string,
 };
  
 export default TaskForm;

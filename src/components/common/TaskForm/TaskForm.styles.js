@@ -9,7 +9,7 @@ export const useStyles = makeStyles({
 
 export const Root = styled.div`
   max-width: 600px;
-  margin: 80px auto;
+  margin: 50px auto;
 
   @media (max-height: 800px) {
     margin: 20px auto;
