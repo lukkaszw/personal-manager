@@ -21,6 +21,10 @@ const getNotes = async (req, res) => {
     match.title = { $regex: regexp};
   }
 
+  if(req.query.category) {
+    match.category = req.query.category;
+  }
+
   const sort = {
     createdAt: -1,
   }
@@ -72,10 +76,10 @@ const getOneNote = async (req, res) => {
 
 const addNote = async (req, res) => {
   const userId = req.user._id;
-  const { title, description,  priority } = req.body;
+  const { title, description,  priority, category } = req.body;
 
   try {
-    const note = new Note({ userId, title, description, priority });
+    const note = new Note({ userId, title, description, priority, category });
     await note.save();
     res.json(note);
   } catch (error) {
@@ -86,7 +90,7 @@ const addNote = async (req, res) => {
 const editNote = async (req, res) => {
   const userId = req.user.id;
   const noteId = req.params.id;
-  const allowedUpdates = ['title', 'description', 'priority'];
+  const allowedUpdates = ['title', 'description', 'priority', 'category'];
   const data = req.body;
   const triedChanges = Object.keys(data);
   const isMatch = triedChanges.every(change => allowedUpdates.includes(change));

@@ -21,10 +21,12 @@ const userRouter = require('./routes/user.router');
 const langRouter = require('./routes/lang.router');
 const tasksRouter = require('./routes/task.router');
 const notesRouter = require('./routes/note.router');
+const notesCategoriesRouter = require('./routes/noteCategory.router');
 
 app.use('/user', userRouter);
 app.use('/lang', langRouter);
 app.use('/tasks', auth, tasksRouter);
+app.use('/notes_cat', auth, notesCategoriesRouter);
 app.use('/notes', auth, notesRouter);
 
 app.get('*', (req, res) => {                       
