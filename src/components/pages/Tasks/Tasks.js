@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TasksList from './components/TasksList';
 import SELECTORS from 'store/selectors';
 import ACTION_CREATORS from 'store/actionCreators';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
-import QuerySettings from './components/QuerySettings';
+
+const TasksList = React.lazy(() => import('./components/TasksList'));
+const QuerySettings = React.lazy(() => import('./components/QuerySettings'));
 
 const Tasks = ({ 
   token, status, priority, dateFrom, dateTo, sortBy, sortOrder, page,
