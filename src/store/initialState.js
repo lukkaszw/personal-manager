@@ -18,6 +18,15 @@ const initialState = {
       sortOrder: null,
       page: 1,
     }
+  },
+  notes: {
+    query: {
+      priority: 'all',
+      category: 'all',
+      sortBy: null,
+      sortOrder: null,
+      page: 1,
+    }
   }
 };
 

@@ -6,10 +6,12 @@ import initialState from './initialState';
 
 import userReducer from 'store/reducers/user';
 import tasksReducer from 'store/reducers/tasks';
+import notesReducer from 'store/reducers/notes';
 
 const reducers = {
   user: userReducer,
   tasks: tasksReducer,
+  notes: notesReducer,
 };
 
 Object.keys(initialState).forEach(item => {

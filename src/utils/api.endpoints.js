@@ -8,6 +8,10 @@ const api = {
       getData: 'user/me',
     },
     tasks: 'tasks',
+    notes: {
+      categories: 'notes_cat',
+      notes: 'notes',
+    }
   }
 }
 
