@@ -67,9 +67,3 @@ export const LinkTitle = styled(Link)`
     color: ${props => props.theme.colors.mainLighten};
   }
 `;
-
-export const PaginationWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-`;

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,9 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TaskRow from '../TaskRow';
-import Pagination from '@material-ui/lab/Pagination';
+import Pagination from 'components/common/Pagination';
 import { useTranslation } from 'react-i18next';
-import { useStyles, PaginationWrapper } from './TasksList.styles';
+import { useStyles } from './TasksList.styles';
 import { useQuery } from 'react-query';
 import API from 'store/api';
 import clsx from 'clsx';
@@ -27,7 +27,6 @@ const TasksList = ({
     { token, priority, status, dateTo, dateFrom, page, sortBy, sortOrder, }
   ], API.tasks.getTasks,  { suspense: true, cacheTime: 0 });
   const lang = i18n.language === 'pl-PL' ? i18n.language : 'eng-Gb';
-  const handleChangePage = useCallback((e, value) => onChangePage(value), [onChangePage]);
 
   return ( 
     <div>
@@ -90,15 +89,11 @@ const TasksList = ({
           </TableBody>
         </Table>
       </TableContainer>
-      <PaginationWrapper>
-        <Pagination 
-          color="primary"
-          className={classes.pagination}
-          count={Math.ceil(data.amount/pages.tasks.maxPerPage)} 
-          page={page}
-          onChange={handleChangePage}
-        />
-      </PaginationWrapper>
+      <Pagination 
+        count={Math.ceil(data.amount/pages.tasks.maxPerPage)} 
+        page={page}
+        onChange={onChangePage}
+      />
     </div>
    );
 }
