@@ -20,7 +20,11 @@ const NotesList = ({
   onChangePage,
 }) => {
   const classes = useStyles();
-  const { data: notesData } = useQuery(['notes', { token, page, priority, category }], API.notes.getNotes, { suspense: true });
+  const { data: notesData } = useQuery(
+    ['notes', { token, page, priority, category }], 
+    API.notes.getNotes, 
+    { suspense: true, cacheTime: 0 }
+  );
   const { t } = useTranslation();
 
   return ( 
