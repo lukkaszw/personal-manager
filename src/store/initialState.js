@@ -23,8 +23,6 @@ const initialState = {
     query: {
       priority: 'all',
       category: 'all',
-      sortBy: null,
-      sortOrder: null,
       page: 1,
     }
   }

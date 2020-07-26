@@ -8,20 +8,20 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Pagination from 'components/common/Pagination';
 import { useQuery } from 'react-query';
-import { useStyles, CartsWrapper, Title, Description, ImportantSign } from './NotesList.styles';
+import { useStyles, CartsWrapper, Title, Description, ImportantSign, ModifyAt } from './NotesList.styles';
 import { PRIORITY } from 'utils/notes.statuses';
 import { pages } from 'utils/pages.config';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import moment from 'moment';
 
 const NotesList = ({ 
-  token, page, priority, category, sortBy, order,
+  token, page, priority, category, 
   onChangePage,
 }) => {
   const classes = useStyles();
-
-  const { data: notesCategories } = useQuery(['notesCategories', { token }], API.notes.getNotesCategories, { suspense: true });
-  const { data: notesData } = useQuery(['notes', { token, page, priority, category, sortBy, order }], API.notes.getNotes, { suspense: true });
-
+  const { data: notesData } = useQuery(['notes', { token, page, priority, category }], API.notes.getNotes, { suspense: true });
+  const { t } = useTranslation();
 
   return ( 
     <div>
@@ -35,10 +35,11 @@ const NotesList = ({
               {
                 note.priority === 2 &&
                   <ImportantSign>
-                    IMPORTANT
+                    {t('IMPORTANT')}
                   </ImportantSign>
               }
               <CardContent>
+                <ModifyAt>{moment(note.updatedAt).format('DD.MM.YYYY')}</ModifyAt>
                 <Title>{note.title}</Title>
                 <Description>{note.description}</Description>
               </CardContent>
@@ -52,14 +53,14 @@ const NotesList = ({
                   component={Link}
                   to={`/notes/${note._id}`}
                 >
-                  Check
+                  {t('Read')}
                 </Button>
                 <Button 
                   variant="contained"
                   size="small"
                   color="secondary"
                 >
-                  Delete
+                  {t('Delete')}
                 </Button>
               </CardActions>
             </Card>
@@ -80,8 +81,6 @@ NotesList.propTypes = {
   page: PropTypes.number.isRequired,
   priority: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  sortBy: PropTypes.string,
-  order: PropTypes.string,
   onChangePage: PropTypes.func.isRequired,
 };
  

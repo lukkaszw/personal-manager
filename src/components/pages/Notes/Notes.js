@@ -9,34 +9,33 @@ const NotesList = React.lazy(() => import('./components/NotesList'));
 const NotesActions = React.lazy(() => import('./components/NotesActions'));
 
 const Notes = ({ 
-  token, page, priority, category, sortBy, sortOrder, order,
-  onChangePage, onChangePriority, onChangeCategory, onChangeSort, 
-  onResetQuerySettings,
+  token, 
+  page, priority, category,
+  onChangePage, onChangePriority, onChangeCategory,
  }) => {
 
   return ( 
+    <>
     <SuspenseErrorBundary>
       <NotesActions 
-        priority={priority}
-        category={category}
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        order={order}
-        onChangePriority={onChangePriority}
-        onChangeCategory={onChangeCategory}
-        onChangeSort={onChangeSort} 
-        onResetQuerySettings={onResetQuerySettings}
-      />
-      <NotesList 
-        token={token}
-        page={page}
-        priority={priority}
-        category={category}
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onChangePage={onChangePage}
-      />
+          token={token}
+          priority={priority}
+          category={category}
+          onChangePriority={onChangePriority}
+          onChangeCategory={onChangeCategory}
+        />
     </SuspenseErrorBundary>
+
+      <SuspenseErrorBundary>
+        <NotesList 
+          token={token}
+          page={page}
+          priority={priority}
+          category={category}
+          onChangePage={onChangePage}
+        />
+      </SuspenseErrorBundary>
+    </>
    );
 }
 
@@ -45,13 +44,9 @@ Notes.propTypes = {
   page: PropTypes.number.isRequired,
   priority: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  sortBy: PropTypes.string,
-  order: PropTypes.string,
   onChangePage: PropTypes.func.isRequired,
   onChangePriority: PropTypes.func.isRequired,
   onChangeCategory: PropTypes.func.isRequired,
-  onChangeSort: PropTypes.func.isRequired,
-  onResetQuerySettings: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -59,16 +54,12 @@ const mapStateToProps = (state) => ({
   page: SELECTORS.notes.getQueryPage(state),
   priority: SELECTORS.notes.getQueryPriority(state),
   category: SELECTORS.notes.getQueryCategory(state),
-  sortBy: SELECTORS.notes.getQuerySortBy(state),
-  order: SELECTORS.notes.getQuerySortOrder(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangePage: (page) => dispatch(ACTION_CREATORS.notes.setPage(page)),
   onChangePriority: (priority) => dispatch(ACTION_CREATORS.notes.setPriority(priority)),
   onChangeCategory: (categoryId) => dispatch(ACTION_CREATORS.notes.setCategory(categoryId)),
-  onChangeSort: (sortBy) => dispatch(ACTION_CREATORS.tasks.setSort(sortBy)),
-  onResetQuerySettings: () => dispatch(ACTION_CREATORS.tasks.resetQuerySettings()),
 });
  
 export default connect(mapStateToProps, mapDispatchToProps)(Notes);

@@ -25,8 +25,13 @@ export const useStyles = makeStyles({
 export const CartsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  min-height: 640px;
+  margin-top: 30px;
+  min-height: 500px;
   justify-content: center;
+`;
+
+export const ModifyAt = styled.p`
+  font-size: 10px;
 `;
 
 export const Title = styled.h4`
@@ -41,7 +46,7 @@ export const Description = styled.p`
   overflow: hidden;
   font-size: 14px;
   text-overflow: -o-ellipsis-lastline;
-  height: 100px;
+  height: 85px;
 `;
 
 export const ImportantSign = styled.div`

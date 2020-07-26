@@ -11,6 +11,26 @@ const notesReducer = (statePart = {}, action = {}) => {
         }
       }
     }
+    case ACTIONS.notes.SET_PRIORITY: {
+      return {
+        ...statePart,
+        query: {
+          ...statePart.query,
+          priority: action.payload,
+          page: 1,
+        }
+      }
+    }
+    case ACTIONS.notes.SET_CATEGORY: {
+      return {
+        ...statePart,
+        query: {
+          ...statePart.query,
+          category: action.payload,
+          page: 1,
+        }
+      }
+    }
     default: 
       return statePart;
   }
