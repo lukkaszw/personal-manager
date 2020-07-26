@@ -13,6 +13,7 @@ import Auth from 'components/pages/Auth';
 import Logout from 'components/pages/Logout';
 import TaskAdd from 'components/pages/TaskAdd';
 import TaskEdit from 'components/pages/TaskEdit';
+import Note from 'components/pages/Note';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { ThemeProvider } from 'styled-components';
@@ -82,6 +83,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/notes'>
           <Notes />
+        </Route>
+        <Route exact path='/notes/:id'>
+          <Note />
         </Route>
         <Route exact path='/calendar'>
           <Calendar />

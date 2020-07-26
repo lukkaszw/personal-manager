@@ -27,6 +27,25 @@ export const getNotes = async (key, { token, priority, page, category }) => {
 
   const resp = await axios.get(url, config);
 
-  console.log(resp.data);
+  return resp.data;
+}
+
+export const getNote = async (key, { token, id }) => {
+  const url = `${api.baseUrl}/${api.endpoints.notes.notes}/${id}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.get(url, config);
+
+  return resp.data;
+}
+
+export const deleteNote = async ({ id, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.notes.notes}/${id}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.delete(url, config);
+
   return resp.data;
 }
