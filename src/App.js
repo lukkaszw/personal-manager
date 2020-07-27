@@ -12,6 +12,7 @@ import Adverts from 'components/pages/Adverts';
 import Auth from 'components/pages/Auth';
 import Logout from 'components/pages/Logout';
 import TaskAdd from 'components/pages/TaskAdd';
+import NoteAdd from 'components/pages/NoteAdd';
 import TaskEdit from 'components/pages/TaskEdit';
 import Note from 'components/pages/Note';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
@@ -83,6 +84,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/notes'>
           <Notes />
+        </Route>
+        <Route exact path='/notes/add'>
+          <NoteAdd />
         </Route>
         <Route exact path='/notes/:id'>
           <Note />

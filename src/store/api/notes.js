@@ -40,6 +40,20 @@ export const getNote = async (key, { token, id }) => {
   return resp.data;
 }
 
+export const addNote = async ({ data, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.notes.notes}`;
+
+  if(data.category === 'none') {
+    delete data.category;
+  }
+
+  const config = generateAuthConfig(token);
+
+  const res = await axios.post(url, data, config);
+
+  return res.data;
+}
+
 export const deleteNote = async ({ id, token }) => {
   const url = `${api.baseUrl}/${api.endpoints.notes.notes}/${id}`;
 

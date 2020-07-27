@@ -104,7 +104,7 @@ const NotesList = ({
       <AskDialog 
         isOpen={!!noteToDelete}
         onClose={handleCloseDeleteModal}
-        question={`${t('Are you sure you want to delete note ')} ${deleteNoteTitle}`}
+        question={`${t('Are you sure you want to delete note')} ${deleteNoteTitle}`}
         noAnswear={t('No')}
         yesAnswear={t('Yes')}
         onNoAction={handleCloseDeleteModal}
