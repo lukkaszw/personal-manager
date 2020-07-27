@@ -42,7 +42,6 @@ const AskDialog = ({
 
 AskDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  dialogId: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   noAnswear: PropTypes.string.isRequired,
   yesAnswear: PropTypes.string.isRequired,
