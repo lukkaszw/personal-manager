@@ -2,14 +2,11 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import LoaderIndicator from 'components/common/LoaderIndicator';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
+import AskDialog from 'components/common/AskDialog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Root, ButtonsWrapper } from './NoteActions.styles';
+import { Root } from './NoteActions.styles';
 import { useMutation } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -61,33 +58,15 @@ const NoteActions = ({ id, token }) => {
             icon={faTrash}
           />
         </IconButton>
-        <Dialog 
-          open={isDeletModalOpen}
+        <AskDialog 
+          isOpen={isDeletModalOpen}
           onClose={handleCloseDeleteModal}
-          aria-labelledby="delete-note-question"
-        >
-          <DialogTitle id="delete-note-question">
-            {t('Do you want to delete this note?')}
-          </DialogTitle>
-          <DialogContent>
-            <ButtonsWrapper>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleCloseDeleteModal}
-              >
-                {t('No')}
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleDeleteNote}
-              >
-                {t('Yes')}
-              </Button>
-            </ButtonsWrapper>
-          </DialogContent>
-        </Dialog>
+          question={t('Do you want to delete this note?')}
+          noAnswear={t('No')}
+          yesAnswear={t('Yes')}
+          onNoAction={handleCloseDeleteModal}
+          onYesAction={handleDeleteNote}
+        />
       </Root>
     </>
    );

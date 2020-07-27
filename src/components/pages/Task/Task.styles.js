@@ -35,16 +35,6 @@ export const TaskDataRoot = styled(Root)`
   justify-content: space-between;
 `;
 
-export const ButtonsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  button {
-    margin: 0 10px;
-  }
-`;
-
 export const useStyles = makeStyles({
   iconButton: {
     '&:disabled .positive': {

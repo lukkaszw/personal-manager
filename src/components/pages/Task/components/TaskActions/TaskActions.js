@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import LoaderIndicator from 'components/common/LoaderIndicator';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button';
+import AskDialog from 'components/common/AskDialog';
 import { faCheck, faTimes, faTrash, faEdit  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TaskActionsRoot, useStyles, ButtonsWrapper } from '../../Task.styles';
+import { TaskActionsRoot, useStyles } from '../../Task.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
@@ -109,33 +106,15 @@ const TaskActions = ({ id, token, status }) => {
           icon={faTrash}
         />
       </IconButton>
-      <Dialog 
-        open={isDeletModalOpen}
+      <AskDialog 
+        isOpen={isDeletModalOpen}
         onClose={handleCloseDeleteModal}
-        aria-labelledby="delete-question"
-      >
-        <DialogTitle id="delete-question">
-          {t('Do you want to delete this task?')}
-        </DialogTitle>
-        <DialogContent>
-          <ButtonsWrapper>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleCloseDeleteModal}
-            >
-              {t('No')}
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleDeleteTask}
-            >
-              {t('Yes')}
-            </Button>
-          </ButtonsWrapper>
-        </DialogContent>
-      </Dialog>
+        question={t('Do you want to delete this task?')}
+        noAnswear={t('No')}
+        yesAnswear={t('Yes')}
+        onNoAction={handleCloseDeleteModal}
+        onYesAction={handleDeleteTask}
+      />
     </TaskActionsRoot>
    );
 }
