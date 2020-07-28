@@ -78,12 +78,46 @@ export const deleteNote = async ({ id, token }) => {
   return resp.data;
 }
 
+export const getNoteCategory = async (key, { token, id }) => {
+
+  const url = `${api.baseUrl}/${api.endpoints.notes.categories}/${id}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.get(url, config);
+
+  return resp.data;
+}
+
 export const addNoteCategory = async ({ token, data }) => {
   const url = `${api.baseUrl}/${api.endpoints.notes.categories}`;
 
   const config = generateAuthConfig(token);
 
   const resp = await axios.post(url, data, config);
+
+  return resp.data;
+}
+
+export const editNoteCategory = async ({ token, data, id }) => {
+  const url = `${api.baseUrl}/${api.endpoints.notes.categories}/${id}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.put(url, data, config);
+
+  return resp.data;
+}
+
+export const deleteNoteCategory = async ({ id, token, withNotes}) => {
+  const basicUrl = `${api.baseUrl}/${api.endpoints.notes.categories}`;
+  const endUrl = withNotes ? `with_notes/${id}` : id;
+
+  const url = `${basicUrl}/${endUrl}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.delete(url, config);
 
   return resp.data;
 }

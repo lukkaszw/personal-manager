@@ -4,12 +4,12 @@ import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { useMutation, queryCache } from 'react-query';
+import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { validateNoteCat } from 'utils/validators';
-import { Root, ButtonWrapper } from './NotesCatForm.styles';
+import { ButtonWrapper } from './NotesCatForm.styles';
 
 const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
 
@@ -33,7 +33,7 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
   const handleSubmit = useCallback((data) => submitAction({ data, token, id }), [submitAction, token, id]);
 
   return ( 
-    <Root>
+    <>
       <LoaderIndicator isOpen={isSending} />
       <Form
         onSubmit={handleSubmit}
@@ -46,8 +46,8 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
                   <TextField 
                     fullWidth={true}
                     {...input}
-                    label={t('Category')}
-                    placeholder={t('Category')}
+                    label={t('Category name')}
+                    placeholder={t('Category name')}
                     error={meta.error && meta.touched}
                     helperText={(meta.error && meta.touched) && 
                     (meta.error === 'Required' ? t('Required') : meta.error)}
@@ -67,7 +67,7 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
           </form>
         )}
       />
-    </Root>
+    </>
    );
 }
 

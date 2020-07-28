@@ -16,6 +16,7 @@ import NoteAdd from 'components/pages/NoteAdd';
 import NoteEdit from 'components/pages/NoteEdit';
 import TaskEdit from 'components/pages/TaskEdit';
 import NoteCatAdd from 'components/pages/NoteCatAdd';
+import NoteCatEdit from 'components/pages/NoteCatEdit';
 import Note from 'components/pages/Note';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import LoaderIndicator from 'components/common/LoaderIndicator';
@@ -98,6 +99,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/notes_cat/add'>
           <NoteCatAdd />
+        </Route>
+        <Route exact path='/notes_cat/edit/:id'>
+          <NoteCatEdit />
         </Route>
         <Route exact path='/calendar'>
           <Calendar />
