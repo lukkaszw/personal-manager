@@ -88,6 +88,12 @@ function App({ isAuth, onTryLoginOnStart }) {
         <Route exact path='/notes'>
           <Notes />
         </Route>
+        <Route exact path='/notes/cat/add'>
+          <NoteCatAdd />
+        </Route>
+        <Route exact path='/notes/cat/edit/:id'>
+          <NoteCatEdit />
+        </Route>
         <Route exact path='/notes/add'>
           <NoteAdd />
         </Route>
@@ -96,12 +102,6 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/notes/:id'>
           <Note />
-        </Route>
-        <Route exact path='/notes_cat/add'>
-          <NoteCatAdd />
-        </Route>
-        <Route exact path='/notes_cat/edit/:id'>
-          <NoteCatEdit />
         </Route>
         <Route exact path='/calendar'>
           <Calendar />

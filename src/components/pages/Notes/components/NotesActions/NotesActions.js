@@ -46,7 +46,7 @@ const NotesActions = ({
               variant="contained"
               color="primary"
               component={Link}
-              to={`/notes_cat/add`}
+              to={`/notes/cat/add`}
             >
               <FontAwesomeIcon className={classes.icon} icon={faPlus}/>
               {t('add category')}
@@ -61,7 +61,7 @@ const NotesActions = ({
                   size='small'
                   component={Link}
                   color="primary"
-                  to={`/notes_cat/edit/${category}`}
+                  to={`/notes/cat/edit/${category}`}
                 >
                   {t('Edit')}
                 </Button>

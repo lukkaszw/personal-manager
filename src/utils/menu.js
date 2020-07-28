@@ -32,6 +32,7 @@ export const authenticatedMenu = [
     id: 4,
     name: 'Notes',
     to: '/notes',
+    exact: false,
   },
   {
     id: 5,
