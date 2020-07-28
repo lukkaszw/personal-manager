@@ -54,6 +54,20 @@ export const addNote = async ({ data, token }) => {
   return res.data;
 }
 
+export const editNote = async ({ id, data, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.notes.notes}/${id}`;
+
+  if(data.category === 'none') {
+    delete data.category;
+  }
+
+  const config = generateAuthConfig(token);
+
+  const res = await axios.put(url, data, config);
+
+  return res.data;
+}
+
 export const deleteNote = async ({ id, token }) => {
   const url = `${api.baseUrl}/${api.endpoints.notes.notes}/${id}`;
 
