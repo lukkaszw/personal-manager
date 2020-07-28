@@ -15,6 +15,7 @@ import TaskAdd from 'components/pages/TaskAdd';
 import NoteAdd from 'components/pages/NoteAdd';
 import NoteEdit from 'components/pages/NoteEdit';
 import TaskEdit from 'components/pages/TaskEdit';
+import NoteCatAdd from 'components/pages/NoteCatAdd';
 import Note from 'components/pages/Note';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import LoaderIndicator from 'components/common/LoaderIndicator';
@@ -94,6 +95,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/notes/:id'>
           <Note />
+        </Route>
+        <Route exact path='/notes_cat/add'>
+          <NoteCatAdd />
         </Route>
         <Route exact path='/calendar'>
           <Calendar />

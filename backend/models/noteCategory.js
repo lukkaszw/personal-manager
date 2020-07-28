@@ -9,7 +9,7 @@ const noteCategorySchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    maxlength: 50,
+    maxlength: 15,
     required: true,
   },
 });

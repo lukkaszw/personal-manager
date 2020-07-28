@@ -11,7 +11,7 @@ const api = {
     notes: {
       categories: 'notes_cat',
       notes: 'notes',
-    }
+    },
   }
 }
 

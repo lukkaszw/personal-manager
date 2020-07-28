@@ -70,3 +70,15 @@ export const validateNote = (values) => {
 
   return errors;
 }
+
+export const validateNoteCat = (values) => {
+  const errors = {};
+
+  if(!values.name) {
+    errors.name = 'Required';
+  } else if (values.name.length > 15) {
+    errors.name = 'Max 15!'
+  }
+
+  return errors;
+}

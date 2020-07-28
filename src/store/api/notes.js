@@ -77,3 +77,13 @@ export const deleteNote = async ({ id, token }) => {
 
   return resp.data;
 }
+
+export const addNoteCategory = async ({ token, data }) => {
+  const url = `${api.baseUrl}/${api.endpoints.notes.categories}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.post(url, data, config);
+
+  return resp.data;
+}

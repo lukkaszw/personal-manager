@@ -8,6 +8,7 @@ import ACTION_CREATORS from 'store/actionCreators';
 const NotesList = React.lazy(() => import('./components/NotesList'));
 const NotesActions = React.lazy(() => import('./components/NotesActions'));
 
+
 const Notes = ({ 
   token, 
   page, priority, category,
@@ -16,15 +17,15 @@ const Notes = ({
 
   return ( 
     <>
-    <SuspenseErrorBundary>
-      <NotesActions 
-          token={token}
-          priority={priority}
-          category={category}
-          onChangePriority={onChangePriority}
-          onChangeCategory={onChangeCategory}
-        />
-    </SuspenseErrorBundary>
+      <SuspenseErrorBundary>
+        <NotesActions 
+            token={token}
+            priority={priority}
+            category={category}
+            onChangePriority={onChangePriority}
+            onChangeCategory={onChangeCategory}
+          />
+      </SuspenseErrorBundary>
 
       <SuspenseErrorBundary>
         <NotesList 

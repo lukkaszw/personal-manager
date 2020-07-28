@@ -1,0 +1,82 @@
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
+import LoaderIndicator from 'components/common/LoaderIndicator';
+import { Form, Field } from 'react-final-form';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { useMutation, queryCache } from 'react-query';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { validateNoteCat } from 'utils/validators';
+import { Root, ButtonWrapper } from './NotesCatForm.styles';
+
+const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
+
+  const history = useHistory();
+
+  const { t } = useTranslation();
+
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
+    onSuccess: data => {
+      history.goBack();
+      const message = isForEdit ? 'You have edited the category' : 'You have added a category'; 
+      toast.success(`${t(message)}!`);
+    },
+    onError: data => {
+      history.goBack();
+      const message = isForEdit ? 'You can not edit a category now' : 'You can not add a category now';
+      toast.error(`${t(message)}! ${t('Try again later')}!`);
+    }
+  });
+
+  const handleSubmit = useCallback((data) => submitAction({ data, token, id }), [submitAction, token, id]);
+
+  return ( 
+    <Root>
+      <LoaderIndicator isOpen={isSending} />
+      <Form
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+        validate={validateNoteCat}
+        render={({ handleSubmit, form, submitting, pristine, values }) => (
+          <form onSubmit={handleSubmit}>
+            <Field name="name">
+              {({ input, meta }) => (
+                  <TextField 
+                    fullWidth={true}
+                    {...input}
+                    label={t('Category')}
+                    placeholder={t('Category')}
+                    error={meta.error && meta.touched}
+                    helperText={(meta.error && meta.touched) && 
+                    (meta.error === 'Required' ? t('Required') : meta.error)}
+                  />
+              )}
+            </Field>
+            <ButtonWrapper>
+              <Button 
+                variant="contained"
+                color="primary"
+                type="submit" 
+                disabled={isSending}
+              >
+                {isForEdit ? t('Edit category') : t('Add category')}
+              </Button>
+            </ButtonWrapper>
+          </form>
+        )}
+      />
+    </Root>
+   );
+}
+
+NotesCatForm.propTypes = {
+  token: PropTypes.string.isRequired,
+  initialValues: PropTypes.object.isRequired,
+  apiAction: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  isForEdit: PropTypes.bool,
+};
+ 
+export default NotesCatForm;
