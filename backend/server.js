@@ -22,12 +22,21 @@ const langRouter = require('./routes/lang.router');
 const tasksRouter = require('./routes/task.router');
 const notesRouter = require('./routes/note.router');
 const notesCategoriesRouter = require('./routes/noteCategory.router');
+const budgetCategoriesRouter = require('./routes/budgetCategory.router');
+const budgetSubcategoriesRouter = require('./routes/budgetSubcategory.router');
+const budgetsRouter = require('./routes/budget.router');
+const transactionsRouter = require('./routes/transaction.router');
 
 app.use('/user', userRouter);
 app.use('/lang', langRouter);
 app.use('/tasks', auth, tasksRouter);
 app.use('/notes_cat', auth, notesCategoriesRouter);
 app.use('/notes', auth, notesRouter);
+app.use('/budget_categories', budgetCategoriesRouter);
+app.use('/budget_subcategories', budgetSubcategoriesRouter);
+app.use('/budgets', auth, budgetsRouter);
+app.use('/transactions', auth, transactionsRouter);
+
 
 app.get('*', (req, res) => {                       
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));                               
