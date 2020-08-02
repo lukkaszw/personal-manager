@@ -19,11 +19,13 @@ const getBudgets = async (req, res) => {
 
     if(Number(req.query.type) === TYPE.monthly) {
       delete sort.createdAt;
-      sort.month = -1;
+      sort.date = -1;
     }
   }
   
   try {
+    const amount = await Budget.countDocuments(match);
+
     const budgets = await Budget
       .find(match)
       .limit(Number(req.query.limit))
@@ -31,11 +33,11 @@ const getBudgets = async (req, res) => {
       .sort(sort);
 
     if(!budgets || budgets.length === 0) {
-      res.json([]);
+      res.json({ budgets: [], amount: 0 });
       return;
     }
 
-    res.json(budgets);
+    res.json({ amount, budgets });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -74,10 +76,10 @@ const getOneBudget = async (req, res) => {
 
 const addBudget = async (req, res) => {
   const userId = req.user._id;
-  const { name, type, budgetedCategories, totalAmount, month } = req.body;
+  const { name, type, budgetedCategories, totalAmount, month, year, date } = req.body;
   
   try {
-    const budget = new Budget({ userId, name, type, budgetedCategories, totalAmount, month });
+    const budget = new Budget({ userId, name, type, budgetedCategories, totalAmount, month, year, date });
     await budget.save();
     res.status(201).json(budget);
   } catch (error) {

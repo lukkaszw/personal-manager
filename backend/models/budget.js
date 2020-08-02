@@ -39,8 +39,14 @@ const budgetSchema = new mongoose.Schema({
     ],
     default: [],
   },
-  month: {
+  date: {
     type: Date,
+  },
+  month: {
+    type: String,
+  },
+  year: {
+    type: String,
   },
   totalAmount: {
     type: Number,
