@@ -1,9 +1,11 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+
 
 const Budget = () => {
   return ( 
     <div>
-      Budget
+      <Redirect to="/budget/list" />
     </div>
    );
 }

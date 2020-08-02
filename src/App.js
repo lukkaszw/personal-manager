@@ -6,6 +6,7 @@ import { ReactQueryConfigProvider } from 'react-query';
 import Main from 'components/pages/Main';
 import Contact from 'components/pages/Contact';
 import Budget from 'components/pages/Budget';
+import BudgetList from 'components/pages/BudgetList';
 import Notes from 'components/pages/Notes';
 import Calendar from 'components/pages/Calendar';
 import Adverts from 'components/pages/Adverts';
@@ -84,6 +85,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/budget'>
           <Budget />
+        </Route>
+        <Route exact path='/budget/list'>
+          <BudgetList />
         </Route>
         <Route exact path='/notes'>
           <Notes />
