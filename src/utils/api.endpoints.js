@@ -12,6 +12,7 @@ const api = {
       categories: 'notes_cat',
       notes: 'notes',
     },
+    budget: 'budgets',
   }
 }
 

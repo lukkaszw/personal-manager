@@ -4,5 +4,8 @@ export const pages = {
   },
   notes: {
     maxPerPage: 10,
+  },
+  budget: {
+    maxPerPage: 10,
   }
 }

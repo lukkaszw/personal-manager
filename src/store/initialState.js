@@ -25,6 +25,12 @@ const initialState = {
       category: 'all',
       page: 1,
     }
+  },
+  budget: {
+    query: {
+      type: 'all',
+      page: 1,
+    }
   }
 };
 
