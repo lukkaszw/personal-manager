@@ -9,13 +9,14 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import DateField from 'components/common/DateField';
+import DateField from 'components/common/datePickers/DateField';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Root, FieldContent, ButtonWrapper, useStyles } from './TaskForm.styles';
 import { validateTask } from 'utils/validators';
 import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
 import { STATUS, PRIORITY } from 'utils/tasks.statuses';
+import moment from 'moment';
 
 
 const TaskForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
@@ -119,7 +120,14 @@ const TaskForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
                 )}
               </Field>
             }
-            <Field name="endDate" component={DateField}>
+            <Field name="endDate">
+              {(props) => (
+                <DateField 
+                  {...props}
+                  label={t('End time')}
+                  minDate={isForEdit ? moment('1900-01-01') : moment().add(1, 'd')}
+                />
+              )}
             </Field>
             <Field name="description">
               {({ input, meta }) => (

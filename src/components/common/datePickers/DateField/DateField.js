@@ -1,30 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import { useTranslation } from 'react-i18next';
-import moment from 'moment';
-
+import useReactFinalForm from '../useReactFinalForm';
 
 const DateField = props => {
-  const { t } = useTranslation();
 
-  const {
-    meta: { submitting, error, touched },
-    input: { onBlur, value, ...inputProps },
-    ...others
-  } = props;
-
-  const onChange = date => {
-    Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null);
-  };
+  const {   
+    onChange,
+    inputProps,
+    submitting,
+    error,
+    touched,
+    others,
+    value,
+    onBlur } = useReactFinalForm(props);
 
   return (
     <KeyboardDatePicker
       {...inputProps}
       {...others}
       autoOk={true}
-      label={t('End time')}
+      label={props.label}
       format="YYYY-MM-DD"
-      minDate={moment().add(1, 'd')}
+      minDate={props.minDate}
       value={value ? new Date(value) : null}
       disabled={submitting}
       onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
@@ -33,5 +31,10 @@ const DateField = props => {
     />
   );
 };
+
+DateField.propTypes = {
+  minDate: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+}
 
 export default DateField;
