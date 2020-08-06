@@ -1,4 +1,5 @@
 import _v from 'validator';
+import { getCategoriesFromFields } from './getCategoriesFromFields';
 
 const passwordRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
 
@@ -78,6 +79,49 @@ export const validateNoteCat = (values) => {
     errors.name = 'Required';
   } else if (values.name.length > 15) {
     errors.name = 'Max 15!'
+  }
+
+  return errors;
+}
+
+export const validateBudgetForm = (values) => {
+  const errors = {};
+
+  if(!values.name) {
+    errors.name = 'Required';
+  }
+
+  if(!values.date) {
+    errors.date = 'Required';
+  }
+
+  if(values.totalAmount  <= 0 || Number.isNaN(values.totalAmount)) {
+    errors.totalAmount = 'Must be positive value!';
+  }
+
+  const categories = getCategoriesFromFields(values);
+
+  let isSomeNegative = false;
+  categories.forEach(c => {
+    if(c.amount < 0) {
+      errors[c.category] = true;
+      isSomeNegative = true;
+    }
+  }); 
+  
+  if(isSomeNegative) {
+    errors.negative = 'Categories has to be positive values or 0!';
+  }
+
+  const catSum = categories.reduce((prevValue, nextCat) => {
+    if(Number.isNaN(nextCat.amount)) {
+      return prevValue;
+    }
+    return (prevValue + nextCat.amount);
+  }, 0);
+
+  if(catSum > values.totalAmount) {
+    errors.toBigSum = "Sum from categories can't be more than total amount!";
   }
 
   return errors;
