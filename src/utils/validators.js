@@ -1,5 +1,6 @@
 import _v from 'validator';
 import { getCategoriesFromFields } from './getCategoriesFromFields';
+import { TYPE_ } from 'utils/budget.statuses';
 
 const passwordRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
 
@@ -91,7 +92,7 @@ export const validateBudgetForm = (values) => {
     errors.name = 'Required';
   }
 
-  if(!values.date) {
+  if(values.type === TYPE_.monthly && !values.date) {
     errors.date = 'Required';
   }
 

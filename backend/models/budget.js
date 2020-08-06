@@ -11,7 +11,7 @@ const budgetSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    maxlength: 15,
+    maxlength: 30,
     trim: true,
   },
   type: {

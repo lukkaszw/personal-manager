@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
@@ -16,16 +17,20 @@ import {
   useStyles,  } from './BudgetForm.styles';
 import { TYPE, TYPE_ } from 'utils/budget.statuses';
 import { useTranslation } from 'react-i18next';
+import { useMutation } from 'react-query';
 import { validateBudgetForm } from 'utils/validators';
 import { getSumOfCategories } from 'utils/getCategoriesFromFields';
+import { toast } from 'react-toastify';
 import moment from 'moment';
 
 
-const BudgetForm = ({ token, initialValues, categories, isForEdit }) => {
-  const { t } = useTranslation();
-  const [type, setType] = useState(initialValues.type);
+const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit }) => {
 
+  const { t } = useTranslation();
   const classes = useStyles();
+  const history = useHistory();
+
+  const [type, setType] = useState(initialValues.type);
 
   const minDate = useMemo(() => {
     if(isForEdit) {
@@ -34,7 +39,22 @@ const BudgetForm = ({ token, initialValues, categories, isForEdit }) => {
     return moment();
   }, [isForEdit]);
 
-  const handleSubmit = (values) => console.log(values);
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
+    onSuccess: data => {
+      if(isForEdit) {
+        console.log('isFor Edit!');
+      }
+      history.goBack();
+      const message = isForEdit ? 'You have edited the budget' : 'You have added a budget'; 
+      toast.success(`${t(message)}!`);
+    },
+    onError: data => {
+      const message = isForEdit ? 'You can not edit a budget now' : 'You can not add a budget now';
+      toast.error(`${t(message)}! ${t('Try again later')}!`);
+    }
+  });
+
+  const handleSubmit = useCallback((data) => submitAction({ data, token, id }), [submitAction, token, id]);
 
   return ( 
     <Root>
@@ -42,7 +62,7 @@ const BudgetForm = ({ token, initialValues, categories, isForEdit }) => {
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validate={validateBudgetForm}
-        render={({ handleSubmit, form, submitting, pristine, values, errors }) => {
+        render={({ handleSubmit, submitting,  values, errors }) => {
 
           const categoriesSum = getSumOfCategories(values);
 
@@ -177,6 +197,7 @@ const BudgetForm = ({ token, initialValues, categories, isForEdit }) => {
                   variant="contained"
                   color="secondary"
                   onClick={handleSubmit}
+                  disabled={submitting || isSending}
                 >
                   {isForEdit ? t('Edit budget') : t('Add budget')}
                 </Button>
@@ -189,9 +210,12 @@ const BudgetForm = ({ token, initialValues, categories, isForEdit }) => {
 }
 
 BudgetForm.propTypes = {
+  id: PropTypes.string,
+  isForEdit: PropTypes.bool,
   token: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired,
   categories: PropTypes.arrayOf(PropTypes.object),
+  apiAction: PropTypes.func.isRequired,
 };
  
 export default BudgetForm;
