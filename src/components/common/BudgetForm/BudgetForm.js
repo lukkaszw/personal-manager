@@ -143,8 +143,7 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                             min: 0,
                           },
                         }}
-                        helperText={(meta.error && meta.touched) && 
-                        (meta.error === 'Required' ? t('Required') : meta.error)}
+                        helperText={(meta.error && meta.touched) && t(meta.error)}
                       />
                     </FieldContent>
                   )}
@@ -186,10 +185,10 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
               </CategoryField >
               <ErrorsWrapper>
                 <p>
-                  {errors.toBigSum ? errors.toBigSum : ''}
+                  {errors.toBigSum ? t(errors.toBigSum) : ''}
                 </p>
                 <p>
-                  {errors.negative ? errors.negative : ''}
+                  {errors.negative ? t(errors.negative) : ''}
                 </p>
               </ErrorsWrapper>
               <ButtonWrapper>

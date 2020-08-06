@@ -113,7 +113,7 @@ export const validateBudgetForm = (values) => {
   }); 
   
   if(isSomeNegative) {
-    errors.negative = 'Categories has to be positive values or 0!';
+    errors.negative = 'Categories have to be positive values or 0!';
   }
 
   const catSum = categories.reduce((prevValue, nextCat) => {
@@ -124,7 +124,7 @@ export const validateBudgetForm = (values) => {
   }, 0);
 
   if(catSum > values.totalAmount) {
-    errors.toBigSum = "Sum from categories can't be more than total amount!";
+    errors.toBigSum = "Sum of categories can't be more than total amount!";
   }
 
   return errors;
