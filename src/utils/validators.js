@@ -78,8 +78,8 @@ export const validateNoteCat = (values) => {
 
   if(!values.name) {
     errors.name = 'Required';
-  } else if (values.name.length > 15) {
-    errors.name = 'Max 15!'
+  } else if (values.name.length > 30) {
+    errors.name = 'Max 30!'
   }
 
   return errors;
@@ -90,6 +90,8 @@ export const validateBudgetForm = (values) => {
 
   if(!values.name) {
     errors.name = 'Required';
+  } else if (values.name.length > 30) {
+    errors.name = 'Max 30!';
   }
 
   if(values.type === TYPE_.monthly && !values.date) {
