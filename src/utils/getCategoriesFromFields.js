@@ -7,7 +7,7 @@ export const getCategoriesFromFields = (values) => {
       key !== 'date' && 
       key !== 'name'
     ))
-  .map(([key, value]) => ({ category: key, amount: value }));
+  .map(([key, value]) => ({ category: key, amount: parseFloat(Number(value).toFixed(2)) }));
 
   return categories;
 }

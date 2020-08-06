@@ -98,7 +98,9 @@ export const validateBudgetForm = (values) => {
     errors.date = 'Required';
   }
 
-  if(values.totalAmount  <= 0 || Number.isNaN(values.totalAmount)) {
+  const totalAmount = parseFloat(Number(values.totalAmount).toFixed(2));
+
+  if(totalAmount  <= 0 || Number.isNaN(totalAmount)) {
     errors.totalAmount = 'Must be positive value!';
   }
 
@@ -106,7 +108,7 @@ export const validateBudgetForm = (values) => {
 
   let isSomeNegative = false;
   categories.forEach(c => {
-    if(c.amount < 0) {
+    if(c.amount < 0 || Number.isNaN(c.amount)) {
       errors[c.category] = true;
       isSomeNegative = true;
     }
@@ -120,10 +122,10 @@ export const validateBudgetForm = (values) => {
     if(Number.isNaN(nextCat.amount)) {
       return prevValue;
     }
-    return (prevValue + nextCat.amount);
+    return prevValue + nextCat.amount;
   }, 0);
 
-  if(catSum > values.totalAmount) {
+  if(catSum > totalAmount) {
     errors.toBigSum = "Sum of categories can't be more than total amount!";
   }
 

@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { validateBudgetForm } from 'utils/validators';
 import { getSumOfCategories } from 'utils/getCategoriesFromFields';
+import { parseMoneyInput } from 'utils/parseMoneyInput';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
@@ -65,6 +66,8 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
         render={({ handleSubmit, submitting,  values, errors }) => {
 
           const categoriesSum = getSumOfCategories(values);
+          const savings = values.totalAmount - categoriesSum;
+          const savingText = Number.isNaN(savings) ? '-' : Math.floor(savings * 100) / 100;
 
           return (
             <form onSubmit={handleSubmit}>
@@ -127,19 +130,21 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                     )}
                   </Field>
               }
-              <Field name="totalAmount" parse={value => parseFloat(value)}>
+              <Field name="totalAmount">
                 {({ input, meta }) => (
                     <FieldContent>
                       <TextField 
                         className={classes.totalAmountInput}
                         fullWidth={true}
                         {...input}
+                        onChange={(e) => parseMoneyInput(e.target.value, input.onChange)}
                         type="number"
                         label={t('Total capital')}
                         error={meta.error && meta.touched}
                         InputProps={{
                           endAdornment: <InputAdornment position="end">zł</InputAdornment>,
                           inputProps: {
+                            step: "0.01",
                             min: 0,
                           },
                         }}
@@ -153,7 +158,6 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                   <Field 
                     name={category._id} 
                     key={category._id}
-                    parse={value => parseFloat(value, 10)}
                   >
                     {({ input, meta }) => (
                       <CategoryField >
@@ -163,12 +167,14 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                         <TextField 
                           className={classes.catInput}
                           {...input}
+                          onChange={(e) => parseMoneyInput(e.target.value, input.onChange)}
                           type="number"
                           error={meta.error && meta.touched}
                           InputProps={{
                             id: category.name,
                             endAdornment: <InputAdornment position="end">zł</InputAdornment>,
                             inputProps: {
+                              step: "0.01",
                               min: 0,
                             },
                           }}
@@ -181,7 +187,7 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
               <Divider />
               <CategoryField >
                 <ImportantText>{t('Planned savings')}: </ImportantText>
-                <span>{values.totalAmount - categoriesSum} zł</span>
+                <span>{savingText} zł</span>
               </CategoryField >
               <ErrorsWrapper>
                 <p>
