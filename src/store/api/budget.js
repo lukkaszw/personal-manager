@@ -22,6 +22,16 @@ export const getBudgets = async (key, { type, page, token }) => {
   return resp.data;
 }
 
+export const getBudget = async (key, { id, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.budget}/${id}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.get(url, config);
+
+  return resp.data;
+}
+
 export const getCategories = async () => {
   const url = `${api.baseUrl}/${api.endpoints.budgetCategories}`;
 

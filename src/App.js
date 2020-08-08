@@ -8,6 +8,7 @@ import Contact from 'components/pages/Contact';
 import Budget from 'components/pages/Budget';
 import AddBudget from 'components/pages/AddBudget';
 import BudgetList from 'components/pages/BudgetList';
+import OneBudget from 'components/pages/OneBudget';
 import Notes from 'components/pages/Notes';
 import Calendar from 'components/pages/Calendar';
 import Adverts from 'components/pages/Adverts';
@@ -92,6 +93,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/budget/list'>
           <BudgetList />
+        </Route>
+        <Route path='/budget/:id'>
+          <OneBudget />
         </Route>
         <Route exact path='/notes'>
           <Notes />
