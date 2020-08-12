@@ -6,6 +6,7 @@ import { ReactQueryConfigProvider } from 'react-query';
 import Main from 'components/pages/Main';
 import Contact from 'components/pages/Contact';
 import Budget from 'components/pages/Budget';
+import EditBudget from 'components/pages/EditBudget';
 import AddBudget from 'components/pages/AddBudget';
 import BudgetList from 'components/pages/BudgetList';
 import OneBudget from 'components/pages/OneBudget';
@@ -87,6 +88,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/budget'>
           <Budget />
+        </Route>
+        <Route exact path='/budget/edit/:id'>
+          <EditBudget />
         </Route>
         <Route exact path='/budget/add'>
           <AddBudget />
