@@ -8,4 +8,6 @@ router.get('/:id', budgetController.getOneBudget);
 
 router.post('/', budgetController.addBudget);
 
+router.put('/:id', budgetController.editBudget);
+
 module.exports = router;

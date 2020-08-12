@@ -87,8 +87,49 @@ const addBudget = async (req, res) => {
   }
 };
 
+const editBudget = async (req, res) => {
+    const userId = req.user._id;
+    const budgetId = req.params.id;
+    const data = req.body;
+
+    const allowedUpdates = ['name', 'type', 'budgetedCategories', 'totalAmount', 'month', 'year', 'date' ];
+    const triedChanges = Object.keys(data);
+    const isMatch = triedChanges.every(change => allowedUpdates.includes(change));
+
+    if(!isMatch) {
+      res.status(400).json({
+        error: 'Bad request!',
+      });
+  
+      return;
+    }
+
+    try {
+      const budget = await Budget.findOne({ _id: budgetId, userId: userId });
+  
+      if(!budget) {
+        res.status(404).json({
+          error: 'Budget not found!',
+        });
+        return;
+      }
+  
+      triedChanges.forEach(key => {
+        budget[key] = data[key];
+      });
+  
+      await budget.save();
+  
+      res.json(budget);
+    } catch (error) {
+      res.status(500).json(error);
+    } 
+
+}
+
 module.exports = {
   getBudgets,
   addBudget,
   getOneBudget,
+  editBudget,
 };
