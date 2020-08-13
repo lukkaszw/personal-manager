@@ -33,7 +33,7 @@ const DateField = props => {
 };
 
 DateField.propTypes = {
-  minDate: PropTypes.object.isRequired,
+  minDate: PropTypes.object,
   label: PropTypes.string.isRequired,
 }
 

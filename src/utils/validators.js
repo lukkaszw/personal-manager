@@ -131,3 +131,17 @@ export const validateBudgetForm = (values) => {
 
   return errors;
 }
+
+export const validateTransaction = (values) => {
+  const errors = {};
+
+  if(values.description.length > 20) {
+    errors.description = 'Max 20!';
+  }
+
+  if(!values.date) {
+    errors.date = 'Required!';
+  }
+
+  return errors;
+}
