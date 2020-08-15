@@ -1,4 +1,5 @@
 const Transaction = require('../models/transaction');
+const Budget = require('../models/budget');
 
 const getTransactions = async (req, res) => {
   const userId = req.user._id;
@@ -51,6 +52,14 @@ const addTransaction = async (req, res) => {
   const { budgetId, description, cost, category, subcategory, date } = req.body;
 
   try {
+    const matchedBudget = await Budget.findOne({ userId, _id: budgetId });
+    if(!matchedBudget) {
+      res.status(400).json({
+        error: 'Bad request!',
+      });
+      return;
+    }
+
     const transaction = new Transaction({ userId, budgetId, description, cost, category, subcategory, date });
     await transaction.save();
     res.json(transaction);
