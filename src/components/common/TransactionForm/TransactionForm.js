@@ -10,7 +10,6 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
 import Modal from '@material-ui/core/Modal';
-import { } from '@fortawesome/fontawesome-svg-core'
 import { useTranslation } from 'react-i18next';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { 

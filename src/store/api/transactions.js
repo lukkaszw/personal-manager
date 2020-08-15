@@ -22,3 +22,17 @@ export const getTransactions = async (key, { token, budgetId }) => {
 
   return res.data;
 };
+
+export const deleteMany = async ({ token, transactions }) => {
+  const url = `${api.baseUrl}/${api.endpoints.transactions}`;
+
+  const config = generateAuthConfig(token);
+
+  config.data = {
+    transactions,
+  }
+
+  const res = await axios.delete(url, config);
+
+  return res.data;
+}

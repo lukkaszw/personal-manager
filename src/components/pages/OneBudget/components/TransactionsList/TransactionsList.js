@@ -32,6 +32,7 @@ const TransactionsList = ({ token, budgetId }) => {
   return ( 
     <Root>
       <TransactionsActions 
+        token={token}
         checkedTransactions={checkedTransactions}
       />
       <Table size="small" >

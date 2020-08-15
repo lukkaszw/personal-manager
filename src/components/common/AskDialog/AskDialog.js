@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { ButtonsWrapper } from './AskDialog.styles';
 
 const AskDialog = ({ 
-  isOpen, dialogId, question, yesAnswear, noAnswear,
+  isOpen, question, yesAnswear, noAnswear,
   onClose, onYesAction, onNoAction,
 }) => {
   return ( 
