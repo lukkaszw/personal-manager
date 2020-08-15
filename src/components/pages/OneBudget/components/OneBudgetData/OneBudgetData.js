@@ -22,7 +22,10 @@ const OneBudgetData = ({ token, id }) => {
         <CategoryList
           budgetData={budgetData}
         />
-        <TransactionsList />
+        <TransactionsList
+          budgetId={id} 
+          token={token}
+        />
       </TransactionsWrapper>
       <Route path={`/budget/:id/add-transaction`}>
         <AddTransaction 

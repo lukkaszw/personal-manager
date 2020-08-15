@@ -5,7 +5,10 @@ const getTransactions = async (req, res) => {
   const userId = req.user._id;
   const budgetId = req.params.budgetId;
   try {
-    const transations = await Transaction.find({ userId, budgetId });
+    const transations = await Transaction
+      .find({ userId, budgetId })
+      .populate('category')
+      .populate('subcategory');
 
     if(!transations || transations.length === 0) {
       res.json([]);

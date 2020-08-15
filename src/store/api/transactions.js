@@ -12,3 +12,13 @@ export const addTransation = async ({ data, token }) => {
 
   return res.data;
 }
+
+export const getTransactions = async (key, { token, budgetId }) => {
+  const url = `${api.baseUrl}/${api.endpoints.budgetTransactions}/${budgetId}`;
+  
+  const config = generateAuthConfig(token);
+  
+  const res = await axios.get(url, config);
+
+  return res.data;
+};
