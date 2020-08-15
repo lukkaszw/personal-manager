@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import { Root } from './LoaderIndicator.styles';
 
-const LoaderIndicator = ({ isOpen, size, blue }) => {
+const LoaderIndicator = ({ isOpen, size, color }) => {
   if(isOpen) {
     return (
       <Root>
-        <Loader />
+        <Loader 
+          size={size}
+          color={color}
+        />
       </Root>
     )
   }
