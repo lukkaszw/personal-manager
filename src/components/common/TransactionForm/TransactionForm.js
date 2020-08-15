@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
@@ -12,6 +12,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Modal from '@material-ui/core/Modal';
 import { } from '@fortawesome/fontawesome-svg-core'
 import { useTranslation } from 'react-i18next';
+import LoaderIndicator from 'components/common/LoaderIndicator';
 import { 
   Root, 
   ButtonWrapper, 
@@ -21,12 +22,45 @@ import {
   CostContainer } from './TransactionForm.styles';
 import { parseMoneyInput } from 'utils/parseMoneyInput';
 import { validateTransaction } from 'utils/validators';
+import { toast } from 'react-toastify';
+import { useMutation, queryCache } from 'react-query';
 
-const TransactionForm = ({ token, id, initialValues, apiAction, isForEdit, categories }) => {
+const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForEdit, categories }) => {
 
   const classes = useStyles();
   const history = useHistory();
   const { t } = useTranslation();
+
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
+    onSuccess: data => {
+      history.goBack();
+      const message = isForEdit ? 'You have edited the transaction' : 'You have added a transaction'; 
+      toast.success(`${t(message)}!`);
+    },
+    onError: data => {
+      const message = isForEdit ? 'You can not edit a transaction now' : 'You can not add a transaction now';
+      toast.error(`${t(message)}! ${t('Try again later')}!`);
+    }
+  });
+
+  const handleSubmit = useCallback((data) => {
+    const parsedData = {
+      budgetId,
+      date: data.date,
+      description: data.description,
+      cost: parseFloat(data.cost),
+    };
+
+    if(data.category !== 'others') {
+      parsedData.subcategory = data.category;
+      const category = categories.find(cat => {
+        return cat.category.subCategories.some(subCat => subCat._id === data.category);
+      });
+      parsedData.category = category.category._id;
+    }
+
+      submitAction({ data: parsedData, token, id });
+  }, [categories, budgetId, id, token, submitAction]);
 
   return ( 
     <Modal
@@ -35,8 +69,9 @@ const TransactionForm = ({ token, id, initialValues, apiAction, isForEdit, categ
       disableBackdropClick={true}
     >
       <Root>
+        <LoaderIndicator isOpen={isSending} size='small' color="red"/>
         <Form
-          onSubmit={(values) => console.log(values)}
+          onSubmit={handleSubmit}
           initialValues={initialValues}
           validate={validateTransaction}
           render={({ handleSubmit, form, submitting, pristine, values }) => {
@@ -164,6 +199,7 @@ const TransactionForm = ({ token, id, initialValues, apiAction, isForEdit, categ
                     variant="contained"
                     color="secondary"
                     onClick={handleSubmit}
+                    disabled={isSending}
                   >
                     {isForEdit ? t('Edit transaction') : t('Add transaction')}
                   </Button>
@@ -178,6 +214,7 @@ const TransactionForm = ({ token, id, initialValues, apiAction, isForEdit, categ
 
 TransactionForm.propTypes = {
   id: PropTypes.string,
+  budgetId: PropTypes.string.isRequired,
   isForEdit: PropTypes.bool,
   initialValues: PropTypes.object,
   categories: PropTypes.array.isRequired,

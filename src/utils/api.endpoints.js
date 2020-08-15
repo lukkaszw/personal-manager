@@ -14,6 +14,7 @@ const api = {
     },
     budget: 'budgets',
     budgetCategories: 'budget_categories',
+    transactions: 'transactions',
   }
 }
 

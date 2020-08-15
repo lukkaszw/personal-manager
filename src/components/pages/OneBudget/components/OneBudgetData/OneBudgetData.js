@@ -26,6 +26,7 @@ const OneBudgetData = ({ token, id }) => {
       </TransactionsWrapper>
       <Route path={`/budget/:id/add-transaction`}>
         <AddTransaction 
+          budgetId={id}
           categories={budgetData.budgetedCategories}
         />
       </Route>
