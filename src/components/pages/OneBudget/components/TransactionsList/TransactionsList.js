@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Root } from './TransactionsList.styles';
+import TransactionsActions from '../TransactionsActions';
 import Table from '@material-ui/core/Table';
 import Checkbox from '@material-ui/core/Checkbox';
 import TableBody from '@material-ui/core/TableBody';
@@ -30,6 +31,9 @@ const TransactionsList = ({ token, budgetId }) => {
 
   return ( 
     <Root>
+      <TransactionsActions 
+        checkedTransactions={checkedTransactions}
+      />
       <Table size="small" >
         <TableHead>
           <TableRow>
