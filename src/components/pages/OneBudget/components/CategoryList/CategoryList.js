@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Root, SubCatList } from './CategoryList.styles';
+import { Root, SubCatList, CategoryExpenses } from './CategoryList.styles';
 import CategoryItem from '../CategoryItem';
+import BudgetSummary from '../BudgetSummary';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 
-const CategoryList = ({ budgetData }) => {
+const CategoryList = ({ 
+  budgetData, categories, selectedCategory,
+  onChangeCategory, onChangeSubcategory, onResetQueries }) => {
 
-  const [expandedList, setExpandedList] = useState(null);
+  const { t } = useTranslation();
 
   return ( 
     <Root>
@@ -14,36 +18,54 @@ const CategoryList = ({ budgetData }) => {
         isTitle={true}
         name={budgetData.name}
         amount={budgetData.totalAmount}
+        onClick={onResetQueries}
       />
       {
-        budgetData.budgetedCategories.map(cat => (
+        categories.map(cat => (
           <div
             key={cat.category._id}
           >
              <CategoryItem 
               isMain={true}
-              name={cat.category.name}
+              name={t(cat.category.name)}
               amount={cat.amount}
-              onClick={() => setExpandedList(expandedList === cat.category._id ? null : cat.category._id)}
+              onClick={() => onChangeCategory(cat.category._id)}
             />
             <SubCatList
-              className={clsx([expandedList === cat.category._id && 'active'])}
+              className={clsx([selectedCategory === cat.category._id && 'active'])}
             >
               {
                 cat.category.subCategories.map(subCat => (
                   <CategoryItem 
                     key={subCat._id}
-                    name={subCat.name}
+                    name={t(subCat.name)}
+                    onClick={() => 
+                      onChangeSubcategory({ 
+                        categoryId: cat.category._id, 
+                        subcategoryId: subCat._id 
+                    })}
                   />
                 ))
               }
+              <CategoryExpenses
+                warning={cat.balance > 100}
+              >
+                {t('Expenses')}: {cat.expenses.toFixed(2)} zł ({cat.balance.toFixed(0)}%)
+              </CategoryExpenses>
             </SubCatList>
           </div>
         ))
       }
       <CategoryItem 
         isMain={true}
-        name='Others'
+        name={t('Others')}
+        onClick={() => onChangeCategory('others')}
+      />
+      <BudgetSummary 
+        expenses={budgetData.expenses}
+        savings={budgetData.savings}
+        expensesBalance={budgetData.expensesBalance}
+        savingsBalance={budgetData.savingsBalance}
       />
     </Root>
    );
@@ -51,6 +73,11 @@ const CategoryList = ({ budgetData }) => {
 
 CategoryList.propTypes = {
   budgetData: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
+  onChangeCategory: PropTypes.func.isRequired,
+  onChangeSubcategory: PropTypes.func.isRequired,
+  onResetQueries: PropTypes.func.isRequired,
 };
  
 export default CategoryList;

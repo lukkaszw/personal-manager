@@ -8,12 +8,14 @@ import userReducer from 'store/reducers/user';
 import tasksReducer from 'store/reducers/tasks';
 import notesReducer from 'store/reducers/notes';
 import budgetReducer from 'store/reducers/budget';
+import transactionsReducer from 'store/reducers/transactions';
 
 const reducers = {
   user: userReducer,
   tasks: tasksReducer,
   notes: notesReducer,
   budget: budgetReducer,
+  transactions: transactionsReducer,
 };
 
 Object.keys(initialState).forEach(item => {

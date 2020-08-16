@@ -31,6 +31,12 @@ const initialState = {
       type: 'all',
       page: 1,
     }
+  },
+  transactions: {
+    query: {
+      category: 'all',
+      subcategory: 'all',
+    }
   }
 };
 

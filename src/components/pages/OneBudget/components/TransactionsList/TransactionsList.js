@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Root } from './TransactionsList.styles';
+import { Root, Sum } from './TransactionsList.styles';
 import TransactionsActions from '../TransactionsActions';
 import Table from '@material-ui/core/Table';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -9,21 +9,32 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TransactionRow from '../TransactionRow';
-import { useQuery } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import useCheckedTransactions from './useCheckedTransactions';
-import API from 'store/api';
 
-const TransactionsList = ({ token, budgetId }) => {
+const TransactionsList = ({ token, budgetId, selectedCategory, selectedSubcategory, transactions }) => {
 
   const { t, i18n } = useTranslation();
 
-  const { data } = useQuery([
-    'transactions', 
-    { token, budgetId },
-  ], API.transactions.getTransactions,  { suspense: true, cacheTime: 0 });
+  const { filteredTransactions, transactionsSum } = useMemo(() => {
+    let filteredTransactions = transactions;
 
-  const filteredTransactions = useMemo(() => data.filter(trans => true), [data]);
+    if(selectedCategory !== 'all') {
+      if(selectedCategory === 'others') {
+        filteredTransactions = transactions.filter(transaction => !transaction.category);
+      } else if (selectedSubcategory === 'all') {
+        filteredTransactions = transactions.filter(transaction => transaction.category && transaction.category._id === selectedCategory);
+      } else {
+        filteredTransactions = transactions.filter(transaction => transaction.subcategory && transaction.subcategory._id === selectedSubcategory)
+      }
+    }
+
+    const transactionsSum = filteredTransactions.reduce((prevAmount, nextTransaction) => {
+      return prevAmount + nextTransaction.cost;
+    }, 0);
+
+    return { filteredTransactions, transactionsSum };
+  }, [transactions, selectedSubcategory, selectedCategory]);
 
   const { 
     checkedTransactions,
@@ -68,7 +79,10 @@ const TransactionsList = ({ token, budgetId }) => {
             ))
           }
         </TableBody>
-      </Table>  
+      </Table>
+      <Sum>
+          {t('Sum')}: {transactionsSum.toFixed(2)} zł
+      </Sum>
     </Root>
    );
 }
@@ -76,6 +90,9 @@ const TransactionsList = ({ token, budgetId }) => {
 TransactionsList.propTypes = {
   budgetId: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
+  transactions: PropTypes.array.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
+  selectedSubcategory: PropTypes.string.isRequired,
 };
  
 export default TransactionsList;
