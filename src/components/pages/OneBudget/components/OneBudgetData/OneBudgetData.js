@@ -8,6 +8,7 @@ import CategoryList from '../CategoryList';
 import TransactionsList from '../TransactionsList';
 import BudgetActions from '../BudgetActions';
 import AddTransaction from 'components/pages/AddTransaction';
+import EditTransaction from 'components/pages/EditTransaction';
 
 const OneBudgetData = ({ token, id }) => {
 
@@ -27,9 +28,15 @@ const OneBudgetData = ({ token, id }) => {
           token={token}
         />
       </TransactionsWrapper>
-      <Route path={`/budget/:id/add-transaction`}>
+      <Route path={'/budget/:id/add-transaction'}>
         <AddTransaction 
           budgetId={id}
+          categories={budgetData.budgetedCategories}
+        />
+      </Route>
+      <Route path={'/budget/:id/edit_transaction/:transactionId'}>
+        <EditTransaction 
+          token={token}
           categories={budgetData.budgetedCategories}
         />
       </Route>

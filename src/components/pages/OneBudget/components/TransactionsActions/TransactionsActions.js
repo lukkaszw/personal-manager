@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,10 +13,11 @@ import { toast } from 'react-toastify';
 import API from 'store/api';
 
 
-const TransactionsActions = ({ checkedTransactions, token }) => {
+const TransactionsActions = ({ checkedTransactions, token, budgetId }) => {
 
   const { t } = useTranslation();
   const [wantToDelete, setWantToDelete] = useState(false);
+  const history = useHistory();
   
   const [deleteTransactions, { isLoading: isDeleting }] = useMutation(API.transactions.deleteMany, {
     onSuccess: data => {
@@ -36,6 +37,11 @@ const TransactionsActions = ({ checkedTransactions, token }) => {
       handleCancelToDelete();
     },
     [checkedTransactions, token, deleteTransactions, handleCancelToDelete],
+  );
+
+  const goToEditPage = useCallback(() => 
+    history.push(`/budget/${budgetId}/edit_transaction/${checkedTransactions[0]}`),
+    [checkedTransactions, budgetId, history]
   );
 
   return ( 
@@ -71,8 +77,7 @@ const TransactionsActions = ({ checkedTransactions, token }) => {
           <IconButton
             aria-label={t('Edit transaction')}
             size="small"
-            component={Link}
-            to="/"
+            onClick={goToEditPage}
             disabled={checkedTransactions.length !== 1 || isDeleting}
             color="primary"
           >
@@ -87,6 +92,7 @@ const TransactionsActions = ({ checkedTransactions, token }) => {
 
 TransactionsActions.propTypes = {
   token: PropTypes.string.isRequired,
+  budgetId: PropTypes.string.isRequired,
   checkedTransactions: PropTypes.array.isRequired,
 };
  
