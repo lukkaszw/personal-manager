@@ -27,6 +27,7 @@ export const authenticatedMenu = [
     id: 3,
     name: 'Budget',
     to: '/budget',
+    exact: false,
   },
   {
     id: 4,

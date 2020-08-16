@@ -35,7 +35,7 @@ const MobileMenu = ({ isAuth, isActive, onCloseMenu }) => {
                 className='mobileMenuItem'
               >
                 <NavLink
-                  exact
+                  exact={link.exact !== false}
                   className='mobileMenuLink'
                   to={link.to}
                   activeClassName="active"
