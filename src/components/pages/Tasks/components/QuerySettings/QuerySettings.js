@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { faCog, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Root, Form } from './QuerySettings.styles';
 import { useTranslation } from 'react-i18next';
@@ -41,7 +41,6 @@ const QuerySettings = ({
         <Button
           variant="contained"
           color="secondary"
-          startIcon={<FontAwesomeIcon icon={faPlus}/>}
           size="small"
           component={Link}
           to='/tasks/add'

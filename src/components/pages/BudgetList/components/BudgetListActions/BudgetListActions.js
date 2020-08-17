@@ -4,8 +4,6 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useStyles, Root } from './BudgetListActions.styles';
 import { TYPE } from 'utils/budget.statuses';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +24,6 @@ const BudgetListActions = ({ type, onChangeType }) => {
         component={Link}
         to="/budget/add"
       >
-        <FontAwesomeIcon className={classes.icon} icon={faPlus}/>
         {t('add budget')}
       </Button>
 

@@ -11,7 +11,7 @@ export const Root = styled.div`
 `;
 
 export const ButtonsWrapper = styled.div`
-  width: 70px;
+  width: 110px;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -6,8 +6,6 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Root, Actions, ActionsPart, Categories } from './NotesActions.styles';
 import { useStyles } from './NotesActions.styles';
 import { useQuery } from 'react-query';
@@ -39,7 +37,6 @@ const NotesActions = ({
               component={Link}
               to={`/notes/add`}
             >
-              <FontAwesomeIcon className={classes.icon} icon={faPlus}/>
               {t('add note')}
             </Button>
             <Button
@@ -48,7 +45,6 @@ const NotesActions = ({
               component={Link}
               to={`/notes/cat/add`}
             >
-              <FontAwesomeIcon className={classes.icon} icon={faPlus}/>
               {t('add category')}
             </Button>
           </ButtonGroup>

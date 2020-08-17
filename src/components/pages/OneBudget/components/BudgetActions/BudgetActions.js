@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { Root, ActionName } from './BudgetActions.styles';
+import IconButton from '@material-ui/core/IconButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Root } from './BudgetActions.styles';
 import { useTranslation } from 'react-i18next';
 
 const BudgetActions = ({ id }) => {
@@ -12,25 +12,16 @@ const BudgetActions = ({ id }) => {
 
   return ( 
     <Root>
-      <Button
-        variant="contained"
-        size="small"
+      <IconButton
+        aria-label={t('Edit budget')}
         color="primary"
         component={Link}
         to={`/budget/edit/${id}`}
       >
-        {t('Edit budget')}
-      </Button>
-      <Button
-        variant="contained"
-        size="small"
-        color="secondary"
-        component={Link}
-        to={`/budget/${id}/add-transaction`}
-      >
-        <FontAwesomeIcon icon={faPlus}/>
-        <ActionName>{t('Add transaction')}</ActionName>
-      </Button>
+        <FontAwesomeIcon 
+          icon={faEdit}
+        />
+      </IconButton>
     </Root>
    );
 }

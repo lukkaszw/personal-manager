@@ -9,9 +9,6 @@ export const Root = styled.div`
 `;
 
 export const useStyles = makeStyles({
-  icon: {
-    marginRight: '10px',
-  },
   input: {
     minWidth: '130px',
   },

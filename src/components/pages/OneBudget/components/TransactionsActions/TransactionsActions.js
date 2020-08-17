@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import IconButton from '@material-ui/core/IconButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AskDialog from 'components/common/AskDialog';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Root, ButtonsWrapper } from './TransactionsActions.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation, queryCache } from 'react-query';
@@ -65,6 +66,15 @@ const TransactionsActions = ({ checkedTransactions, token, budgetId }) => {
           {checkedTransactions.length} {t('selected')}
         </div>
         <ButtonsWrapper>
+          <IconButton 
+            aria-label={t('Add transaction')}
+            size="small"
+            color="secondary"
+            component={Link}
+            to={`/budget/${budgetId}/add-transaction`}
+          >
+            <FontAwesomeIcon icon={faPlus} />
+          </IconButton>
           <IconButton
             aria-label={t('Delete transactions')}
             size="small"
