@@ -30,8 +30,3 @@ export const CostContainer = styled(FieldContainer)`
 export const CategoryLabel = styled.span`
   font-size: 12px;
 `;
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;

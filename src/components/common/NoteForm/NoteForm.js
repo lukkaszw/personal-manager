@@ -7,9 +7,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
+import FormSubmitBtns from 'components/common/FormSubmitBtns';
 import PropTypes from 'prop-types';
-import { Root, FieldContent, ButtonWrapper, useStyles } from './NoteForm.styles';
+import { Root, FieldContent, useStyles } from './NoteForm.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
@@ -139,16 +139,13 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
                 </FieldContent>
               )}
             </Field>
-            <ButtonWrapper>
-              <Button 
-                variant="contained"
-                color="primary"
-                type="submit" 
-                disabled={isSending}
-              >
-                {isForEdit ? t('Edit note') : t('Add note')}
-              </Button>
-            </ButtonWrapper>
+
+            <FormSubmitBtns 
+              isForEdit={isForEdit}
+              onCancel={history.goBack}
+              submitDescription={isForEdit ? 'Edit note' : 'Add note'}
+              disable={isSending}
+            />
           </form>
         )}
       />

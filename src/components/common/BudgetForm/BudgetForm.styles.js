@@ -34,11 +34,6 @@ export const CategoryLabel = styled.label`
   width: 120px;
 `;
 
-export const ButtonWrapper = styled.div`
-  text-align: center;
-  margin-top: 20px;
-`;
-
 export const ErrorsWrapper = styled.div`
   color: red;
   text-align: right;

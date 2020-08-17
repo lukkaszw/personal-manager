@@ -9,10 +9,10 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Button from '@material-ui/core/Button';
+import FormSubmitBtns from 'components/common/FormSubmitBtns';
 import MonthYearPicker from 'components/common/datePickers/MonthYearPicker';
 import { 
-  Root, ButtonWrapper, ErrorsWrapper, 
+  Root, ErrorsWrapper, 
   FieldContent, CategoryField, CategoryLabel, ImportantText,
   useStyles,  } from './BudgetForm.styles';
 import { TYPE, TYPE_ } from 'utils/budget.statuses';
@@ -197,16 +197,13 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                   {errors.negative ? t(errors.negative) : ''}
                 </p>
               </ErrorsWrapper>
-              <ButtonWrapper>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={handleSubmit}
-                  disabled={submitting || isSending}
-                >
-                  {isForEdit ? t('Edit budget') : t('Add budget')}
-                </Button>
-              </ButtonWrapper>
+              <FormSubmitBtns 
+                onCancel={history.goBack}
+                isForEdit={isForEdit}
+                submitDescription={isForEdit ? 'Edit budget' : 'Add budget'}
+                disable={submitting || isSending}
+                center={true}
+              />
             </form>
         )}}
       />

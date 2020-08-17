@@ -19,6 +19,10 @@ export const FieldContent = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: right;
+
+  & > * {
+    margin-right: 10px;
+  }
 `;

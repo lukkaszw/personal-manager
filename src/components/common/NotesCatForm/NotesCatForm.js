@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import FormSubmitBtns from 'components/common/FormSubmitBtns';
 import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { validateNoteCat } from 'utils/validators';
-import { ButtonWrapper } from './NotesCatForm.styles';
 
 const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
 
@@ -54,16 +53,14 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
                   />
               )}
             </Field>
-            <ButtonWrapper>
-              <Button 
-                variant="contained"
-                color="primary"
-                type="submit" 
-                disabled={isSending}
-              >
-                {isForEdit ? t('Edit category') : t('Add category')}
-              </Button>
-            </ButtonWrapper>
+
+            <FormSubmitBtns 
+              isForEdit={isForEdit}
+              onCancel={history.goBack}
+              disable={isSending}
+              submitDescription={isForEdit ? 'Edit category' : 'Add category'}
+              center={true}
+            />
           </form>
         )}
       />

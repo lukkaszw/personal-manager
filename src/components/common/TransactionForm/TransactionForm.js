@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import DateField from 'components/common/datePickers/DateField';
 import FormControl from '@material-ui/core/FormControl';
+import FormSubmitBtns from 'components/common/FormSubmitBtns';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,7 +14,6 @@ import { useTranslation } from 'react-i18next';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { 
   Root, 
-  ButtonWrapper, 
   FieldContainer, 
   CategoryLabel, 
   useStyles, 
@@ -185,26 +184,14 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
                       )}
                   </Field>  
                 </CostContainer>
-       
-                <ButtonWrapper>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    color="secondary"
-                    onClick={history.goBack}
-                  >
-                    {t('Cancel')}
-                  </Button>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="secondary"
-                    onClick={handleSubmit}
-                    disabled={isSending}
-                  >
-                    {isForEdit ? t('Edit transaction') : t('Add transaction')}
-                  </Button>
-                </ButtonWrapper>
+
+                <FormSubmitBtns 
+                  isForEdit={isForEdit}
+                  onCancel={history.goBack}
+                  submitDescription={isForEdit ? 'Edit transaction' : 'Add transaction'}
+                  disable={isSending}
+                  center={true}
+                />
               </form>
             )}}
         />

@@ -20,8 +20,3 @@ export const FieldContent = styled.div`
   min-height: 70px;
   margin: 20px 0;
 `;
-
-export const ButtonWrapper = styled.div`
-  margin-top: 20px;
-  text-align: right;
-`;

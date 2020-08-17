@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { useTranslation } from 'react-i18next';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -11,7 +10,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import DateField from 'components/common/datePickers/DateField';
 import LoaderIndicator from 'components/common/LoaderIndicator';
-import { Root, FieldContent, ButtonWrapper, useStyles } from './TaskForm.styles';
+import FormSubmitBtns from 'components/common/FormSubmitBtns';
+import { Root, FieldContent, useStyles } from './TaskForm.styles';
 import { validateTask } from 'utils/validators';
 import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
@@ -147,16 +147,12 @@ const TaskForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
                 </FieldContent>
               )}
             </Field>
-            <ButtonWrapper>
-              <Button 
-                variant="contained"
-                color="primary"
-                type="submit" 
-                disabled={isSending}
-              >
-                {isForEdit ? t('Edit task') : t('Add task')}
-              </Button>
-            </ButtonWrapper>
+            <FormSubmitBtns 
+              isForEdit={isForEdit}
+              onCancel={history.goBack}
+              submitDescription={isForEdit ? 'Edit task' : 'Add task'}
+              disable={isSending}
+            />
           </form>
         )}
       />
