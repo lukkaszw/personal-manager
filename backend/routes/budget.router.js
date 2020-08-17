@@ -10,4 +10,6 @@ router.post('/', budgetController.addBudget);
 
 router.put('/:id', budgetController.editBudget);
 
+router.delete('/:id', budgetController.deleteBudget);
+
 module.exports = router;

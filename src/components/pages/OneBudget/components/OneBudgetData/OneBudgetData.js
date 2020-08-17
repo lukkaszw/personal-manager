@@ -61,6 +61,7 @@ const OneBudgetData = ({
     <Root>
       <BudgetActions 
         id={id}
+        token={token}
       />
       <TransactionsWrapper>
         <CategoryList

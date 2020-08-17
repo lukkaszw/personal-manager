@@ -89,3 +89,13 @@ export const editBudget = async ({ token, id, data }) => {
 
   return resp.data;
 }
+
+export const deleteBudget = async ({ id, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.budget}/${id}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.delete(url, config);
+
+  return resp.data;
+}

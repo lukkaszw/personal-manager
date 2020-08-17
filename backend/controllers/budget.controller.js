@@ -124,7 +124,28 @@ const editBudget = async (req, res) => {
     } catch (error) {
       res.status(500).json(error);
     } 
+}
 
+const deleteBudget = async (req, res) => {
+  const userId = req.user._id;
+  const budgetId = req.params.id;
+
+  try {
+    const budget = await Budget.findOne({ _id: budgetId, userId: userId });
+    
+    if(!budget) {
+      res.status(404).json({
+        error: 'Budget not found!',
+      });
+      return;
+    }
+
+    await budget.remove();
+
+    res.json(budget);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 }
 
 module.exports = {
@@ -132,4 +153,5 @@ module.exports = {
   addBudget,
   getOneBudget,
   editBudget,
+  deleteBudget,
 };

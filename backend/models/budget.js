@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const BUDGET_CODES = require('../utils/budget.codes');
 const { TYPE } = BUDGET_CODES;
+const Transaction = require('./transaction');
 
 const budgetSchema = new mongoose.Schema({
   userId: {
@@ -58,6 +59,14 @@ const budgetSchema = new mongoose.Schema({
   },
 }, {
   timestamps: true,
+});
+
+budgetSchema.pre('remove', async function (next) {
+  const budget = this;
+
+  await Transaction.deleteMany({ userId: budget.userId, budgetId: budget._id });
+  
+  next();
 });
 
 

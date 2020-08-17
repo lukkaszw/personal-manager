@@ -21,6 +21,7 @@ const AskDialog = ({
       <DialogContent>
         <ButtonsWrapper>
           <Button
+            size="small"
             variant="contained"
             color="primary"
             onClick={onNoAction}
@@ -28,6 +29,7 @@ const AskDialog = ({
             {noAnswear}
           </Button>
           <Button
+            size="small"
             variant="contained"
             color="secondary"
             onClick={onYesAction}
