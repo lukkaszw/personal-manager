@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ButtonsWrapper = styled.div`
-  margin: 30px 0 15px 0;
+  margin: ${props => props.smallMargin ? '10px 0 5px 0' : '30px 0 15px 0'};
   text-align: ${props => props.center ? 'center' : 'right'};
 `;
 

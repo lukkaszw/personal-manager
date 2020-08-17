@@ -191,6 +191,7 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
                   submitDescription={isForEdit ? 'Edit transaction' : 'Add transaction'}
                   disabled={isSending}
                   center={true}
+                  smallMargin={true}
                 />
               </form>
             )}}

@@ -4,12 +4,12 @@ import { ButtonsWrapper, FirstBtn, SecondBtn } from './FormSubmitBtns.styles';
 import Button from '@material-ui/core/Button';
 import { useTranslation } from 'react-i18next';
 
-const FormSubmitBtns = ({ isForEdit, onCancel, submitDescription, disabled, center }) => {
+const FormSubmitBtns = ({ isForEdit, onCancel, submitDescription, disabled, center, smallMargin }) => {
 
   const { t } = useTranslation();
 
   return ( 
-    <ButtonsWrapper center={center}>
+    <ButtonsWrapper center={center} smallMargin={smallMargin}>
       <FirstBtn>
         <Button
           size="small"
@@ -42,6 +42,7 @@ FormSubmitBtns.propTypes = {
   submitDescription: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   center: PropTypes.bool,
+  smallMargin: PropTypes.bool,
 };
  
 export default FormSubmitBtns;

@@ -11,22 +11,33 @@ export const Root = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  max-height: 95vh;
+  max-height: 98vh;
   transform: translate(-50%, -50%);
+  padding: 10px 20px;
   width: 280px;
-  padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   overflow-y: auto;
+
+  @media (max-height: 430px) {
+    padding: 5px 20px;
+  }
 `;
 
 export const FieldContainer = styled.div`
-  min-height: 72px;
+  min-height: 69px;
 `;
 
-export const CostContainer = styled(FieldContainer)`
-  margin-top: 24px;
+export const CostContainer = styled.div`
+  min-height: 60px;
+  margin: 24px 0;
   text-align: right;
+
+  @media (max-height: 430px) {
+    min-height: 50px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 `;
 
 export const CategoryLabel = styled.span`
