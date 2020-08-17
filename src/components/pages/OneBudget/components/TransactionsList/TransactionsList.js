@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Root, Sum } from './TransactionsList.styles';
+import { Root, Sum, TableContainer } from './TransactionsList.styles';
 import TransactionsActions from '../TransactionsActions';
 import Table from '@material-ui/core/Table';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -50,36 +50,39 @@ const TransactionsList = ({ token, budgetId, selectedCategory, selectedSubcatego
         token={token}
         checkedTransactions={checkedTransactions}
       />
-      <Table size="small" >
-        <TableHead>
-          <TableRow>
-            <TableCell padding="checkbox" width="70px">
-              <Checkbox
-                checked={checkedTransactions.length >= filteredTransactions.length}
-                onChange={handleToggleAllTransactions}
-              />
-            </TableCell>
-            <TableCell align="center" width="100px">{t('Cost')} (zł)</TableCell>
-            <TableCell align="left">{t('Description')}</TableCell>
-            <TableCell align="center" width="80px">{t('Category')}</TableCell>
-            <TableCell align="center" width="100px">{t('Subcategory')}</TableCell>
-            <TableCell align="center" width="100px">{t('Date')}</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {
-            filteredTransactions.map(transaction => (
-              <TransactionRow 
-                key={transaction._id}
-                {...transaction}
-                checked={checkedTransactions.includes(transaction._id)}
-                onChange={() => handleToggleTransaction(transaction._id)}
-                lang={lang}
-              />
-            ))
-          }
-        </TableBody>
-      </Table>
+      <TableContainer>
+        <Table size="small" >
+          <TableHead>
+            <TableRow>
+              <TableCell padding="checkbox" width="60px">
+                <Checkbox
+                  checked={checkedTransactions.length >= filteredTransactions.length}
+                  onChange={handleToggleAllTransactions}
+                />
+              </TableCell>
+              <TableCell align="center" width="100px">{t('Cost')} (zł)</TableCell>
+              <TableCell align="left">{t('Description')}</TableCell>
+              <TableCell align="center" width="80px">{t('Category')}</TableCell>
+              <TableCell align="center" width="100px">{t('Subcategory')}</TableCell>
+              <TableCell align="center" width="100px">{t('Date')}</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              filteredTransactions.map(transaction => (
+                <TransactionRow 
+                  key={transaction._id}
+                  {...transaction}
+                  checked={checkedTransactions.includes(transaction._id)}
+                  onChange={() => handleToggleTransaction(transaction._id)}
+                  lang={lang}
+                />
+              ))
+            }
+          </TableBody>
+        </Table>
+      </TableContainer>
+
       <Sum>
           {t('Sum')}: {transactionsSum.toFixed(2)} zł
       </Sum>

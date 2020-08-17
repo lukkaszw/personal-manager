@@ -14,19 +14,19 @@ export const Root = styled.button`
   transition: all .2s;
 
   &.title {
-    background-color: #555;
+    background-color: #0F5298;
     color: #fff;
     font-weight: bold;
   }
 
   &.main {
-    background-color: #999;
+    background-color: #2565AE;
     color: #fff;
   }
 
-  &:hover, &:active, &:focus {
+  &:hover, &.active, &:focus {
     outline: none;
-    background-color: #000;
+    background-color: #001F3F;
     color: #fff;
   }
 `;

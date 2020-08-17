@@ -68,6 +68,7 @@ const OneBudgetData = ({
           budgetData={budget}
           categories={categories}
           selectedCategory={selectedCategory}
+          selectedSubcategory={selectedSubcategory}
           onChangeCategory={onChangeCategory}
           onChangeSubcategory={onChangeSubcategory}
           onResetQueries={onResetQueries}

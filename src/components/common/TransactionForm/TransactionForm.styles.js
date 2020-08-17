@@ -11,11 +11,13 @@ export const Root = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
+  max-height: 95vh;
   transform: translate(-50%, -50%);
   width: 280px;
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
+  overflow-y: auto;
 `;
 
 export const FieldContainer = styled.div`

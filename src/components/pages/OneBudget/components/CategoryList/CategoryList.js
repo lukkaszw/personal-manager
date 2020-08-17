@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 
 const CategoryList = ({ 
-  budgetData, categories, selectedCategory,
+  budgetData, categories, selectedCategory, selectedSubcategory,
   onChangeCategory, onChangeSubcategory, onResetQueries }) => {
 
   const { t } = useTranslation();
@@ -19,6 +19,7 @@ const CategoryList = ({
         name={budgetData.name}
         amount={budgetData.totalAmount}
         onClick={onResetQueries}
+        isActive={selectedCategory === 'all'}
       />
       {
         categories.map(cat => (
@@ -30,6 +31,7 @@ const CategoryList = ({
               name={t(cat.category.name)}
               amount={cat.amount}
               onClick={() => onChangeCategory(cat.category._id)}
+              isActive={selectedCategory === cat.category._id}
             />
             <SubCatList
               className={clsx([selectedCategory === cat.category._id && 'active'])}
@@ -42,8 +44,9 @@ const CategoryList = ({
                     onClick={() => 
                       onChangeSubcategory({ 
                         categoryId: cat.category._id, 
-                        subcategoryId: subCat._id 
+                        subcategoryId: subCat._id
                     })}
+                    isActive={selectedSubcategory === subCat._id}
                   />
                 ))
               }
@@ -60,6 +63,7 @@ const CategoryList = ({
         isMain={true}
         name={t('Others')}
         onClick={() => onChangeCategory('others')}
+        isActive={selectedCategory === 'others'}
       />
       <BudgetSummary 
         expenses={budgetData.expenses}
@@ -75,6 +79,7 @@ CategoryList.propTypes = {
   budgetData: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired,
   selectedCategory: PropTypes.string.isRequired,
+  selectedSubcategory: PropTypes.string.isRequired,
   onChangeCategory: PropTypes.func.isRequired,
   onChangeSubcategory: PropTypes.func.isRequired,
   onResetQueries: PropTypes.func.isRequired,
