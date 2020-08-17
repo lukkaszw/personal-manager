@@ -189,7 +189,7 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
                   isForEdit={isForEdit}
                   onCancel={history.goBack}
                   submitDescription={isForEdit ? 'Edit transaction' : 'Add transaction'}
-                  disable={isSending}
+                  disabled={isSending}
                   center={true}
                 />
               </form>

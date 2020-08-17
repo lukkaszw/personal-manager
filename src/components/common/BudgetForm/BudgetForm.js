@@ -201,7 +201,7 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                 onCancel={history.goBack}
                 isForEdit={isForEdit}
                 submitDescription={isForEdit ? 'Edit budget' : 'Add budget'}
-                disable={submitting || isSending}
+                disabled={submitting || isSending}
                 center={true}
               />
             </form>

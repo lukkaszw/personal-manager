@@ -4,7 +4,7 @@ import { ButtonsWrapper, FirstBtn, SecondBtn } from './FormSubmitBtns.styles';
 import Button from '@material-ui/core/Button';
 import { useTranslation } from 'react-i18next';
 
-const FormSubmitBtns = ({ isForEdit, onCancel, submitDescription, disable, center }) => {
+const FormSubmitBtns = ({ isForEdit, onCancel, submitDescription, disabled, center }) => {
 
   const { t } = useTranslation();
 
@@ -16,7 +16,7 @@ const FormSubmitBtns = ({ isForEdit, onCancel, submitDescription, disable, cente
           variant="outlined"
           color={isForEdit ? 'primary' : 'secondary'}
           onClick={onCancel}
-          disable={disable}
+          disabled={disabled}
         >
           {t('Cancel')}
         </Button>
@@ -27,7 +27,7 @@ const FormSubmitBtns = ({ isForEdit, onCancel, submitDescription, disable, cente
           variant="contained"
           color={isForEdit ? 'primary' : 'secondary'}
           type="submit"
-          disabled={disable}
+          disabled={disabled}
         >
           {t(submitDescription)}
         </Button>
@@ -40,7 +40,7 @@ FormSubmitBtns.propTypes = {
   isForEdit: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   submitDescription: PropTypes.string.isRequired,
-  disable: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   center: PropTypes.bool,
 };
  

@@ -151,7 +151,7 @@ const TaskForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
               isForEdit={isForEdit}
               onCancel={history.goBack}
               submitDescription={isForEdit ? 'Edit task' : 'Add task'}
-              disable={isSending}
+              disabled={isSending}
             />
           </form>
         )}

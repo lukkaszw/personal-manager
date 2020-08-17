@@ -57,7 +57,7 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
             <FormSubmitBtns 
               isForEdit={isForEdit}
               onCancel={history.goBack}
-              disable={isSending}
+              disabled={isSending}
               submitDescription={isForEdit ? 'Edit category' : 'Add category'}
               center={true}
             />

@@ -144,7 +144,7 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
               isForEdit={isForEdit}
               onCancel={history.goBack}
               submitDescription={isForEdit ? 'Edit note' : 'Add note'}
-              disable={isSending}
+              disabled={isSending}
             />
           </form>
         )}
