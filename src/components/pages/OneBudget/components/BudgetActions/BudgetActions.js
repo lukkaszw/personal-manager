@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AskDialog from 'components/common/AskDialog';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faList } from '@fortawesome/free-solid-svg-icons';
 import { Root } from './BudgetActions.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
@@ -39,31 +39,12 @@ const BudgetActions = ({ id, token }) => {
   }, [deleteBudget, id, token, handleCancelDeleting]);
 
   return ( 
-    <Root>
+    <>
       <LoaderIndicator 
-        size="small"
-        color="red"
-        isOpen={isDeleteLoading}
-      />
-      <IconButton
-        aria-label={t('Edit budget')}
-        color="primary"
-        component={Link}
-        to={`/budget/edit/${id}`}
-      >
-        <FontAwesomeIcon 
-          icon={faEdit}
+          size="small"
+          color="red"
+          isOpen={isDeleteLoading}
         />
-      </IconButton>
-      <IconButton
-        aria-label={t('Delete budget')}
-        color="secondary"
-        onClick={handleStartDeleting}
-      >
-        <FontAwesomeIcon 
-          icon={faTrash}
-        />
-      </IconButton>
       <AskDialog 
         isOpen={wantToDelete}
         question={t(`Do you want to delete the budget and all related transactions?`)}
@@ -73,7 +54,40 @@ const BudgetActions = ({ id, token }) => {
         onNoAction={handleCancelDeleting}
         onYesAction={handleDeleteTask}
       />
-    </Root>
+      <Root>
+        <div>
+          <IconButton
+            aria-label={t('Edit budget')}
+            color="primary"
+            component={Link}
+            to={`/budget/edit/${id}`}
+          >
+            <FontAwesomeIcon 
+              icon={faEdit}
+            />
+          </IconButton>
+          <IconButton
+            aria-label={t('Delete budget')}
+            color="secondary"
+            onClick={handleStartDeleting}
+          >
+            <FontAwesomeIcon 
+              icon={faTrash}
+            />
+          </IconButton>
+        </div>
+        <IconButton
+          aria-label={t('List of budgets')}
+          color="primary"
+          component={Link}
+          to={'/budget/list'}
+        >
+          <FontAwesomeIcon 
+            icon={faList}
+          />
+        </IconButton>
+      </Root>
+    </>
    );
 }
 
