@@ -26,6 +26,7 @@ const budgetCategoriesRouter = require('./routes/budgetCategory.router');
 const budgetSubcategoriesRouter = require('./routes/budgetSubcategory.router');
 const budgetsRouter = require('./routes/budget.router');
 const transactionsRouter = require('./routes/transaction.router');
+const calendarRouter = require('./routes/calendar.router');
 
 app.use('/user', userRouter);
 app.use('/lang', langRouter);
@@ -36,6 +37,7 @@ app.use('/budget_categories', budgetCategoriesRouter);
 app.use('/budget_subcategories', budgetSubcategoriesRouter);
 app.use('/budgets', auth, budgetsRouter);
 app.use('/transactions', auth, transactionsRouter);
+app.use('/calendar', auth, calendarRouter);
 
 
 app.get('*', (req, res) => {                       
