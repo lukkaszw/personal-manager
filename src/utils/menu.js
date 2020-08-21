@@ -40,11 +40,6 @@ export const authenticatedMenu = [
     name: 'Calendar',
     to: '/calendar',
   },
-  {
-    id: 6,
-    name: 'Adverts',
-    to: '/adverts'
-  }
 ];
 
 export const loginLinks = {

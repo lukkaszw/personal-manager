@@ -12,7 +12,6 @@ import BudgetList from 'components/pages/BudgetList';
 import OneBudget from 'components/pages/OneBudget';
 import Notes from 'components/pages/Notes';
 import Calendar from 'components/pages/Calendar';
-import Adverts from 'components/pages/Adverts';
 import Auth from 'components/pages/Auth';
 import Logout from 'components/pages/Logout';
 import TaskAdd from 'components/pages/TaskAdd';
@@ -121,9 +120,6 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/calendar'>
           <Calendar />
-        </Route>
-        <Route exact path='/adverts'>
-          <Adverts />
         </Route>
         <Route exact path='/contact'>
           <Contact />

@@ -57,13 +57,6 @@ const userSchema = new mongoose.Schema({
     }],
     default: [],
   },
-  adverts: {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Advert'
-    }],
-    default: [],
-  },
   budgets:  {
     type: [{
       type: mongoose.Schema.Types.ObjectId,
