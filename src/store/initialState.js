@@ -1,3 +1,7 @@
+import moment from 'moment';
+
+const now = moment();
+
 const initialState = {
   user: {
     token: null,
@@ -36,6 +40,12 @@ const initialState = {
     query: {
       category: 'all',
       subcategory: 'all',
+    }
+  },
+  calendar: {
+    query: {
+      month: now.month() + 1,
+      year: now.year(),
     }
   }
 };

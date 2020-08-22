@@ -15,7 +15,8 @@ const api = {
     budget: 'budgets',
     budgetCategories: 'budget_categories',
     transactions: 'transactions',
-    budgetTransactions: 'transactions/for_budget'
+    budgetTransactions: 'transactions/for_budget',
+    calendar: 'calendar',
   }
 }
 

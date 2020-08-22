@@ -9,6 +9,7 @@ import tasksReducer from 'store/reducers/tasks';
 import notesReducer from 'store/reducers/notes';
 import budgetReducer from 'store/reducers/budget';
 import transactionsReducer from 'store/reducers/transactions';
+import calendarReducer from 'store/reducers/calendar';
 
 const reducers = {
   user: userReducer,
@@ -16,6 +17,7 @@ const reducers = {
   notes: notesReducer,
   budget: budgetReducer,
   transactions: transactionsReducer,
+  calendar: calendarReducer,
 };
 
 Object.keys(initialState).forEach(item => {
