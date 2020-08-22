@@ -2,6 +2,7 @@ const Task = require('../models/task');
 const Budget = require('../models/budget');
 const Transaction = require('../models/transaction');
 const moment = require('moment');
+const generateDays = require('../utils/generateDays');
 
 const getMonth = async (req, res) => {
   const userId = req.user._id;
@@ -16,34 +17,53 @@ const getMonth = async (req, res) => {
     return;
   }
 
-  const monthNr = month * 1 > 9 ? month : `0${month}`;
+  const monthNr = month * 1; 
+  const monthNrString = monthNr > 9 ? month : `0${month}`;
 
-  const monthString = moment(`${year}-${monthNr}-15`).format('MMMM');
+  const monthString = moment(`${year}-${monthNrString}-15`).format('MMMM');
+  const daysInMonth = moment(`${year}-${monthNrString}`).daysInMonth();
+
+  const firstDayOfMonth = moment(`${year}-${monthNrString}-01T00:00:00.000Z`);
+  const lastDayOfMonth = moment(`${year}-${monthNrString}-${daysInMonth}T21:59:59.000Z`);
+
+  const dayOfWeekAtFirst = firstDayOfMonth.weekday();
+  const dayOfWeekAtLast = lastDayOfMonth.weekday();
+
+  const daysFromPrevMonth = dayOfWeekAtFirst === 0 ? 6 : dayOfWeekAtFirst - 1;
+  const daysFromNextMonth = dayOfWeekAtLast === 0 ? 0 : 7 - dayOfWeekAtLast;
+
+  const beginDate = firstDayOfMonth.subtract(daysFromPrevMonth, 'days');
+  const lastDate = lastDayOfMonth.add(daysFromNextMonth, 'days');
 
   try {
     const tasks = await Task.find({ 
       userId, 
-      endDate: { $gte: `${year}-${monthNr}-01GMT00:00:00.000Z`, $lte: `${year}-${monthNr}-31GMT23:59:59.000Z` }
+      endDate: { $gte: beginDate.toISOString(), $lte: lastDate.toISOString() },
     });
 
-    const parsedTasks = tasks.map(task => ({ ...task, day: moment(task.endDate).date()}));
+    const parsedTasks = tasks.map(task => {
+      const endDate = moment(task.endDate);
+      return ({ 
+        _id: task._id, 
+        title: task.title,
+        description: task.description,
+        endDate: task.endDate,
+        status: task.status,
+        priority: task.priority,
+        day: endDate.date(), 
+        month: endDate.month() + 1});
+    });
 
-    const daysInMonth = moment(`${year}-${monthNr}`).daysInMonth();
-
-    const days = [];
-
-    for (let i = 1;i <= daysInMonth; i++) {
-
-      const tasksInDay = parsedTasks.filter(task => task.day === i);
-
-      const day = {
-        day: i,
-        weekDay: moment(`${year}-${monthNr}-${i > 9 ? i : `0${i}`}`).weekday(),
-        tasks: tasksInDay,
-      };
-
-      days.push(day);
-    }
+    const days = generateDays(
+      parsedTasks,
+      monthNr,
+      year,
+      daysInMonth,
+      daysFromPrevMonth,
+      daysFromNextMonth,
+      beginDate,
+      lastDate,
+    );
     
     const matchBudgets = await Budget.find({ userId, year, month: monthString});
     const parsedBudgets = matchBudgets.map((budget) => ({ 
