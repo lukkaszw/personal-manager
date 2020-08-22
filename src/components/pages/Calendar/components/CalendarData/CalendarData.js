@@ -3,6 +3,7 @@ import LoaderIndicator from 'components/common/LoaderIndicator';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 import CalendarActions from '../CalendarActions';
+import Month from '../Month';
 import API from 'store/api';
 
 const CalendarData = ({ month, year, token, onChangeMonth }) => {
@@ -22,8 +23,13 @@ const CalendarData = ({ month, year, token, onChangeMonth }) => {
         onChangeMonth={onChangeMonth}
       />
       <LoaderIndicator size="small" isOpen={isLoading} />
- 
-      {JSON.stringify(calendar)}
+      {
+        !isLoading &&
+          <Month 
+            month={month}
+            days={calendar.days}
+          />
+      }
     </div>
    );
 }
