@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import { Root, BudgetLink, Description, BtnWrapper } from './MonthBudgets.styles';
+import { LinkWrapper, Description, BtnWrapper } from '../InfoPanel/InfoPanel.styles';
 import { useTranslation } from 'react-i18next';
 
 const MonthBudgets = ({ budgets, month, year, isAfterNow }) => {
@@ -10,7 +10,7 @@ const MonthBudgets = ({ budgets, month, year, isAfterNow }) => {
   const { t } = useTranslation();
 
   return ( 
-    <Root>
+    <div>
       <Description>
         { budgets.length > 0 ?
           t('Budgets for this month')
@@ -20,7 +20,7 @@ const MonthBudgets = ({ budgets, month, year, isAfterNow }) => {
       </Description>
       {
         budgets.map(budget => (
-          <BudgetLink key={budget._id}>
+          <LinkWrapper key={budget._id}>
             <Link 
               to={`/budget/${budget._id}`}
             >
@@ -31,14 +31,14 @@ const MonthBudgets = ({ budgets, month, year, isAfterNow }) => {
                 {budget.expenses}/{budget.totalAmount} zł
               </span>
             </Link>
-          </BudgetLink>
+          </LinkWrapper>
         ))
       }
       {
         isAfterNow &&
           <BtnWrapper>
             <Button
-              color="secondary"
+              color="primary"
               variant="contained"
               size="small"
               component={Link}
@@ -48,7 +48,7 @@ const MonthBudgets = ({ budgets, month, year, isAfterNow }) => {
             </Button>
           </BtnWrapper>
       }
-    </Root>
+    </div>
    );
 }
 

@@ -2,9 +2,27 @@ import styled from 'styled-components';
 
 export const Root = styled.div`
   margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    flex: 1;
+    min-width: 280px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
 `;
 
-export const BudgetLink = styled.div`
+export const Description = styled.p`
+  font-size: 14px;
+`;
+
+export const BtnWrapper = styled.div`
+  margin-top: 20px;
+  text-align: right;
+`;
+
+export const LinkWrapper = styled.div`
   margin: 10px 0;
   font-size: 16px;
   font-weight: bold;
@@ -24,12 +42,4 @@ export const BudgetLink = styled.div`
       color: #fff;
     }
   }
-`;
-
-export const Description = styled.p`
-  font-size: 14px;
-`;
-
-export const BtnWrapper = styled.div`
-  text-align: right;
 `;

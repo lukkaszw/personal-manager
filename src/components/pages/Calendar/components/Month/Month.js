@@ -5,17 +5,21 @@ import Day from '../Day';
 import { Days } from './Month.styles';
 import WeekDays from '../WeekDays';
 
-const Month = ({ days, month }) => {
+const Month = ({ days, month, onSelectDay, selectedDay }) => {
+
   return ( 
     <Root>
       <WeekDays />
       <Days>
         {
-          days.map(day => (
+          days.map((day, index) => (
             <Day 
               key={`${day.day}.${day.month}`}
               unactive={month !== day.month}
+              isSelected={index === selectedDay}
+              disabled={month !== day.month}
               {...day}
+              onClick={() => onSelectDay(index)}
             />
           ))
         }
@@ -27,6 +31,8 @@ const Month = ({ days, month }) => {
 Month.propTypes = {
   month: PropTypes.number.isRequired,
   days: PropTypes.array.isRequired,
+  onSelectDay: PropTypes.func.isRequired,
+  selectedDay: PropTypes.number,
 };
  
 export default Month;

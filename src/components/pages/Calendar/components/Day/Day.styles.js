@@ -22,9 +22,11 @@ export const Root = styled.button`
   box-shadow: 2px 2px 6px #ddd;
   transition: all .2s;
 
-  &:hover, &.active {
-    background-color: #0F5298;
-    color: #fff;
+  &:not(:disabled) {
+    &:hover, &.active {
+      background-color: #0F5298;
+      color: #fff;
+    }
   }
 `;
 
