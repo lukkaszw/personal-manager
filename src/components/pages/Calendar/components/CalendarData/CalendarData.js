@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
@@ -6,6 +6,7 @@ import CalendarActions from '../CalendarActions';
 import Month from '../Month';
 import MonthBudgets from '../MonthBudgets';
 import API from 'store/api';
+import moment from 'moment';
 
 const CalendarData = ({ month, year, token, onChangeMonth }) => {
 
@@ -14,6 +15,13 @@ const CalendarData = ({ month, year, token, onChangeMonth }) => {
     API.calendar.getMonthData, 
     { cacheTime: 0 }
   );
+
+  const isAfterNow = useMemo(() => {
+    const thisMonthDate = moment().startOf('month');
+    const relatedDate = moment(`${year}-${month > 9 ? month: `0${month}`}-15`);
+
+    return relatedDate > thisMonthDate;
+  }, [month, year]);
 
   return ( 
     <div>
@@ -32,7 +40,10 @@ const CalendarData = ({ month, year, token, onChangeMonth }) => {
               days={calendar.days}
             />
             <MonthBudgets 
+              month={month}
+              year={year}
               budgets={calendar.budgets}
+              isAfterNow={isAfterNow}
             />
           </>
       }

@@ -6,6 +6,8 @@ import ACTION_CREATORS from 'store/actionCreators';
 import CalendarData from './components/CalendarData';
 
 const Calendar = ({ token, month, year, onChangeMonth, onResetLoading }) => {
+
+
   return ( 
     <CalendarData 
       token={token}

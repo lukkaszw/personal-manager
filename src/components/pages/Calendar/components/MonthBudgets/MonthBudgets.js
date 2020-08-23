@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Root, BudgetLink, Description, BtnWrapper } from './MonthBudgets.styles';
 import { useTranslation } from 'react-i18next';
 
-const MonthBudgets = ({ budgets }) => {
+const MonthBudgets = ({ budgets, month, year, isAfterNow }) => {
 
   const { t } = useTranslation();
 
@@ -34,23 +34,29 @@ const MonthBudgets = ({ budgets }) => {
           </BudgetLink>
         ))
       }
-      <BtnWrapper>
-        <Button
-          color="secondary"
-          variant="contained"
-          size="small"
-          component={Link}
-          to='/budget/add'
-        >
-          {t('Add budget')}
-        </Button>
-      </BtnWrapper>
+      {
+        isAfterNow &&
+          <BtnWrapper>
+            <Button
+              color="secondary"
+              variant="contained"
+              size="small"
+              component={Link}
+              to={`/budget/add?month=${month}&year=${year}`}
+            >
+              {t('Add budget')}
+            </Button>
+          </BtnWrapper>
+      }
     </Root>
    );
 }
 
 MonthBudgets.propTypes = {
   budgets: PropTypes.array.isRequired,
+  month: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  isAfterNow: PropTypes.bool.isRequired,
 };
  
 export default MonthBudgets;
