@@ -18,11 +18,13 @@ export const Root = styled.button`
   border: 1px solid #999;
   border-radius: 5px;
   margin-bottom: 10px;
-  cursor: pointer;
   box-shadow: 2px 2px 6px #ddd;
   transition: all .2s;
+  cursor: not-allowed;
 
   &:not(:disabled) {
+    cursor: pointer;
+
     &:hover, &.active {
       background-color: #0F5298;
       color: #fff;
