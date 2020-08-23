@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Root = styled.div`
-  margin: 20px 0;
+  margin-top: 20px;
 `;
 
 export const Days = styled.div`

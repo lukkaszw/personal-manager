@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 import CalendarActions from '../CalendarActions';
 import Month from '../Month';
+import MonthBudgets from '../MonthBudgets';
 import API from 'store/api';
 
 const CalendarData = ({ month, year, token, onChangeMonth }) => {
@@ -25,10 +26,15 @@ const CalendarData = ({ month, year, token, onChangeMonth }) => {
       <LoaderIndicator size="small" isOpen={isLoading} />
       {
         !isLoading &&
-          <Month 
-            month={month}
-            days={calendar.days}
-          />
+          <>
+            <Month 
+              month={month}
+              days={calendar.days}
+            />
+            <MonthBudgets 
+              budgets={calendar.budgets}
+            />
+          </>
       }
     </div>
    );
