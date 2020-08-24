@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { FooterWrapper, CopyRights } from './Footer.styles';
 import Container from '@material-ui/core/Container';
 import FooterMenu from './components/FooterMenu';
@@ -10,6 +10,24 @@ const Footer = () => {
     (content) => setContent(currentContent === content ? null : content),
     [currentContent, setContent]
   );
+
+  useEffect(() => {
+    let timeOutId;
+
+    if(currentContent) {
+      timeOutId = setTimeout(() => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth',
+        });
+      }, 250);
+    }
+
+    return () => {
+      clearTimeout(timeOutId);
+      timeOutId = null;
+    }
+  }, [currentContent]);
 
   return ( 
     <FooterWrapper>
