@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import AskDialog from 'components/common/AskDialog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faList } from '@fortawesome/free-solid-svg-icons';
 import { Root } from './NoteActions.styles';
 import { useMutation } from 'react-query';
 import { useTranslation } from 'react-i18next';
@@ -37,6 +37,17 @@ const NoteActions = ({ id, token }) => {
     <>
       <LoaderIndicator isOpen={isDeleteLoading} />
       <Root>
+        <IconButton
+          aria-label={t('back to list')}
+          component={Link}
+          to='/notes'
+          disabled={isDeleteLoading}
+        >
+          <FontAwesomeIcon 
+            className="neutral"
+            icon={faList}
+          />
+        </IconButton>
         <IconButton
           aria-label={t('edit')}
           component={Link}

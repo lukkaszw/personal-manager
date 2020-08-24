@@ -25,5 +25,6 @@ export const ModifyDate = styled.p`
 
 export const Content = styled.div`
   flex: 1;
+  padding-bottom: 60px;
   overflow-y: auto;
 `;
