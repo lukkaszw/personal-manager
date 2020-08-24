@@ -13,7 +13,7 @@ export const Root = styled.button`
   text-align: center;
   padding: 12px 10px;
   width: 14%;
-  background-color: ${props => props.unactive  ? '#999' : '#eee'};
+  background-color: ${props => props.unactive  ? '#999' : '#fff'};
   color: ${props => props.unactive  ? '#555' : '#000'};
   border: 1px solid #999;
   border-radius: 5px;
