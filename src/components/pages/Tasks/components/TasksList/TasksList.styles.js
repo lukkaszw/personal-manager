@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const useStyles = makeStyles({
   tableContainer: {
-    minHeight: '70vh',
+    minHeight: '67vh',
   },  
   table: {
     margin: '30px auto',
