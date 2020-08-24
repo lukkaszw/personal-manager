@@ -34,29 +34,20 @@ export const useStyles = makeStyles({
     fontWeight: 'bold',
     width: '100px',
   },
-  priority_low: {
-    color: 'lightgreen',
+  limegreen: {
+    color: 'limegreen',
   },
-  priority_normal: {
-    color: 'green',
+  seagreen: {
+    color: 'seagreen',
   },
-  priority_high: {
-    color: 'orange',
-  },
-  priority_v_high: {
-    color: 'red',
-  },
-  'status_in_progress': {
-    color: 'orange',
-  },
-  status_done: {
-    color: 'green',
-  },
-  status_failed: {
-    color: 'red',
+  goldenrod: {
+    color: 'goldenrod',
   },
 });
 
+export const IconWrapper = styled.span`
+  color: ${props => props.color};
+`;
 
 export const LinkTitle = styled(Link)`
   color: #000;
