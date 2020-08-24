@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import { ModalContainer, Title } from './ChangeLang.styles';
+import { ModalContainer, Title, BtnsWrapper } from './ChangeLang.styles';
 import { useTranslation } from 'react-i18next';
 
 const ChangeLang = ({ isOpen, onClose }) => {
@@ -21,8 +21,21 @@ const ChangeLang = ({ isOpen, onClose }) => {
       <ModalContainer>
         <div>
           <Title>{t('App language')}</Title>
-          <Button onClick={setEnglish} variant={langValue === 'eng-ENG' ? 'contained' : 'outlined'} color="primary">{t('english')}</Button>
-          <Button onClick={setPolish} variant={langValue === 'pl-PL' ? 'contained' : 'outlined'} color="secondary">{t('polish')}</Button>
+          <BtnsWrapper>
+            <Button 
+              size="small"
+              onClick={setEnglish} 
+              variant={langValue === 'eng-ENG' ? 'contained' : 'outlined'} 
+              color="primary">{t('english')}
+            </Button>
+            <Button 
+              size="small"
+              onClick={setPolish} 
+              variant={langValue === 'pl-PL' ? 'contained' : 'outlined'} 
+              color="secondary">
+                {t('polish')}
+              </Button>
+          </BtnsWrapper>
         </div>
       </ModalContainer>
     </Modal>
