@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import AskDialog from 'components/common/AskDialog';
-import { faCheck, faTimes, faTrash, faEdit  } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes, faTrash, faEdit, faList  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TaskActionsRoot, useStyles } from '../../Task.styles';
 import { useTranslation } from 'react-i18next';
@@ -53,14 +53,23 @@ const TaskActions = ({ id, token, status }) => {
     deleteTask({ id, token });
   }, [deleteTask, id, token, handleCloseDeleteModal]);
 
-
-
   const isSending = isUpdateLoading || isDeleteLoading;
-
 
   return ( 
     <TaskActionsRoot>
       <LoaderIndicator isOpen={isSending}/>
+      <IconButton
+        className={classes.iconButton}
+        aria-label={t('back to list')}
+        component={Link}
+        to='/tasks'
+        disabled={isSending}
+      >
+        <FontAwesomeIcon 
+          className={clsx('neutral', isSending && 'disabled')}
+          icon={faList}
+        />
+      </IconButton>
       <IconButton
         className={classes.iconButton}
         aria-label={t('done')}
