@@ -1,7 +1,12 @@
 import styled  from 'styled-components';
 
-export const Root = styled.h2`
+export const Root = styled.div`
   margin: 10px 0;
+  text-align: right;
+`;
+
+export const Switcher = styled.h2`
+  margin-top: -10px;
   font-size: 20px;
   display: flex;
   justify-content: center;
