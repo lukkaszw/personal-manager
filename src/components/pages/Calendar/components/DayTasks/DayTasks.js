@@ -3,26 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { LinkWrapper, Description, BtnWrapper} from '../InfoPanel/InfoPanel.styles';
 import { Icon } from './DayTasks.styles';
 import { useTranslation } from 'react-i18next';
 import { STATUS } from 'utils/tasks.statuses';
-
-const ICONS = {
-  1: {
-    icon: faMinus,
-    color: 'goldenrod'
-  },
-  2: {
-    icon: faCheck,
-    color: 'seagreen',
-  },
-  3: {
-    icon: faTimes,
-    color: 'red',
-  },
-};
+import { TASKS_STATUS_ICONS } from 'utils/icons';
 
 const DayTasks = ({ tasks, isActiveDay, month, year, day }) => {
 
@@ -49,10 +34,10 @@ const DayTasks = ({ tasks, isActiveDay, month, year, day }) => {
               <span>
                 {task.title}
               </span>
-              <Icon color={ICONS[task.status].color}>
+              <Icon color={TASKS_STATUS_ICONS[task.status].color}>
                 <FontAwesomeIcon 
                   aria-label={t(STATUS[task.status])}
-                  icon={ICONS[task.status].icon}
+                  icon={TASKS_STATUS_ICONS[task.status].icon}
                 />
               </Icon>
             </Link>
