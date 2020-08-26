@@ -9,12 +9,13 @@ export const Title = styled.h1`
   margin: 0 auto 40px auto;
   padding: 6px 0;
   text-transform: uppercase;
-  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 22px;
   width: 80%;
   transform: skew(-30deg);
   background-image: linear-gradient(to right, #f2e86d, #c9b346, #755c11, 	#232803);
   transition: 1s;
-  cursor: pointer;
 
   span {
     display: inline-block;
@@ -24,7 +25,7 @@ export const Title = styled.h1`
   }
 
   @media (max-width: 600px) {
-    font-size: 20px;
+    font-size: 18px;
     padding: 5px 0;
     width: 95%;
   }
