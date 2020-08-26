@@ -1,11 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import MainHeader from './components/MainHeader';
+import Links from './components/Links';
+import SELECTORS from 'store/selectors';
 
-const Main = () => {
+
+const Main = ({ isAuth }) => {
   return ( 
-    <div>
-      Main
-    </div>
+    <section>
+      <MainHeader />
+      <Links 
+        isAuth={isAuth}
+      />
+    </section>
    );
 }
+
+Main.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+}
+
+const mapStateToProps = (state) => ({
+  isAuth: SELECTORS.user.getIsAuth(state),
+});
  
-export default Main;
+export default connect(mapStateToProps)(Main);
