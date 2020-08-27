@@ -4,7 +4,7 @@ export const MenuList = styled.ul`
   list-style: none;
   display: flex;
   justify-content: space-around;
-  color: #fff;
+  color: ${props => props.theme.palette.font.secondary.main};
 `;
 
 

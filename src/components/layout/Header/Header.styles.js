@@ -1,9 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    
-  },
   toolbar: {
     padding: '0 10px',
     minHeight: '30px',

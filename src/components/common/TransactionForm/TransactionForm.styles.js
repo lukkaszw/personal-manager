@@ -15,7 +15,7 @@ export const Root = styled.div`
   transform: translate(-50%, -50%);
   padding: 10px 20px;
   width: 280px;
-  background-color: #fff;
+  background-color: ${props => props.theme.palette.background.main};
   border-radius: 5px;
   overflow-y: auto;
 

@@ -7,7 +7,7 @@ export const Root = styled.div`
   width: 300px;
   transform: translate(-50%, -50%);
   padding: 10px;
-  background-color: #fff;
+  background-color:  ${props => props.theme.palette.background.main};
 `;
 
 export const BtnClose = styled.div`
@@ -42,15 +42,16 @@ export const MonthBtn = styled.button`
   margin-bottom: 16px;
   cursor: pointer;
   background-color: transparent;
-  color: #183153;
+  color: ${props => props.theme.palette.font.primary.main};
   font-size: 14px;
-  border: 1px solid #183153;
+  border: 1px solid  ${props => props.theme.palette.primary.darker};
   border-radius: 5px;
   transition: .2s;
 
-  &:hover, &.active {
-    background-color: #183153;
-    color: #fff;
+  &:hover, &.active, &:focus {
+    background-color:  ${props => props.theme.palette.primary.darker};
+    color:  ${props => props.theme.palette.font.secondary.main};
+    outline: none;
   }
 `;
 

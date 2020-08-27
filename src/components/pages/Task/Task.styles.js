@@ -3,19 +3,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const Root = styled.div`
   .positive {
-    color: ${props => props.theme.colors.green};
+    color: ${props => props.theme.palette.tertiary.main};
   }
 
   .neutral {
-    color: ${props => props.theme.colors.main};
+    color: ${props => props.theme.palette.primary.main};
   }
 
   .negative {
-    color: red;
+    color: ${props => props.theme.palette.secondary.main};
   }
 
   .neutral.disabled {
-    color: #555;
+    color: ${props => props.theme.palette.disabled.main};
   }
 `;
 
@@ -35,14 +35,14 @@ export const TaskDataRoot = styled(Root)`
   justify-content: space-between;
 `;
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
   iconButton: {
     '&:disabled .positive': {
-      color: '#555',
+      color: theme.palette.disabled.main,
     },
 
     '&:disabled .negative': {
-      color: '#555',
+      color: theme.palette.disabled.main,
     },
   },
-});
+}));

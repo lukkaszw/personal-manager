@@ -6,15 +6,15 @@ export const Root = styled.div`
   right: 0;
   width: 150px;
   height: 50px;
-  background-color: #fff;
+  background-color: ${props => props.theme.palette.background.lighten};
   box-shadow: 4px 4px 4px #555;
   border-radius: 5px;
   
   .neutral {
-    color: ${props => props.theme.colors.main};
+    color: ${props => props.theme.palette.primary.main};
   }
 
   .negative {
-    color: red;
+    color: ${props => props.theme.palette.secondary.main};
   }
 `;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const Icon = styled.span`
-  color: ${props => props.color || '#000'};
+  color: ${props => props.theme.palette.icon[props.variant]};
 `;

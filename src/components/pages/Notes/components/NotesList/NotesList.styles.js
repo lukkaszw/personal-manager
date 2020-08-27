@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
   cart: {
     display: 'flex',
     margin: '20px',
@@ -17,10 +17,10 @@ export const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
   high: {
-    backgroundColor: '#222',
-    color: '#fff',
+    backgroundColor: theme.palette.background.dark,
+    color:  theme.palette.font.secondary.main,
   },
-});
+}));
 
 export const CartsWrapper = styled.div`
   display: flex;
@@ -58,6 +58,6 @@ export const ImportantSign = styled.div`
   line-height: 16px;
   font-size: 9px;
   text-align: center;
-  background-color: red;
+  background-color:  ${props => props.theme.palette.secondary.main};
   transform: rotate(45deg);
 `;

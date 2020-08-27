@@ -28,7 +28,7 @@ Loader.propTypes = {
 
 Loader.defaultProps = {
   size: 'normal',
-  color: 'blue',
+  color: 'primary',
 };
  
 export default Loader;

@@ -14,12 +14,12 @@ export const Title = styled.h1`
   font-size: 22px;
   width: 80%;
   transform: skew(-30deg);
-  background-image: linear-gradient(to right, #f2e86d, #c9b346, #755c11, 	#232803);
+  background-image: ${props => props.theme.palette.special.titleBackground};
   transition: 1s;
 
   span {
     display: inline-block;
-    color: #fff;
+    color: ${props => props.theme.palette.font.secondary.main};
     transform: skew(30deg);
     text-shadow: -4px 2px 3px #555;
   }

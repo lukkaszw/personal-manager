@@ -25,7 +25,7 @@ LoaderIndicator.propTypes = {
 
 LoaderIndicator.defaultProps = {
   size: 'normal',
-  color: 'blue',
+  color: 'primary',
 }
 
 export default LoaderIndicator;

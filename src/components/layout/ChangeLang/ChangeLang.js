@@ -26,7 +26,8 @@ const ChangeLang = ({ isOpen, onClose }) => {
               size="small"
               onClick={setEnglish} 
               variant={langValue === 'eng-ENG' ? 'contained' : 'outlined'} 
-              color="primary">{t('english')}
+              color="primary">
+                {t('english')}
             </Button>
             <Button 
               size="small"

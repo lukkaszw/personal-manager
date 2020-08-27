@@ -17,5 +17,5 @@ export const ItemName = styled.span`
 
 export const ItemValue = styled.span`
   font-weight: bold;
-  color: ${props => props.warning ? 'red' : 'seagreen'}
+  color: ${props => props.warning ? props.theme.palette.secondary.main : props.theme.palette.tertiary.main}
 `;

@@ -31,15 +31,15 @@ export const LinkWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     text-decoration: none;
-    color: #555;
+    color: ${props => props.theme.palette.font.primary.lighten};
     padding: 5px;
-    border-bottom: 1px solid #0F5298;
+    border-bottom: 1px solid ${props => props.theme.palette.primary.darker};
     transition: .2s;
 
     &:hover {
       border-radius: 5px;
-      background-color: #0F5298;
-      color: #fff;
+      background-color: ${props => props.theme.palette.primary.darker};
+      color: ${props => props.theme.palette.font.secondary.main};
     }
   }
 `;

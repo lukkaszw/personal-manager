@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 export const Root = styled.div`
-  min-height: 100vh;
+  height: 73vh;
   padding: 20px 0;
   width: 100%;
   display: flex;

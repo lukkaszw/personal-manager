@@ -2,7 +2,8 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import { useStyles, LinkTitle, IconWrapper } from '../TasksList/TasksList.styles';
+import { useStyles, LinkTitle } from '../TasksList/TasksList.styles';
+import IconWrapper from 'components/common/IconWrapper';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
@@ -28,7 +29,7 @@ const TaskRow = ({  _id, nr, title, priority, status, endDate, lang }) => {
         <LinkTitle to={`/tasks/${_id}`}>{title}</LinkTitle>
       </TableCell>
       <TableCell className={clsx([classes.cell, classes.statusCell])}>
-        <IconWrapper color={TASK_PRIORITY_ICONS[priority].color}>
+        <IconWrapper variant={TASK_PRIORITY_ICONS[priority].color}>
           <FontAwesomeIcon 
             aria-label={t(PRIORITY[priority])}
             icon={TASK_PRIORITY_ICONS[priority].icon}
@@ -36,7 +37,7 @@ const TaskRow = ({  _id, nr, title, priority, status, endDate, lang }) => {
         </IconWrapper>
       </TableCell>
       <TableCell className={clsx([classes.cell, classes.statusCell])}>
-        <IconWrapper color={TASKS_STATUS_ICONS[status].color}>
+        <IconWrapper variant={TASKS_STATUS_ICONS[status].color}>
           <FontAwesomeIcon 
             aria-label={t(STATUS[status])}
             icon={TASKS_STATUS_ICONS[status].icon}

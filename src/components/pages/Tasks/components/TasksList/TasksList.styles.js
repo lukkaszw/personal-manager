@@ -34,20 +34,7 @@ export const useStyles = makeStyles({
     fontWeight: 'bold',
     width: '100px',
   },
-  limegreen: {
-    color: 'limegreen',
-  },
-  seagreen: {
-    color: 'seagreen',
-  },
-  goldenrod: {
-    color: 'goldenrod',
-  },
 });
-
-export const IconWrapper = styled.span`
-  color: ${props => props.color};
-`;
 
 export const LinkTitle = styled(Link)`
   color: #000;
@@ -55,6 +42,6 @@ export const LinkTitle = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: ${props => props.theme.colors.mainLighten};
+    color: ${props => props.theme.palette.primary.main};
   }
 `;

@@ -11,7 +11,7 @@ export const Button = styled.button`
   background-color: transparent;
   border: none;
   outline: none;
-  color: #bbb;
+  color: ${props => props.theme.palette.font.secondary.darker};
   transition: .2s;
 
   .title {
@@ -27,7 +27,7 @@ export const Button = styled.button`
   }
 
   &:hover, &.active {
-    color: #fff;
+    color: ${props => props.theme.palette.font.secondary.main};
 
     .title {
       transform: translate(-50%, -210%) scale(1);

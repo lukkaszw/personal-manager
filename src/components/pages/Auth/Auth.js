@@ -128,6 +128,7 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
             }
             <ButtonWrapper>
               <Button 
+                size="small"
                 variant="contained"
                 color="primary"
                 type="submit" 

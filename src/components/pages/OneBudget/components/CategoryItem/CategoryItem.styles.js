@@ -9,25 +9,25 @@ export const Root = styled.button`
   padding: 10px;
   font-size: 15px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: ${props => props.theme.palette.background.lighten};
   border-radius: 0;
   transition: all .2s;
 
   &.title {
-    background-color: #0F5298;
-    color: #fff;
+    background-color: ${props => props.theme.palette.primary.darker};
+    color: ${props => props.theme.palette.font.secondary.main};
     font-weight: bold;
   }
 
   &.main {
-    background-color: #2565AE;
-    color: #fff;
+    background-color: ${props => props.theme.palette.primary.main};
+    color: ${props => props.theme.palette.font.secondary.main};
   }
 
   &:hover, &.active, &:focus {
     outline: none;
-    background-color: #001F3F;
-    color: #fff;
+    background-color: ${props => props.theme.palette.primary.darkest};
+    color: ${props => props.theme.palette.font.secondary.main};
   }
 `;
 

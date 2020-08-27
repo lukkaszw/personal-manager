@@ -14,8 +14,8 @@ export const SubCatList = styled.div`
 `;
 
 export const CategoryExpenses = styled.div`
-  background-color: #fff;
+  background-color: ${props => props.theme.palette.background.lighten};
   padding: 8px 10px;
   font-size: 14px;
-  color: ${props => props.warning ? 'red' : 'seagreen'};
+  color: ${props => props.warning ? props.theme.palette.secondary.main : props.theme.palette.tertiary.main};
 `;

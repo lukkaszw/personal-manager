@@ -6,33 +6,33 @@ import {
 export const TASKS_STATUS_ICONS = {
   1: {
     icon: faMinus,
-    color: 'goldenrod'
+    color: 'neutral'
   },
   2: {
     icon: faCheck,
-    color: 'seagreen',
+    color: 'positive',
   },
   3: {
     icon: faTimes,
-    color: 'red',
+    color: 'negative',
   },
 };
 
 export const TASK_PRIORITY_ICONS = {
   1: {
     icon: faLongArrowAltDown,
-    color: 'limegreen',
+    color: 'very_positive',
   },
   2: {
     icon: faLongArrowAltRight,
-    color: 'seagreen',
+    color: 'positive',
   },
   3: {
     icon: faLongArrowAltUp,
-    color: 'goldenrod',
+    color: 'neutral',
   },
   4: {
     icon: faLongArrowAltUp,
-    color: 'red',
+    color: 'negative',
   },
 };

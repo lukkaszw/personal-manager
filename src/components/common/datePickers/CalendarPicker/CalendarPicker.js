@@ -94,7 +94,7 @@ const CalendarPicker = ({
         <ButtonWrapper> 
           <Button
             size="small"
-            color="primary"
+            color="secondary"
             variant="contained"
             onClick={handleChangeDate}
           >

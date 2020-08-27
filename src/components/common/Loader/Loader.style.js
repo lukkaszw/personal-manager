@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from 'App.styles';
 
 const squareSize = {
   big: '80px',
@@ -13,9 +14,8 @@ const dotSize = {
 }
 
 const colors = {
-  blue: '#3f51b5',
-  red: '#FF2C1F',
-  dark: '#1f1f1f',
+  primary: theme.palette.primary.main,
+  secondary: theme.palette.secondary.main,
 }
 
 export const LoaderRoot = styled.div`

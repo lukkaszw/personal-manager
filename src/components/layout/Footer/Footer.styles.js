@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
-  background-color: #3f51b5;
+  background-color: ${props => props.theme.palette.primary.main};
   padding: 30px 20px 10px 20px;
 `;
 
@@ -23,7 +23,7 @@ export const CategoryPart = styled.div`
     lin-height: 1;
     font-size: 18px;
     margin-left: 10px;
-    color: #fff;
+    color: ${props => props.theme.palette.font.secondary.main};
     text-decoration: none;
   }
 

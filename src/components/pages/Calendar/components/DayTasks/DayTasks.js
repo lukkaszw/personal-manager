@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LinkWrapper, Description, BtnWrapper} from '../InfoPanel/InfoPanel.styles';
-import { Icon } from './DayTasks.styles';
+import IconWrapper from 'components/common/IconWrapper';
 import { useTranslation } from 'react-i18next';
 import { STATUS } from 'utils/tasks.statuses';
 import { TASKS_STATUS_ICONS } from 'utils/icons';
@@ -34,12 +34,12 @@ const DayTasks = ({ tasks, isActiveDay, month, year, day }) => {
               <span>
                 {task.title}
               </span>
-              <Icon color={TASKS_STATUS_ICONS[task.status].color}>
+              <IconWrapper variant={TASKS_STATUS_ICONS[task.status].color}>
                 <FontAwesomeIcon 
                   aria-label={t(STATUS[task.status])}
                   icon={TASKS_STATUS_ICONS[task.status].icon}
                 />
-              </Icon>
+              </IconWrapper>
             </Link>
           </LinkWrapper>
         ))

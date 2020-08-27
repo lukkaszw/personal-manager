@@ -49,7 +49,7 @@ const TransactionsActions = ({ checkedTransactions, token, budgetId }) => {
     <div>
       <LoaderIndicator 
         size="small"
-        color="red"
+        color="secondary"
         isOpen={isDeleting}
       />
       <AskDialog 

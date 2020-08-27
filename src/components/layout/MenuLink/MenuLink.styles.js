@@ -8,7 +8,7 @@ export const Li = styled.li`
     display: inline-block;
     padding: 0 10px;
     height: 100%;
-    color: #fff;
+    color: ${props => props.theme.palette.font.secondary.darker};
     font-family: inherit;
     font-weight: 500;
     font-size: 12px;
@@ -18,7 +18,8 @@ export const Li = styled.li`
   }
 
   &:hover > a, & > a.active {
-    background-color: #5f73d8;
+    background-color: ${props => props.theme.palette.primary.darker};
+    color: ${props => props.theme.palette.font.secondary.main};
   }
 `;
 

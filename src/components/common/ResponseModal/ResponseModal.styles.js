@@ -8,7 +8,7 @@ export const ModalContainer = styled.div`
   transform: translate(-50%, -50%);
   width: 300px;
   min-height: 150px;
-  background-color: #fff;
+  background-color: ${props => props.theme.palette.background.main};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +19,7 @@ export const ModalContainer = styled.div`
   }
 
   .title.error {
-    color: red;
+    color: ${props => props.theme.palette.secondary.main};
   }
 
   .message {

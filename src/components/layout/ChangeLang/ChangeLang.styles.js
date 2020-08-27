@@ -7,7 +7,7 @@ export const ModalContainer = styled.div`
   transform: translateX(-50%);
   width: 250px;
   height: 150px;
-  background-color: #fff;
+  background-color: ${props => props.theme.palette.background.main};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,6 @@ export const ModalContainer = styled.div`
 export const Title = styled.h3`
   text-align: center;
   margin-bottom: 16px;
-  color: #555;
 `;
 
 export const BtnsWrapper = styled.div`

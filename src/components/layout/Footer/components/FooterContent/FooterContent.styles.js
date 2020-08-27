@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: #fff;
+  color: ${props => props.theme.palette.font.secondary.main};
 
   &.active {
     height: 100px;

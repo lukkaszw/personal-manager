@@ -42,7 +42,7 @@ const BudgetActions = ({ id, token }) => {
     <>
       <LoaderIndicator 
           size="small"
-          color="red"
+          color="secondary"
           isOpen={isDeleteLoading}
         />
       <AskDialog 

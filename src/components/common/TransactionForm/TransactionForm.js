@@ -69,7 +69,7 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
       disableBackdropClick={true}
     >
       <Root>
-        <LoaderIndicator isOpen={isSending} size='small' color="red"/>
+        <LoaderIndicator isOpen={isSending} size='small' color="secondary"/>
         <Form
           onSubmit={handleSubmit}
           initialValues={initialValues}

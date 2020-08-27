@@ -62,9 +62,8 @@ export const Background = styled.div`
   height: 100px;
   border-radius: 50%;
   background: radial-gradient(
-    ${props => props.theme.colors.main},
-    ${props => props.theme.colors.main},
-    ${props => props.theme.colors.mainLighten});
+    ${props => props.theme.palette.primary.darker},
+    ${props => props.theme.palette.primary.main});
   transform: scale(1);
   z-index: 2000;
   transition: .5s;
@@ -123,8 +122,8 @@ export const MenuList = styled.ul`
     display: block;
     width: 180px;
     height: 28px;
-    background-color: #fff;
-    color: ${props => props.theme.colors.main};
+    background-color: ${props => props.theme.palette.background.main};
+    color: ${props => props.theme.palette.primary.darker};
     font-size: 18px;
     text-decoration: none;
     text-transform: uppercase;
@@ -144,8 +143,8 @@ export const MenuList = styled.ul`
 
     &.active {
       transform: skew(0);
-      background-color: ${props => props.theme.colors.mainLighten};
-      color: #fff;
+      background-color: ${props => props.theme.palette.primary.main};
+      color: ${props => props.theme.palette.font.secondary.main};
       box-shadow:  0 0 10px black;
 
       .text {

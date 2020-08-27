@@ -24,6 +24,8 @@ import Note from 'components/pages/Note';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { ThemeProvider } from 'styled-components';
+import { ThemeProvider as MaterialUIThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import theme from './App.styles';
 import { connect } from 'react-redux';
 import SELECTORS from 'store/selectors';
@@ -33,6 +35,21 @@ import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const materialUITheme = createMuiTheme({
+  palette: {
+    ...theme.palette,
+    // primary: {
+    //   main: theme.colors.primary.main,
+    // },
+    // secondary: {
+    //   main: theme.colors.secondary.main,
+    // },
+    // tertiary: {
+    //   main: theme.colors.tertiary.main,
+    // }
+  }
+});
 
 
 const Tasks = React.lazy(() => import('components/pages/Tasks'));
@@ -134,15 +151,17 @@ function App({ isAuth, onTryLoginOnStart }) {
 
   return (
     <ReactQueryConfigProvider config={queryConfig}>
-      <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <MainLayout>
-              {router}
-            </MainLayout>
-          </Router>
-        </ThemeProvider>
-        </MuiPickersUtilsProvider>
+       <MaterialUIThemeProvider theme={materialUITheme}>
+        <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
+          <ThemeProvider theme={theme}>
+            <Router>
+              <MainLayout>
+                {router}
+              </MainLayout>
+            </Router>
+          </ThemeProvider>
+          </MuiPickersUtilsProvider>
+        </MaterialUIThemeProvider>
       </ReactQueryConfigProvider>
   );
 }
