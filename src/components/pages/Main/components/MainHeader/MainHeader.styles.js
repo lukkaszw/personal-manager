@@ -32,8 +32,8 @@ export const Title = styled.h1`
 `;
 
 export const Image = styled.img`
-  width: 30%;
-  min-width: 180px;
+  height: 38vh;
+  min-height: 180px;
 `;
 
 export const ButtonWrapper = styled.div`
