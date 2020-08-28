@@ -55,7 +55,6 @@ const Links = ({ isAuth }) => {
               fullWidth={true}
               variant="contained"
               size="small"
-              color="secondary"
               component={Link}
               to="/notes"
             >

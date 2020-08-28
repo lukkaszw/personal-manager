@@ -10,7 +10,7 @@ const Description = () => {
   return (
     <Root>
       <Paragraph>
-        {t('This app helps you to control your personal finances, tasks and notes')} 
+        {t('This app helps you to manage your personal finances, tasks and notes')} 
       </Paragraph>
     </Root>
    );
