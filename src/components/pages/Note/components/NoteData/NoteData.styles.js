@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Root = styled.div`
   position: relative;
-  height: calc(100vh - 36px - 112px);
+  height: calc(100vh - 36px - 115px);
   padding: 10px 0;
   display: flex;
   flex-direction: column;
