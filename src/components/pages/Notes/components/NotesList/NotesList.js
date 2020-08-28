@@ -6,10 +6,12 @@ import AskDialog from 'components/common/AskDialog';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Pagination from 'components/common/Pagination';
 import { useQuery, useMutation, queryCache } from 'react-query';
 import { useStyles, CartsWrapper, Title, Description, ImportantSign, ModifyAt } from './NotesList.styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faBookReader } from '@fortawesome/free-solid-svg-icons';
 import { PRIORITY } from 'utils/notes.statuses';
 import { pages } from 'utils/pages.config';
 import { useTranslation } from 'react-i18next';
@@ -72,25 +74,25 @@ const NotesList = ({
               <CardActions 
                 className={classes.cartsActions}
               >
-                <Button 
+                <IconButton 
                   variant="contained"
-                  size="small"
+                  aria-label={t('Read')}
                   color="primary"
                   component={Link}
                   to={`/notes/${note._id}`}
                   disabled={isDeleteLoading}
                 >
-                  {t('Read')}
-                </Button>
-                <Button 
+                  <FontAwesomeIcon icon={faBookReader} />
+                </IconButton>
+                <IconButton 
                   variant="contained"
-                  size="small"
+                  aria-label={t('Delete')}
                   color="secondary"
                   disabled={isDeleteLoading}
                   onClick={() => setDeletingNote(note)}
                 >
-                  {t('Delete')}
-                </Button>
+                  <FontAwesomeIcon icon={faTrash} />
+                </IconButton>
               </CardActions>
             </Card>
           ))
@@ -104,7 +106,7 @@ const NotesList = ({
       <AskDialog 
         isOpen={!!noteToDelete}
         onClose={handleCloseDeleteModal}
-        question={`${t('Are you sure you want to delete note')} ${deleteNoteTitle}`}
+        question={`${t('Are you sure you want to delete note')} "${deleteNoteTitle}"`}
         noAnswear={t('No')}
         yesAnswear={t('Yes')}
         onNoAction={handleCloseDeleteModal}
