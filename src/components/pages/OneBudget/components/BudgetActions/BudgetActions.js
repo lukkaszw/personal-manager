@@ -22,7 +22,7 @@ const BudgetActions = ({ id, token }) => {
 
   const [deleteBudget, { isLoading: isDeleteLoading }] = useMutation(API.budget.deleteBudget, {
     onSuccess: data => {
-      history.push('/budget/list');
+      history.push('/budget');
       toast.success(`${t('You have deleted a budget')}`);
     },
     onError: () => {
@@ -80,7 +80,7 @@ const BudgetActions = ({ id, token }) => {
           aria-label={t('List of budgets')}
           color="primary"
           component={Link}
-          to={'/budget/list'}
+          to='/budget'
         >
           <FontAwesomeIcon 
             icon={faList}

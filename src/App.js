@@ -8,7 +8,6 @@ import Contact from 'components/pages/Contact';
 import Budget from 'components/pages/Budget';
 import EditBudget from 'components/pages/EditBudget';
 import AddBudget from 'components/pages/AddBudget';
-import BudgetList from 'components/pages/BudgetList';
 import OneBudget from 'components/pages/OneBudget';
 import Notes from 'components/pages/Notes';
 import Calendar from 'components/pages/Calendar';
@@ -39,15 +38,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const materialUITheme = createMuiTheme({
   palette: {
     ...theme.palette,
-    // primary: {
-    //   main: theme.colors.primary.main,
-    // },
-    // secondary: {
-    //   main: theme.colors.secondary.main,
-    // },
-    // tertiary: {
-    //   main: theme.colors.tertiary.main,
-    // }
   }
 });
 
@@ -110,9 +100,6 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/budget/add'>
           <AddBudget />
-        </Route>
-        <Route exact path='/budget/list'>
-          <BudgetList />
         </Route>
         <Route path='/budget/:id'>
           <OneBudget />
