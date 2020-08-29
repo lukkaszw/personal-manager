@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Portal from 'components/layout/Portal';
 import { Wrapper, useStyles, Background, MenuList } from './MobileMenu.styles';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -12,10 +12,27 @@ import { useTranslation } from 'react-i18next';
 
 const MobileMenu = ({ isAuth, isActive, onCloseMenu }) => {
   const { t } = useTranslation();
-
   const classes = useStyles();
   const links = isAuth ? authenticatedMenu : notAuthenticatedMenu;
 
+  const [isChangingPage, setIsChangingPage] = useState(false);
+  const handleChangePage = useCallback(() => setIsChangingPage(true), [setIsChangingPage]);
+
+  useEffect(() => {
+    let timeoutId;
+    if(isChangingPage) {
+      timeoutId = setTimeout(() => {
+        onCloseMenu();
+        setIsChangingPage(false);
+      }, [1200]);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    }
+  }, [isChangingPage, onCloseMenu]);
+  
+  
   return ( 
     <Portal domId="menu">
       <Background className={clsx([isActive && 'active'])}/>
@@ -24,6 +41,7 @@ const MobileMenu = ({ isAuth, isActive, onCloseMenu }) => {
         <IconButton 
           onClick={onCloseMenu}
           className={classes.closeBtn}
+          disabled={isChangingPage}
         >
           <FontAwesomeIcon icon={faTimes}/>
         </IconButton>
@@ -39,6 +57,7 @@ const MobileMenu = ({ isAuth, isActive, onCloseMenu }) => {
                   className='mobileMenuLink'
                   to={link.to}
                   activeClassName="active"
+                  onClick={handleChangePage}
                 >
                   <span className="text">{t(link.name)}</span>
                 </NavLink>
