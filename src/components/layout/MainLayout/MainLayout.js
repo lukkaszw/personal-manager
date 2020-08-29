@@ -5,16 +5,17 @@ import Footer from 'components/layout/Footer';
 import { Wrapper, Content } from './MainLayout.styles';
 
 const MainLayout = ({ children }) => {
-  return ( 
-    <Wrapper>
-      <Header />
-      <Content>
-        <Container>
-          {children}
-        </Container>
-      </Content>
-      <Footer />
-    </Wrapper>
+
+  return (
+      <Wrapper>
+        <Header />
+        <Content>
+          <Container>
+            {children}
+          </Container>
+        </Content>
+        <Footer />
+      </Wrapper>
    );
 }
  

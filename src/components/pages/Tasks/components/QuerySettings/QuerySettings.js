@@ -112,6 +112,9 @@ const QuerySettings = ({
                 label={`${t('End date from')}:`}
                 format="YYYY-MM-DD"
                 onChange={onFromDateChange}
+                todayLabel={t('Today')}
+                cancelLabel={t('Cancel')}
+                okLabel="OK"
               />
               <KeyboardDatePicker
                 className={classes.control}
@@ -121,6 +124,9 @@ const QuerySettings = ({
                 label={`${t('End date to')}:`}
                 format="YYYY-MM-DD"
                 onChange={onToDateChange}
+                todayLabel={t('Today')}
+                cancelLabel={t('Cancel')}
+                okLabel="OK"
               />
             </div>
           </Form>

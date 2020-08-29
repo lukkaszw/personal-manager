@@ -28,11 +28,18 @@ import theme from './App.styles';
 import { connect } from 'react-redux';
 import SELECTORS from 'store/selectors';
 import API from 'store/api';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { parseLanguage } from 'utils/parseLanguage';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
-import moment from 'moment';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "moment/locale/en-gb";
+import "moment/locale/pl";
+import moment from 'moment';
+
+
+moment.locale('pl');
 
 const materialUITheme = createMuiTheme({
   palette: {
@@ -55,6 +62,15 @@ function App({ isAuth, onTryLoginOnStart }) {
   useEffect(() => {
     onTryLoginOnStart();
   }, [onTryLoginOnStart]);
+
+  
+  const { i18n } = useTranslation();
+  
+
+  useEffect(() => {
+    const lang = parseLanguage(i18n.language);
+    moment.updateLocale(lang, {});
+  }, [i18n.language]);
 
 
   const router = !isAuth ?

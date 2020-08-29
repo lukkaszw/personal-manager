@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import useReactFinalForm from '../useReactFinalForm';
+import { useTranslation } from 'react-i18next';
 
 const DateField = props => {
+
+  const { t } = useTranslation();
 
   const {   
     onChange,
@@ -20,6 +23,7 @@ const DateField = props => {
       {...inputProps}
       {...others}
       autoOk={true}
+      variant='dialog'
       label={props.label}
       format="YYYY-MM-DD"
       minDate={props.minDate}
@@ -28,6 +32,8 @@ const DateField = props => {
       onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
       error={error && touched}
       onChange={onChange}
+      cancelLabel={t('Cancel')}
+      okLabel='OK'
     />
   );
 };
