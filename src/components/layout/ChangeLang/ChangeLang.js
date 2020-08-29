@@ -27,14 +27,14 @@ const ChangeLang = ({ isOpen, onClose }) => {
               onClick={setEnglish} 
               variant={langValue === 'eng-ENG' ? 'contained' : 'outlined'} 
               color="primary">
-                {t('english')}
+                english
             </Button>
             <Button 
               size="small"
               onClick={setPolish} 
               variant={langValue === 'pl-PL' ? 'contained' : 'outlined'} 
               color="secondary">
-                {t('polish')}
+                polski
               </Button>
           </BtnsWrapper>
         </div>
