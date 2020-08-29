@@ -4,7 +4,6 @@ import MainLayout from 'components/layout/MainLayout';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { ReactQueryConfigProvider } from 'react-query';
 import Main from 'components/pages/Main';
-import Contact from 'components/pages/Contact';
 import Budget from 'components/pages/Budget';
 import EditBudget from 'components/pages/EditBudget';
 import AddBudget from 'components/pages/AddBudget';
@@ -64,9 +63,6 @@ function App({ isAuth, onTryLoginOnStart }) {
       <Route exact path='/'>
         <Main />  
       </Route>
-      <Route exact path='/contact'>
-        <Contact />
-      </Route>
       <Route exact path='/auth'>
         <Auth />
       </Route>
@@ -124,9 +120,6 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/calendar'>
           <Calendar />
-        </Route>
-        <Route exact path='/contact'>
-          <Contact />
         </Route>
         <Route exact path='/logout'>
           <Logout />

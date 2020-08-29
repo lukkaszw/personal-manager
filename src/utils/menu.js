@@ -4,11 +4,6 @@ export const notAuthenticatedMenu = [
     name: 'Main',
     to: '/',
   },
-  {
-    id: 2,
-    name: 'Contact',
-    to: '/contact',
-  },
 ];
 
 export const authenticatedMenu = [
