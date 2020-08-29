@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "final-form": "^4.20.1",
+    "helmet": "^4.1.0",
     "i18next": "^19.5.1",
     "i18next-browser-languagedetector": "^5.0.0",
     "i18next-http-backend": "^1.0.15",

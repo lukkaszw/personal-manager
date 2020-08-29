@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const helmet = require('helmet');
 require('./database');
 const auth = require('./middlewares/auth');
 
@@ -8,7 +9,10 @@ const port = process.env.PORT || 8000;
 
 const app = express();
 
-app.use(cors());
+app.use(helmet());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' ? 'https://lukkiasz-pm.herokuapp.com' : 'http://localhost:3000',
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'build')));
