@@ -4,6 +4,7 @@ import generateAuthConfig from 'utils/generateAuthConfig';
 import { getCategoriesFromFields } from 'utils/getCategoriesFromFields';
 import { pages } from 'utils/pages.config';
 import { TYPE_ } from 'utils/budget.statuses';
+import { MONTHS } from 'utils/months';
 import moment from 'moment';
 
 const parseData = (data) => {
@@ -22,7 +23,7 @@ const parseData = (data) => {
   };
 
   if(parsedData.type === TYPE_.monthly) {
-    parsedData.month = moment(date).format('MMMM');
+    parsedData.month = MONTHS[moment(date).month()];
     parsedData.year = moment(date).format('YYYY');
   }
 
