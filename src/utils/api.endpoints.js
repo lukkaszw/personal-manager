@@ -6,6 +6,7 @@ const api = {
       login: 'user/login',
       logout: 'user/logout',
       getData: 'user/me',
+      deleteAccount: 'user/delete',
     },
     tasks: 'tasks',
     notes: {
