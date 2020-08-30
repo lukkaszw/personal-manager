@@ -11,6 +11,7 @@ import OneBudget from 'components/pages/OneBudget';
 import Notes from 'components/pages/Notes';
 import Calendar from 'components/pages/Calendar';
 import Auth from 'components/pages/Auth';
+import Account from 'components/pages/Account';
 import Logout from 'components/pages/Logout';
 import TaskAdd from 'components/pages/TaskAdd';
 import NoteAdd from 'components/pages/NoteAdd';
@@ -136,6 +137,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/calendar'>
           <Calendar />
+        </Route>
+        <Route exact path='/account'>
+          <Account />
         </Route>
         <Route exact path='/logout'>
           <Logout />

@@ -41,6 +41,12 @@ export const authenticatedMenu = [
     name: 'Calendar',
     to: '/calendar',
   },
+  {
+    id: 6,
+    name: 'Account',
+    to: '/account',
+    onlyMobile: true,
+  },
 ];
 
 export const loginLinks = {
