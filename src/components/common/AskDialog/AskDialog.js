@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import { ButtonsWrapper } from './AskDialog.styles';
+import { ButtonsWrapper, Question } from './AskDialog.styles';
 
 const AskDialog = ({ 
   isOpen, question, yesAnswear, noAnswear,
@@ -15,9 +15,9 @@ const AskDialog = ({
       open={isOpen}
       onClose={onClose}
     >
-      <DialogTitle>
+      <Question>
         {question}
-      </DialogTitle>
+      </Question>
       <DialogContent>
         <ButtonsWrapper>
           <Button
