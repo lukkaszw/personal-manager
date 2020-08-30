@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
+import NoDataFound from 'components/common/NoDataFound';
 import Pagination from 'components/common/Pagination';
 import { useQuery, useMutation, queryCache } from 'react-query';
 import { useStyles, CartsWrapper, Title, Description, ImportantSign, ModifyAt } from './NotesList.styles';
@@ -51,54 +52,60 @@ const NotesList = ({
 
   const deleteNoteTitle = noteToDelete ? noteToDelete.title : '';
 
+  const dataNotFound = notesData.notes.length === 0;
+
   return ( 
     <div>
       <CartsWrapper>
         {
-          notesData.notes.map(note => (
-            <Card 
-              className={clsx([classes.cart, classes[PRIORITY[note.priority]]])}
-              key={note._id}
-            >
-              {
-                note.priority === 2 &&
-                  <ImportantSign>
-                    {t('IMPORTANT')}
-                  </ImportantSign>
-              }
-              <CardContent>
-                <ModifyAt>{moment(note.updatedAt).format('DD.MM.YYYY')}</ModifyAt>
-                <Title>{note.title}</Title>
-                <Description>{note.description}</Description>
-              </CardContent>
-              <CardActions 
-                className={classes.cartsActions}
+          dataNotFound ?
+            <NoDataFound />
+            :
+            notesData.notes.map(note => (
+              <Card 
+                className={clsx([classes.cart, classes[PRIORITY[note.priority]]])}
+                key={note._id}
               >
-                <IconButton 
-                  variant="contained"
-                  aria-label={t('Read')}
-                  color="primary"
-                  component={Link}
-                  to={`/notes/${note._id}`}
-                  disabled={isDeleteLoading}
+                {
+                  note.priority === 2 &&
+                    <ImportantSign>
+                      {t('IMPORTANT')}
+                    </ImportantSign>
+                }
+                <CardContent>
+                  <ModifyAt>{moment(note.updatedAt).format('DD.MM.YYYY')}</ModifyAt>
+                  <Title>{note.title}</Title>
+                  <Description>{note.description}</Description>
+                </CardContent>
+                <CardActions 
+                  className={classes.cartsActions}
                 >
-                  <FontAwesomeIcon icon={faBookReader} />
-                </IconButton>
-                <IconButton 
-                  variant="contained"
-                  aria-label={t('Delete')}
-                  color="secondary"
-                  disabled={isDeleteLoading}
-                  onClick={() => setDeletingNote(note)}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </IconButton>
-              </CardActions>
-            </Card>
-          ))
+                  <IconButton 
+                    variant="contained"
+                    aria-label={t('Read')}
+                    color="primary"
+                    component={Link}
+                    to={`/notes/${note._id}`}
+                    disabled={isDeleteLoading}
+                  >
+                    <FontAwesomeIcon icon={faBookReader} />
+                  </IconButton>
+                  <IconButton 
+                    variant="contained"
+                    aria-label={t('Delete')}
+                    color="secondary"
+                    disabled={isDeleteLoading}
+                    onClick={() => setDeletingNote(note)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            ))
         }
       </CartsWrapper>
       <Pagination 
+        hide={dataNotFound}
         count={Math.ceil(notesData.amount/pages.notes.maxPerPage)}
         page={page}
         onChange={onChangePage}

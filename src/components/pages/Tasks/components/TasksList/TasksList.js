@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TaskRow from '../TaskRow';
+import NoDataFound from 'components/common/NoDataFound';
 import Pagination from 'components/common/Pagination';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './TasksList.styles';
@@ -27,6 +28,8 @@ const TasksList = ({
     { token, priority, status, dateTo, dateFrom, page, sortBy, sortOrder, }
   ], API.tasks.getTasks,  { suspense: true, cacheTime: 0 });
   const lang = i18n.language === 'pl-PL' ? i18n.language : 'eng-Gb';
+
+  const dataNotFound = data.tasks.length === 0;
 
   return ( 
     <div>
@@ -88,8 +91,12 @@ const TasksList = ({
             }
           </TableBody>
         </Table>
+        {   
+          dataNotFound && <NoDataFound />
+        }
       </TableContainer>
       <Pagination 
+        hide={dataNotFound}
         count={Math.ceil(data.amount/pages.tasks.maxPerPage)} 
         page={page}
         onChange={onChangePage}
