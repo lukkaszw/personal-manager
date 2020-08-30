@@ -58,9 +58,19 @@ const logout = async (req, res) => {
   }
 }
 
+const deleteAccount = async (req, res) => {
+  try {
+    await req.user.remove();
+    res.json(req.user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
   logout,
   getUserData,
+  deleteAccount,
 };

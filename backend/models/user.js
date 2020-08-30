@@ -3,6 +3,11 @@ const _v = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const ERRORS = require('../errors/user.errors');
+const Task = require('../models/task');
+const Note = require('../models/note');
+const Transaction = require('../models/transaction');
+const Budget = require('../models/budget');
+const NoteCategory = require('../models/noteCategory');
 
 //must be 8 char long and contain at least one: capital letter, small letter, number, special char
 const passwordRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
@@ -146,6 +151,18 @@ userSchema.pre('save', async function (next) {
   if(user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
   }
+
+  next();
+});
+
+userSchema.pre('remove', async function (next) {
+  const user = this;
+
+  await Task.deleteMany({ userId: user._id });
+  await Note.deleteMany({ userId: user._id });
+  await NoteCategory.deleteMany({ userId: user._id });
+  await Transaction.deleteMany({ userId: user._id });
+  await Budget.deleteMany({ userId: user._id });
 
   next();
 });
