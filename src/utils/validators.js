@@ -22,7 +22,7 @@ export const validateAuthInputs = (values, destination) => {
         errors.surname = 'Required';
       }
       if (!values.password || !passwordRegExp.test(values.password)) {
-        errors.password = 'Min. 8 (A-Z, a-z, 0-9, !(){}[]=+-;*,...)';
+        errors.password = 'Required minimum 8 chars (include capital, small letters, number, special char)';
       }
       if (!values.confirmPassword) {
         errors.confirmPassword = 'Required'

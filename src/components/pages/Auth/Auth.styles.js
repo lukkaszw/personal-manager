@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 export const Root = styled.div`
-  height: 73vh;
+  min-height: 73vh;
   padding: 20px 0;
   width: 100%;
   display: flex;
@@ -26,4 +26,6 @@ export const ButtonWrapper = styled.div`
   text-align: center;
 `;
 
-
+export const DividedLine = styled.div`
+  height: 30px;
+`;

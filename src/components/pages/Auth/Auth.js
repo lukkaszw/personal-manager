@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Root, InputWrapper, ButtonWrapper, useStyles } from './Auth.styles';
+import { Root, InputWrapper, ButtonWrapper, useStyles, DividedLine } from './Auth.styles';
 import { TEXTS } from './data';
 import { useTranslation } from 'react-i18next';
 import useAuthForm from './useAuthForm';
@@ -40,6 +40,9 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
 
   return ( 
     <Root>
+      <div>
+        
+      </div>
       <LoaderIndicator isOpen={isSending} />
       <ResponseModal 
         isOpen={isModalOpen}
@@ -77,7 +80,7 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                     type="password"
                     error={meta.error && meta.touched}
                     helperText={(meta.error && meta.touched) && 
-                    (meta.error === 'Required' ? t('Required') : meta.error)}
+                    t(meta.error)}
                   />
                 </InputWrapper>
               )}
@@ -85,9 +88,11 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
             {
               formDestination === 'register' &&
                 <>
-                  <Field name="confirmPassword">
+                  <InputWrapper>
+                    <Field name="confirmPassword">
                       {({ input, meta }) => (
-                        <InputWrapper>
+                        <div>
+                          <br/>
                           <TextField 
                             {...input}
                             className={classes.input}
@@ -95,9 +100,13 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                             type="password"
                             error={meta.error && meta.touched}
                           />
-                        </InputWrapper>
+                        </div>
                       )}
-                  </Field>
+                    </Field>
+                  </InputWrapper>
+
+                  <DividedLine />
+
                   <Field name="name">
                       {({ input, meta }) => (
                         <InputWrapper>
