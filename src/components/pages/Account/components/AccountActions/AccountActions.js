@@ -11,6 +11,8 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import API from 'store/api';
 
+import { ACCOUNT_PAGE_LINKS } from 'utils/accountLinks';
+
 const AccountActions = ({ token }) => {
 
   const { t } = useTranslation();
@@ -41,43 +43,22 @@ const AccountActions = ({ token }) => {
 
   return ( 
     <Root>
-      <ButtonWrapper>
-        <Button
-          size="small"
-          color="primary"
-          fullWidth={true}
-          component={Link}
-          variant="contained"
-          to="/account/update"
-          disabled={isDeleting}
-        >
-          {t('Update data')}
-        </Button>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <Button
-          size="small"
-          color="secondary"
-          fullWidth={true}
-          component={Link}
-          variant="contained"
-          to="/account/pswd"
-          disabled={isDeleting}
-        >
-          {t('Change password')}
-        </Button>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <Button
-          size="small"
-          fullWidth={true}
-          component={Link}
-          variant="contained"
-          to="/logout"
-        >
-          {t('Logout')}
-        </Button>
-      </ButtonWrapper>
+      {
+        ACCOUNT_PAGE_LINKS.map(link => (
+          <ButtonWrapper key={link.id}>
+            <Button
+              fullWidth={true}
+              variant="contained"
+              size="small"
+              color={link.color}
+              component={Link}
+              to={link.to}
+            >
+              {t(link.text)}
+            </Button>
+          </ButtonWrapper> 
+        ))
+      }
       <ButtonWrapper separated>
         <Button
           color="secondary"

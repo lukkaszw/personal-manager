@@ -4,6 +4,7 @@ import { Root, ButtonWrapper } from './Links.styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { MAIN_PAGE_LINKS } from 'utils/accountLinks';
 
 const Links = ({ isAuth }) => {
 
@@ -26,41 +27,22 @@ const Links = ({ isAuth }) => {
         </Button>
         :
         <div>
-          <ButtonWrapper>
-            <Button
-              fullWidth={true}
-              variant="contained"
-              size="small"
-              color="primary"
-              component={Link}
-              to="/budget"
-            >
-              {t('Manage your budget')}
-            </Button>
-          </ButtonWrapper>
-          <ButtonWrapper>
-            <Button
-              fullWidth={true}
-              variant="contained"
-              size="small"
-              color="secondary"
-              component={Link}
-              to="/tasks"
-            >
-              {t('Manage your tasks')}
-            </Button>
-          </ButtonWrapper>
-          <ButtonWrapper>
-            <Button
-              fullWidth={true}
-              variant="contained"
-              size="small"
-              component={Link}
-              to="/notes"
-            >
-              {t('Manage your notes')}
-            </Button>
-          </ButtonWrapper>
+          {
+            MAIN_PAGE_LINKS.map(link => (
+              <ButtonWrapper key={link.id}>
+                <Button
+                  fullWidth={true}
+                  variant="contained"
+                  size="small"
+                  color={link.color}
+                  component={Link}
+                  to={link.to}
+                >
+                  {t(link.text)}
+                </Button>
+              </ButtonWrapper>
+            ))
+          }
         </div>
       }
 
