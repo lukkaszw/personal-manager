@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import List from 'components/common/List';
 import { authenticatedMenu, notAuthenticatedMenu } from 'utils/menu';
 import { Nav } from './MenuDesktop.styles';
@@ -7,7 +7,11 @@ import PropTypes from 'prop-types';
 
 
 const MenuDesktop = ({ isAuth }) => {
-  const links = isAuth ? authenticatedMenu : notAuthenticatedMenu;
+  const links = useMemo(() => {
+    const menuLinks = isAuth ? authenticatedMenu : notAuthenticatedMenu;
+    return menuLinks.filter(link => !link.onlyMobile);
+  }, [isAuth]);
+
 
   return ( 
     <Nav>

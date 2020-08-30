@@ -4,6 +4,12 @@ export const notAuthenticatedMenu = [
     name: 'Main',
     to: '/',
   },
+  {
+    id: 2,
+    name: 'Login',
+    to: '/auth',
+    onlyMobile: true,
+  }
 ];
 
 export const authenticatedMenu = [
