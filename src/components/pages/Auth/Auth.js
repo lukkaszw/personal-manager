@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Root, InputWrapper, ButtonWrapper, useStyles, DividedLine } from './Auth.styles';
+import { Root, InputWrapper, ButtonWrapper, useStyles, DividedLine, Info } from './Auth.styles';
 import { TEXTS } from './data';
 import { useTranslation } from 'react-i18next';
 import useAuthForm from './useAuthForm';
@@ -161,6 +161,10 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
           {t(TEXTS[formDestination].switchBtnText)}
         </Button>
       </ButtonWrapper>
+      <Info>
+        {`${t('This app was created only for development purpose')}. 
+        ${t('You can register nonexistent email address for testing')}`}! 
+      </Info>
     </Root>
    );
 }

@@ -29,3 +29,10 @@ export const ButtonWrapper = styled.div`
 export const DividedLine = styled.div`
   height: 30px;
 `;
+
+export const Info = styled.p`
+  text-align: center;
+  margin: 10px 0;
+  font-size: 10px;
+  font-style: cursive;
+`;
