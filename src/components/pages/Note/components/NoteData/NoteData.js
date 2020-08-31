@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Description from 'components/common/Description';
 import NoteActions from '../NoteActions';
 import { useQuery } from 'react-query';
-import { Root, Header, Title, ModifyDate, Content } from './NoteData.styles';
+import SmallTitle from 'components/common/SmallTitle';
+import { Root, Header, ModifyDate, Content } from './NoteData.styles';
 import { useTranslation } from 'react-i18next';
 import API from 'store/api';
 
@@ -21,9 +22,10 @@ const NoteData = ({ token, id }) => {
         <ModifyDate>
           {t('Last update')}: {modifyDate}
         </ModifyDate>
-        <Title>
-          {data.title}
-        </Title>
+        <SmallTitle 
+          margin="small"
+          title={data.title}
+        />
       </Header>
       <Content>
         <Description 

@@ -4,8 +4,9 @@ import { useQuery } from 'react-query';
 import API from 'store/api';
 import TaskActions from '../TaskActions/TaskActions';
 import { 
-  Title, StatusName,
+  StatusName,
   StatusContent, StartDate, Header, EndTime } from './TaskData.styles';
+import SmallTitle from 'components/common/SmallTitle';
 import Description from 'components/common/Description';
 import { TaskDataRoot } from '../../Task.styles';
 import { useTranslation } from 'react-i18next';
@@ -56,9 +57,9 @@ const TaskData = ({ id, token }) => {
           <StartDate>
             {t('Last update')}: {updateDate}
           </StartDate>
-          <Title>
-            {data.title}
-          </Title>
+          <SmallTitle 
+            title={data.title}
+          />
         </Header>
         <StatusContent>
           <EndTime>

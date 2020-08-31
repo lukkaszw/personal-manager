@@ -18,10 +18,6 @@ export const EndTime = styled.div`
  }
 `;
 
-export const Title = styled.h2`
-  font-size: 24px;
-`;
-
 export const StatusContent = styled.div`
   margin: 20px 0;
 
