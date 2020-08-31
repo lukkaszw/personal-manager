@@ -11,6 +11,8 @@ router.get('/me', auth, userController.getUserData);
 
 router.post('/logout', auth, userController.logout);
 
+router.put('/me', auth, userController.updateData);
+
 router.delete('/delete', auth, userController.deleteAccount);
 
 module.exports = router;

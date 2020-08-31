@@ -67,10 +67,39 @@ const deleteAccount = async (req, res) => {
   }
 }
 
+const updateData = async (req, res) => {
+  const allowedUpdates = ['name', 'surname'];
+  const data = req.body;
+  const triedChanges = Object.keys(data);
+  const isMatch = triedChanges.every(change => allowedUpdates.includes(change));
+
+  if(!isMatch) {
+    res.status(400).json({
+      error: 'Bad request!',
+    });
+
+    return;
+  }
+
+  try {
+
+    triedChanges.forEach(key => {
+      req.user[key] = data[key];
+    });
+
+    await req.user.save();
+
+    res.json(req.user);
+  } catch (error) {
+    res.status(500).json(error);
+  } 
+}
+
 module.exports = {
   signUp,
   signIn,
   logout,
   getUserData,
   deleteAccount,
+  updateData,
 };
