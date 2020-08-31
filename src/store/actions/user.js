@@ -8,3 +8,5 @@ export const REQUEST_RESET = createActionName('REQUEST_RESET');
 
 export const LOGIN = createActionName('LOGIN');
 export const LOGOUT = createActionName('LOGOUT');
+
+export const UPDATE_DATA = createActionName('UPDATE_DATA');

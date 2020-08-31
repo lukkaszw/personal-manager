@@ -65,6 +65,12 @@ const userReducer = (statePart = {}, action = {}) => {
         }
       }
     }
+    case ACTIONS.user.UPDATE_DATA: {
+      return {
+        ...statePart,
+        data: action.payload,
+      }
+    }
     default: 
       return statePart;
   }

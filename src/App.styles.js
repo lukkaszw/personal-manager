@@ -28,7 +28,10 @@ const theme = {
       secondary: {
         main: '#fff',
         darker: '#bbb',
-      }
+      },
+      tertiary: {
+        main: '#00509d',
+      },
     },
     icon: {
       very_positive: '#32CD32',

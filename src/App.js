@@ -19,6 +19,7 @@ import NoteEdit from 'components/pages/NoteEdit';
 import TaskEdit from 'components/pages/TaskEdit';
 import NoteCatAdd from 'components/pages/NoteCatAdd';
 import NoteCatEdit from 'components/pages/NoteCatEdit';
+import EditPersonalData from 'components/pages/EditPersonalData';
 import Note from 'components/pages/Note';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import LoaderIndicator from 'components/common/LoaderIndicator';
@@ -140,6 +141,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/account'>
           <Account />
+        </Route>
+        <Route exact path='/account/update'>
+          <EditPersonalData />
         </Route>
         <Route exact path='/logout'>
           <Logout />

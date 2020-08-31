@@ -147,3 +147,21 @@ export const validateTransaction = (values) => {
 
   return errors;
 }
+
+export const validatePersonalData = (values) => {
+  const errors = {};
+
+  if(!values.name) {
+    errors.name = 'Required';
+  } else if (values.name.length > 20) {
+    errors.name = 'Max 20!';
+  }
+
+  if(!values.surname) {
+    errors.surname = 'Required';
+  } else if (values.surname.length > 20) {
+    errors.surname = 'Max 20!';
+  }
+
+  return errors;
+}

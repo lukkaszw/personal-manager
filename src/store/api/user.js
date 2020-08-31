@@ -77,10 +77,20 @@ export const logoutUser = (token) => {
 
 export const deleteAccount = async ({ token }) => {
   const url = `${api.baseUrl}/${api.endpoints.user.deleteAccount}`;
-  console.log(token);
+
   const config = generateAuthConfig(token);
   
   const resp = await axios.delete(url, config);
+
+  return resp.data;
+}
+
+export const updateData = async ({ data, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.user.updateData}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.put(url, data, config);
 
   return resp.data;
 }

@@ -7,6 +7,7 @@ const api = {
       logout: 'user/logout',
       getData: 'user/me',
       deleteAccount: 'user/delete',
+      updateData: 'user/me',
     },
     tasks: 'tasks',
     notes: {
