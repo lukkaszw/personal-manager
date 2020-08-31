@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import NotesCatForm from 'components/common/NotesCatForm';
 import SELECTORS from 'store/selectors';
 import API from 'store/api';
-import { Root } from './NoteCatAdd.styles';
 
 
 const NoteCatAdd = ({ token }) => {
@@ -13,13 +12,11 @@ const NoteCatAdd = ({ token }) => {
   };
 
   return ( 
-    <Root>
-      <NotesCatForm 
-        token={token}
-        initialValues={initialValues}
-        apiAction={API.notes.addNoteCategory}
-      />
-    </Root>
+    <NotesCatForm 
+      token={token}
+      initialValues={initialValues}
+      apiAction={API.notes.addNoteCategory}
+    />
   );
 }
 

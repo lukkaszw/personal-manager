@@ -4,13 +4,15 @@ import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Form, Field } from 'react-final-form';
 import TextField from '@material-ui/core/TextField';
 import FormSubmitBtns from 'components/common/FormSubmitBtns';
+import SmallTitle from 'components/common/SmallTitle';
+import { Root } from './NotesCatForm.styles';
 import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { validateNoteCat } from 'utils/validators';
 
-const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
+const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id, categoryName, children }) => {
 
   const history = useHistory();
 
@@ -32,8 +34,12 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
   const handleSubmit = useCallback((data) => submitAction({ data, token, id }), [submitAction, token, id]);
 
   return ( 
-    <>
+    <Root>
       <LoaderIndicator isOpen={isSending} />
+      <SmallTitle 
+        title={isForEdit ? categoryName : t('New category')}
+        margin="big"
+      />
       <Form
         onSubmit={handleSubmit}
         initialValues={initialValues}
@@ -64,11 +70,13 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
           </form>
         )}
       />
-    </>
+      {children}
+    </Root>
    );
 }
 
 NotesCatForm.propTypes = {
+  categoryName: PropTypes.string,
   token: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired,
   apiAction: PropTypes.func.isRequired,
