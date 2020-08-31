@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Root, Title } from './SmallTitle.styles.js';
-import { useTranslation } from 'react-i18next';
 
 const SmallTitle = ({ margin, title, textAlign }) => {
-
-  const { t } = useTranslation();
 
   return ( 
     <Root margin={margin} textAlign={textAlign}>
       <Title>
-        {t(title)}
+        {title}
       </Title>
     </Root>
   );
