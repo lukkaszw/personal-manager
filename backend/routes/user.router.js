@@ -15,4 +15,6 @@ router.put('/me', auth, userController.updateData);
 
 router.delete('/delete', auth, userController.deleteAccount);
 
+router.put('/me/pswd', auth, userController.updatePassword);
+
 module.exports = router;

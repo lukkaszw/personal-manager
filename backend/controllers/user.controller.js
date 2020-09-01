@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const bcrypt = require('bcryptjs');
 const ERRORS = require('../errors/user.errors');
 
 const signUp = async (req, res) => {
@@ -95,6 +96,39 @@ const updateData = async (req, res) => {
   } 
 }
 
+const updatePassword = async (req, res) => {
+  
+  const { password, currentPassword, confirmPassword } = req.body;
+
+  const isMatch = await bcrypt.compare(currentPassword, req.user.password);
+
+  if(!isMatch) {
+    res.status(401).send('Incorect old password!');
+    return;
+  }
+
+  if(password !== confirmPassword) {
+    res.status(400).json({
+      error: 'Bad request!',
+    });
+    return;
+  }
+
+  try {
+
+    req.user.password = password;
+
+    await req.user.save();
+
+    res.status(200).json({
+      success: 'OK',
+    });
+
+  } catch (error) {
+    res.status(500).send('Dupa!');
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
@@ -102,4 +136,5 @@ module.exports = {
   getUserData,
   deleteAccount,
   updateData,
+  updatePassword,
 };
