@@ -29,7 +29,7 @@ const AccountActions = ({ token }) => {
       toast.success(`${t('You have deleted your account')}!`);
     },
     onError: data => {
-      toast.error(`${t('You can not delete your account now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete your account now')}! ${t('Try again later')}!`);
     }
   });
 

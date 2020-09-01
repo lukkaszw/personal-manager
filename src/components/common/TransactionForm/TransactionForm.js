@@ -39,7 +39,7 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
     },
     onError: data => {
       const message = isForEdit ? 'You can not edit a transaction now' : 'You can not add a transaction now';
-      toast.error(`${t(message)}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t(message)}! ${t('Try again later')}!`);
     }
   });
 

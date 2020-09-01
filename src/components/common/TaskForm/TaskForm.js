@@ -35,7 +35,7 @@ const TaskForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
     },
     onError: data => {
       const message = isForEdit ? 'You can not edit a task now' : 'You can not add a task now';
-      toast.error(`${t(message)}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t(message)}! ${t('Try again later')}!`);
     }
   });
 

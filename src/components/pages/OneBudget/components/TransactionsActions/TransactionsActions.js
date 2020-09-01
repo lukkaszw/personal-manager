@@ -26,7 +26,7 @@ const TransactionsActions = ({ checkedTransactions, token, budgetId }) => {
       toast.success(`${t('You have deleted transactions')}!`);
     },
     onError: data => {
-      toast.error(`${t('You can not delete transactions now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete transactions now')}! ${t('Try again later')}!`);
     }
   });
 

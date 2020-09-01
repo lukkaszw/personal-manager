@@ -39,7 +39,7 @@ const NotesList = ({
       toast.success(`${t('You have deleted note')} ${data.title}`);
     },
     onError: () => {
-      toast.error(`${t('You can not delete a note now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete a note now')}! ${t('Try again later')}!`);
     }
   });
 

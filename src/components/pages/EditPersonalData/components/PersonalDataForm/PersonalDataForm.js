@@ -25,7 +25,7 @@ const PersonalDataForm = ({ token, initialValues, onChangeUserData }) => {
       toast.success(`${t('Your personal data changed')}!`);
     },
     onError: data => {
-      toast.error(`${t('You can not change your personal data now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not change your personal data now')}! ${t('Try again later')}!`);
     }
   });
 

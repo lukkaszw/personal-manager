@@ -33,7 +33,7 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
     },
     onError: data => {
       const message = isForEdit ? 'You can not edit a note now' : 'You can not add a note now';
-      toast.error(`${t(message)}! ${t('Try again later')}!`);
+      toast.error(`${t('Error')}! ${t(message)}! ${t('Try again later')}!`);
     }
   });
 

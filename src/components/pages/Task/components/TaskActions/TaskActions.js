@@ -31,7 +31,7 @@ const TaskActions = ({ id, token, status }) => {
       toast.success(`${t('You have deleted task')} ${data.title}`);
     },
     onError: () => {
-      toast.error(`${t('You can not delete a task now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete a task now')}! ${t('Try again later')}!`);
     }
   });
  

@@ -25,7 +25,7 @@ const DeleteNoteCat = ({ token, id }) => {
       toast.success(`${t('You have deleted category')} ${data.name}!`);
     },
     onError: data => {
-      toast.error(`${t('You can not delete this category now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete this category now')}! ${t('Try again later')}!`);
     }
   });
 

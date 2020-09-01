@@ -27,7 +27,7 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id, category
     onError: data => {
       history.goBack();
       const message = isForEdit ? 'You can not edit a category now' : 'You can not add a category now';
-      toast.error(`${t(message)}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t(message)}! ${t('Try again later')}!`);
     }
   });
 

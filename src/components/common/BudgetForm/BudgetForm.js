@@ -51,7 +51,7 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
     },
     onError: data => {
       const message = isForEdit ? 'You can not edit a budget now' : 'You can not add a budget now';
-      toast.error(`${t(message)}! ${t('Try again later')}!`);
+      toast.error(`${t('Error')}! ${t(message)}! ${t('Try again later')}!`);
     }
   });
 
