@@ -165,3 +165,23 @@ export const validatePersonalData = (values) => {
 
   return errors;
 }
+
+export const validatePassword = (values) => {
+
+  const errors = {};
+
+  if (!values.password || !passwordRegExp.test(values.password)) {
+    errors.password = 'Required minimum 8 chars (include capital, small letters, number, special char)';
+  }
+  if (!values.confirmPassword) {
+    errors.confirmPassword = 'Required';
+  } else if (values.confirmPassword !== values.password) {
+    errors.confirmPassword = 'Must match';
+  }
+
+  if(!values.currentPassword) {
+    errors.currentPassword = 'Required';
+  }
+
+  return errors;
+}

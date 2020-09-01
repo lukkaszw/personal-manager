@@ -94,3 +94,13 @@ export const updateData = async ({ data, token }) => {
 
   return resp.data;
 }
+
+export const updatePassword = async ({ data, token }) => {
+  const url = `${api.baseUrl}/${api.endpoints.user.updatePassword}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.put(url, data, config);
+
+  return resp.data;
+}

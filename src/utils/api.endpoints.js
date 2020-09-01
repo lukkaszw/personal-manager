@@ -8,6 +8,7 @@ const api = {
       getData: 'user/me',
       deleteAccount: 'user/delete',
       updateData: 'user/me',
+      updatePassword: 'user/me/pswd',
     },
     tasks: 'tasks',
     notes: {

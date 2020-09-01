@@ -13,6 +13,7 @@ import Calendar from 'components/pages/Calendar';
 import Auth from 'components/pages/Auth';
 import Account from 'components/pages/Account';
 import Logout from 'components/pages/Logout';
+import UpdatePassword from 'components/pages/UpdatePassword';
 import TaskAdd from 'components/pages/TaskAdd';
 import NoteAdd from 'components/pages/NoteAdd';
 import NoteEdit from 'components/pages/NoteEdit';
@@ -144,6 +145,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path='/account/update'>
           <EditPersonalData />
+        </Route>
+        <Route exact path='/account/pswd'>
+          <UpdatePassword />
         </Route>
         <Route exact path='/logout'>
           <Logout />
