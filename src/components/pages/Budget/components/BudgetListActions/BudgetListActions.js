@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { useStyles, Root } from './BudgetListActions.styles';
+import { useStyles } from './BudgetListActions.styles';
+import ActionsPanel from 'components/common/ActionsPanel';
 import { TYPE } from 'utils/budget.statuses';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -16,7 +17,7 @@ const BudgetListActions = ({ type, onChangeType }) => {
   const handleChangeType = useCallback((e) => onChangeType(e.target.value), [onChangeType]);
 
   return ( 
-    <Root>
+    <ActionsPanel>
       <Button
         size="small"
         variant="contained"
@@ -55,8 +56,8 @@ const BudgetListActions = ({ type, onChangeType }) => {
           }
         </Select>
       </FormControl>
-    </Root>
-   );
+    </ActionsPanel>
+  );
 }
 
 BudgetListActions.propTypes = {

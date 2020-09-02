@@ -5,9 +5,9 @@ import styled from 'styled-components';
 export const useStyles = makeStyles((theme) => ({
   cart: {
     display: 'flex',
-    margin: '20px',
+    margin: '16px',
     width: '200px',
-    height: '216px',
+    height: '212px',
     justifyContent: 'space-between',
     flexDirection: 'column',
     position: 'relative',
@@ -25,9 +25,13 @@ export const useStyles = makeStyles((theme) => ({
 export const CartsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 30px;
-  min-height: 500px;
+  margin-top: 20px;
+  min-height: 486px;
   justify-content: center;
+
+  @media (max-width: 640px) {
+    min-height: 260px;
+  }
 `;
 
 export const ModifyAt = styled.p`

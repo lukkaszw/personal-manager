@@ -24,12 +24,7 @@ export const useStyles = makeStyles({
   }
 });
 
-export const Root = styled.div`
-  margin: 20px 0;
-`;
-
 export const Actions = styled.div`
-  margin-top: 50px;
   display: flex;
   margin-bottom: 10px;
   flex-wrap: wrap;

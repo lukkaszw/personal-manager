@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SELECTORS from 'store/selectors';
 import ACTION_CREATORS from 'store/actionCreators';
+import Page from 'components/layout/Page';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
 
 const TasksList = React.lazy(() => import('./components/TasksList'));
@@ -14,31 +15,33 @@ const Tasks = ({
 }) => {
 
   return ( 
-    <SuspenseErrorBundary>
-      <QuerySettings 
-        priority={priority}
-        status={status}
-        onChangePriority={onChangePriority}
-        onChangeStatus={onChangeStatus}
-        dateFrom={dateFrom}
-        dateTo={dateTo}
-        onChangeDateFrom={onChangeDateFrom}
-        onChangeDateTo={onChangeDateTo}
-        onResetQuerySettings={onResetQuerySettings}
-      />
-      <TasksList
-        token={token}
-        priority={priority}
-        status={status}
-        dateFrom={dateFrom}
-        dateTo={dateTo}
-        page={page}
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onChangePage={onChangePage}
-        onChangeSort={onChangeSort}
-      />
-    </SuspenseErrorBundary>
+    <Page>
+      <SuspenseErrorBundary>
+        <QuerySettings 
+          priority={priority}
+          status={status}
+          onChangePriority={onChangePriority}
+          onChangeStatus={onChangeStatus}
+          dateFrom={dateFrom}
+          dateTo={dateTo}
+          onChangeDateFrom={onChangeDateFrom}
+          onChangeDateTo={onChangeDateTo}
+          onResetQuerySettings={onResetQuerySettings}
+        />
+        <TasksList
+          token={token}
+          priority={priority}
+          status={status}
+          dateFrom={dateFrom}
+          dateTo={dateTo}
+          page={page}
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onChangePage={onChangePage}
+          onChangeSort={onChangeSort}
+        />
+      </SuspenseErrorBundary>
+    </Page>
    );
 }
 

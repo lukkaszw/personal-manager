@@ -38,7 +38,7 @@ export const getBudgets = async (key, { type, page, token }) => {
 
   config.params = {
     type: type !== 'all' ? type : null,
-    limit: pages.notes.maxPerPage,
+    limit: pages.budget.maxPerPage,
     skip: (page - 1) * pages.tasks.maxPerPage,
   };
 

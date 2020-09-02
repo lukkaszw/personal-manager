@@ -5,10 +5,11 @@ import List from '@material-ui/core/List';
 import Pagination from 'components/common/Pagination';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListContainer from 'components/common/ListContainer';
 import NoDataFound from 'components/common/NoDataFound';
 import { useQuery } from 'react-query';
 import { TYPE } from 'utils/budget.statuses';
-import { useStyles, Root } from './BudgetListData.styles';
+import { useStyles } from './BudgetListData.styles';
 import { pages } from 'utils/pages.config';
 import { useTranslation } from 'react-i18next';
 import API from 'store/api';
@@ -28,42 +29,44 @@ const BudgetListData = ({ token, type, page, onChangePage  }) => {
   const dataNotFound = data.budgets.length === 0;
 
   return ( 
-    <Root>
-      <List>
-        {
-          dataNotFound ?
-            <NoDataFound />
-            :
-            data.budgets.map(budget => {
-              const text = TYPE[budget.type] === 'monthly' ?
-                `${t('Budget for')} ${t(budget.month)} ${budget.year}` 
-                :
-                `${t('occasional budget')}`;
+    <div>
+      <ListContainer>
+        <List>
+          {
+            dataNotFound ?
+              <NoDataFound />
+              :
+              data.budgets.map(budget => {
+                const text = TYPE[budget.type] === 'monthly' ?
+                  `${t('Budget for')} ${t(budget.month)} ${budget.year}` 
+                  :
+                  `${t('occasional budget')}`;
 
-              return (
-                <ListItem 
-                  className={classes.listItem}
-                  key={budget._id} 
-                  button  
-                  component={Link} 
-                  to={`/budget/${budget._id}`}
-                >
-                  <ListItemText 
-                    primary={budget.name} 
-                    secondary={text}
-                  />
-                </ListItem>
-              )
-            })
-        }
-      </List>
+                return (
+                  <ListItem 
+                    className={classes.listItem}
+                    key={budget._id} 
+                    button  
+                    component={Link} 
+                    to={`/budget/${budget._id}`}
+                  >
+                    <ListItemText 
+                      primary={budget.name} 
+                      secondary={text}
+                    />
+                  </ListItem>
+                )
+              })
+          }
+        </List>
+      </ListContainer>
       <Pagination 
         hide={dataNotFound}
         count={Math.ceil(data.amount/pages.budget.maxPerPage)}
         page={page}
         onChange={onChangePage}
       />
-    </Root>
+    </div>
    );
 }
 

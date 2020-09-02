@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const useStyles = makeStyles({
-  tableContainer: {
-    minHeight: '67vh',
-  },  
   table: {
-    margin: '30px auto',
+    margin: '0 auto',
     textAlign: 'center',
+    maxWidth: '100%',
   },
   cell: {
     textAlign: 'center',

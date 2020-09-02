@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
 import PropTypes from 'prop-types';
 import SELECTORS from 'store/selectors';
+import Page from 'components/layout/Page';
 import BudgetListActions from './components/BudgetListActions';
 import ACTION_CREATORS from 'store/actionCreators';
 
@@ -10,7 +11,7 @@ const BudgetListData = React.lazy(() => import('./components/BudgetListData'));
 
 const BudgetList = ({ token, type, page, onChangePage, onChangeType }) => {
   return ( 
-    <div>
+    <Page>
       <BudgetListActions 
         type={type}
         onChangeType={onChangeType}
@@ -23,7 +24,7 @@ const BudgetList = ({ token, type, page, onChangePage, onChangeType }) => {
           onChangePage={onChangePage}
         />
       </SuspenseErrorBundary>
-    </div>
+    </Page>
    );
 }
 

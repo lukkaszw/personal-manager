@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { Root, Actions, ActionsPart, Categories } from './NotesActions.styles';
+import { Actions, ActionsPart, Categories } from './NotesActions.styles';
 import { useStyles } from './NotesActions.styles';
 import { useQuery } from 'react-query';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +24,7 @@ const NotesActions = ({
   const handleChangeCategory = useCallback((e) => onChangeCategory(e.target.value), [onChangeCategory]);
 
   return ( 
-    <Root>
+    <>
       <Actions>
         <ActionsPart>
           <ButtonGroup
@@ -123,7 +123,7 @@ const NotesActions = ({
           {t('Important')}
         </Button>
       </ButtonGroup>
-    </Root>
+    </>
    );
 }
 

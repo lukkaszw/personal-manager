@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Page from 'components/layout/Page';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
 import SELECTORS from 'store/selectors';
 import ACTION_CREATORS from 'store/actionCreators';
@@ -16,7 +17,7 @@ const Notes = ({
  }) => {
 
   return ( 
-    <>
+    <Page>
       <SuspenseErrorBundary>
         <NotesActions 
             token={token}
@@ -36,7 +37,7 @@ const Notes = ({
           onChangePage={onChangePage}
         />
       </SuspenseErrorBundary>
-    </>
+    </Page>
    );
 }
 

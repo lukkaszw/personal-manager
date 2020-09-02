@@ -4,12 +4,12 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TaskRow from '../TaskRow';
 import NoDataFound from 'components/common/NoDataFound';
 import Pagination from 'components/common/Pagination';
+import ListContainer from 'components/common/ListContainer';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './TasksList.styles';
 import { useQuery } from 'react-query';
@@ -33,7 +33,7 @@ const TasksList = ({
 
   return ( 
     <div>
-      <TableContainer className={classes.tableContainer}>
+      <ListContainer>
         <Table className={classes.table} aria-label="tasks table">
           <TableHead>
             <TableRow className={classes.tr}>
@@ -94,7 +94,7 @@ const TasksList = ({
         {   
           dataNotFound && <NoDataFound />
         }
-      </TableContainer>
+      </ListContainer>
       <Pagination 
         hide={dataNotFound}
         count={Math.ceil(data.amount/pages.tasks.maxPerPage)} 
