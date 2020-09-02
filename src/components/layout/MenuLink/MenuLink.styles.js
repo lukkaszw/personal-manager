@@ -2,24 +2,33 @@ import styled from 'styled-components';
 
 export const Li = styled.li`
   display: inline-block;
-  height: 30px;
+  height: ${props => props.theme.sizes.header.normal.height};
+  font-family: 'Courgette',cursive;
 
   & > a {
     display: inline-block;
     padding: 0 10px;
-    height: 100%;
     color: ${props => props.theme.palette.font.secondary.darker};
     font-family: inherit;
     font-weight: 500;
-    font-size: 12px;
+    font-size: ${props => props.theme.sizes.header.normal.linkFont};
     text-decoration: none;
-    line-height: 30px;
+    line-height: ${props => props.theme.sizes.header.normal.height};
     transition: .2s;
   }
 
   &:hover > a, & > a.active {
     background-color: ${props => props.theme.palette.primary.darker};
     color: ${props => props.theme.palette.font.secondary.main};
+  }
+
+  @media (max-width: 640px) {
+    height: ${props => props.theme.sizes.header.small.height};
+    
+    & > a {
+      font-size: ${props => props.theme.sizes.header.small.linkFont};
+      line-height: ${props => props.theme.sizes.header.small.height};
+    }
   }
 `;
 

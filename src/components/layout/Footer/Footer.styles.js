@@ -8,7 +8,7 @@ export const FooterWrapper = styled.footer`
 export const CopyRights = styled.div`
   margin-top: 10px;
   text-align: center;
-  font-size: 12px;
+  font-size: ${props => props.theme.sizes.footer.copyright.font};
 `;
 
 export const CategoryPart = styled.div`
@@ -17,11 +17,11 @@ export const CategoryPart = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: ${props => props.theme.sizes.footer.categoryPart.icon.big};
 
   span, a {
     lin-height: 1;
-    font-size: 18px;
+    font-size: ${props => props.theme.sizes.footer.categoryPart.link.big};
     margin-left: 10px;
     color: ${props => props.theme.palette.font.secondary.main};
     text-decoration: none;
@@ -32,10 +32,10 @@ export const CategoryPart = styled.div`
   }
 
   @media (max-width: 800px) {
-    font-size: 20px;
+    font-size: ${props => props.theme.sizes.footer.categoryPart.icon.small};
 
     span, a {
-      font-size: 14px;
+      font-size: ${props => props.theme.sizes.footer.categoryPart.link.small};
     }
   }
 

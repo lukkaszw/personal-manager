@@ -120,16 +120,16 @@ export const MenuList = styled.ul`
 
   .mobileMenuLink {
     display: block;
-    width: 180px;
-    height: 28px;
+    width: ${props => props.theme.sizes.mobileMenu.linkWidth};
+    height: ${props => props.theme.sizes.mobileMenu.linkHeight};
     background-color: ${props => props.theme.palette.background.main};
     color: ${props => props.theme.palette.primary.darker};
-    font-size: 18px;
+    font-size:  ${props => props.theme.sizes.mobileMenu.font};
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 700;
     text-align: center;
-    line-height: 28px;
+    line-height: ${props => props.theme.sizes.mobileMenu.linkHeight};
     transform: skew(20deg);
     transition: .3s;
     box-shadow: -2px 2px 10px black;

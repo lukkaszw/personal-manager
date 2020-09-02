@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Content = styled.div`
+export const Content = styled.main`
   flex: 1;
   background-color: ${props => props.theme.palette.background.main};
 `;

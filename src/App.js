@@ -44,11 +44,7 @@ import moment from 'moment';
 
 moment.locale('pl');
 
-const materialUITheme = createMuiTheme({
-  palette: {
-    ...theme.palette,
-  }
-});
+const materialUITheme = createMuiTheme(theme);
 
 
 const Tasks = React.lazy(() => import('components/pages/Tasks'));

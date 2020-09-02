@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   color: ${props => props.theme.palette.font.secondary.main};
 
   &.active {
-    height: 100px;
+    height: ${props => props.theme.sizes.footer.footerContent.big};
   }
 
   @media (max-width: 600px) {
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
     justify-content: center;
 
     &.active {
-      height: 130px;
+      height: ${props => props.theme.sizes.footer.footerContent.small};
     }
   }
 `;

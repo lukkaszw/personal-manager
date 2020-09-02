@@ -42,7 +42,58 @@ const theme = {
     special: {
       titleBackground: 'linear-gradient(to right, #ffaa00, #f2e86d 10%, #22a726, #006ba6)',
     },
-  }
+  },
+  sizes: {
+    header: {
+      normal: {
+        height: '36px',
+        linkFont: '14px',
+      },
+      small: {
+        height: '30px',
+        linkFont: '12px',
+      },
+    },
+    mobileMenu: {
+      linkWidth: '180px',
+      linkHeight: '28px',
+      font: '16px',
+    },
+    footer: {
+      copyright: {
+        font: '12px',
+      },
+      iconButton: {
+        big: '42px',
+        small: '28px',
+        title: {
+          big: '18px',
+          small: '13px',
+        },
+      },
+      categoryPart: {
+        icon: {
+          big: '24px',
+          small: '20px',
+        },
+        link: {
+          big: '16px',
+          small: '14px',
+        }
+      },
+      footerContent: {
+        big: '100px',
+        small: '130px',
+      }
+    },
+    smallTitle: {
+      font: '22px',
+    }
+  },
+  fonts: {
+    primary: "Roboto', sans-serif",
+    decorative: "'Courgette',cursive",
+  },
 }
 
 export default theme;

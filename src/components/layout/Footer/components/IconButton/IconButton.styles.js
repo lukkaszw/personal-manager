@@ -6,7 +6,7 @@ export const Div = styled.div`
 `;
 
 export const Button = styled.button`
-  font-size: 42px;
+  font-size: ${props => props.theme.sizes.footer.iconButton.big};
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -21,7 +21,7 @@ export const Button = styled.button`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(.5);
-    font-size: 18px;
+    font-size: ${props => props.theme.sizes.footer.iconButton.title.big};
     opacity: 0;
     transition: .3s;
   }
@@ -36,10 +36,10 @@ export const Button = styled.button`
   }
 
   @media (max-width: 800px) {
-    font-size: 28px;
+    font-size: ${props => props.theme.sizes.footer.iconButton.small};
 
     .title {
-      font-size: 13px;
+      font-size:  ${props => props.theme.sizes.footer.iconButton.title.small};
     }
   }
 `;

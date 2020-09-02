@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     padding: '0 10px',
-    minHeight: '30px',
+    minHeight: theme.sizes.header.small.height,
     display: 'flex',
     justifyContent: 'space-between',
   },

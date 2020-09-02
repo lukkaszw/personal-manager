@@ -13,7 +13,7 @@ export const Root = styled.div`
 
 export const Title = styled.h3`
   display: inline-block;
-  font-size: 22px;
+  font-size: ${props => props.theme.sizes.smallTitle.font};
   font-family: 'Courgette',cursive;
   color: ${props => props.theme.palette.font.tertiary.main};
 `;

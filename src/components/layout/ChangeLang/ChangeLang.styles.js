@@ -19,7 +19,7 @@ export const Title = styled.h3`
 `;
 
 export const BtnsWrapper = styled.div`
-  margin: 0 auto;
+  margin: 0 auto 24px auto;
   width: 180px;
   display: flex;
   justify-content: space-around;
