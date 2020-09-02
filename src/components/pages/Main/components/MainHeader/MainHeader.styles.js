@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
 export const Root = styled.header`
-  margin: 20px 0;
+  margin-bottom: ${props => props.theme.margins.normal};
   text-align: center;
 `;
 
 export const Title = styled.h1`
-  margin: 0 auto 40px auto;
+  margin: 0 auto ${props => props.theme.margins.normal} auto;
   padding: 6px 0;
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 2px;
-  font-size: 22px;
+  font-size: ${props => props.theme.sizes.title.big};
   width: 80%;
   transform: skew(-30deg);
   background-image: ${props => props.theme.palette.special.titleBackground};
@@ -25,7 +25,7 @@ export const Title = styled.h1`
   }
 
   @media (max-width: 600px) {
-    font-size: 18px;
+    font-size: ${props => props.theme.sizes.title.small};
     padding: 5px 0;
     width: 95%;
   }
@@ -34,9 +34,11 @@ export const Title = styled.h1`
 export const Image = styled.img`
   height: 38vh;
   min-height: 180px;
-`;
+  max-width: 80%;
 
-export const ButtonWrapper = styled.div`
-  margin: 20px 0;
-  text-align: center;
+  @media (max-width: 600px) {
+    height: auto;
+    min-height: auto;
+    width: 60vw;
+  }
 `;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import SmallTitle from 'components/common/SmallTitle';
-import { ModalContainer, Title, BtnsWrapper } from './ChangeLang.styles';
+import { ModalContainer, BtnsWrapper } from './ChangeLang.styles';
 import { useTranslation } from 'react-i18next';
 
 const ChangeLang = ({ isOpen, onClose }) => {

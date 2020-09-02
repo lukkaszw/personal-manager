@@ -1,3 +1,7 @@
+const headerHeight = '36px';
+const smallHeaderHeight = '30px';
+const stretchedFooterHeight = '215px';
+
 const theme = {
   palette: {
     primary: {
@@ -44,13 +48,19 @@ const theme = {
     },
   },
   sizes: {
+    pageHeight: {
+      // min. page height for big screen = 100vh - header height - stretched footer height
+      big: `calc(100vh - ${headerHeight} - ${stretchedFooterHeight})`,
+      //min. page height for small screen = 100vh - header height
+      small: `calc(100vh - ${smallHeaderHeight})`,
+    },
     header: {
       normal: {
-        height: '36px',
+        height: headerHeight,
         linkFont: '14px',
       },
       small: {
-        height: '30px',
+        height: smallHeaderHeight,
         linkFont: '12px',
       },
     },
@@ -86,14 +96,23 @@ const theme = {
         small: '130px',
       }
     },
+    title: {
+      big: '22px',
+      small: '18px',
+    },
     smallTitle: {
       font: '22px',
-    }
+    },
   },
   fonts: {
     primary: "Roboto', sans-serif",
     decorative: "'Courgette',cursive",
   },
+  margins: {
+    small: '16px',
+    normal: '24px',
+    big: '36px',
+  }
 }
 
 export default theme;
