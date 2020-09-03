@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SELECTORS from 'store/selectors';
+import Page from 'components/layout/Page';
 import ACTION_CREATORS from 'store/actionCreators';
 import CalendarData from './components/CalendarData';
 
 const Calendar = ({ token, month, year, onChangeMonth, onResetLoading }) => {
 
-
-  return ( 
-    <CalendarData 
-      token={token}
-      month={month}
-      year={year}
-      onResetLoading={onResetLoading}
-      onChangeMonth={onChangeMonth}
-    />
+  return (
+    <Page>
+      <CalendarData 
+        token={token}
+        month={month}
+        year={year}
+        onResetLoading={onResetLoading}
+        onChangeMonth={onChangeMonth}
+      />
+    </Page> 
   );
 }
 
