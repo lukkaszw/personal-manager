@@ -2,14 +2,16 @@ import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Form, Field } from 'react-final-form';
-import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormSubmitBtns from 'components/common/FormSubmitBtns';
+import SmallTitle from 'components/common/SmallTitle';
+import FormFieldRow from 'components/common/FormFieldRow';
+import CustomTextField from 'components/common/CustomTextField';
 import PropTypes from 'prop-types';
-import { Root, FieldContent, useStyles } from './NoteForm.styles';
+import { Root, useStyles } from './NoteForm.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
@@ -43,30 +45,36 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
   return ( 
     <Root>
       <LoaderIndicator isOpen={isSending}/>
+      <SmallTitle 
+        margin="smallBottom"
+        title={isForEdit ? initialValues.title : t('Add a note')}
+      />
       <Form
         onSubmit={handleSubmit}
         initialValues={initialValues}
         validate={validateNote}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
+
             <Field name="title">
               {({ input, meta }) => (
-                <FieldContent>
-                  <TextField 
+                <FormFieldRow>
+                  <CustomTextField 
                     fullWidth={true}
                     {...input}
                     label={t('Title')}
                     placeholder={t('Title')}
                     error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && 
-                    (meta.error === 'Required' ? t('Required') : meta.error)}
+                    helperText={(meta.error && meta.touched) ? 
+                    (meta.error === 'Required' ? t('Required') : meta.error) : <>&nbsp;</>}
                   />
-                </FieldContent>
+                </FormFieldRow>
               )}
             </Field>
+
             <Field name="priority">
               {({ input, meta }) => (
-                <FieldContent>
+                <FormFieldRow>
                   <FormControl>
                     <InputLabel id="priority-note-label">{t('Priority')}</InputLabel>
                     <Select
@@ -87,12 +95,13 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
                       }
                     </Select>
                   </FormControl>
-                </FieldContent>
+                </FormFieldRow>
               )}
             </Field>
+
             <Field name="category">
               {({ input, meta }) => (
-                <FieldContent>
+                <FormFieldRow bigMargin>
                   <FormControl>
                     <InputLabel id="category-note-label">{t('Category')}</InputLabel>
                     <Select
@@ -118,25 +127,26 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
                       }
                     </Select>
                   </FormControl>
-                </FieldContent>
+                </FormFieldRow>
               )}
             </Field>
+
             <Field name="description">
               {({ input, meta }) => (
-                <FieldContent>
-                  <TextField 
+                <FormFieldRow>
+                  <CustomTextField 
                     fullWidth={true}
                     multiline={true}
-                    rows={15}
+                    rows={10}
                     variant='outlined'
                     {...input}
                     label={t('Description')}
                     placeholder={t('Description')}
                     error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && 
-                    (meta.error === 'Required' ? t('Required') : meta.error)}
+                    helperText={(meta.error && meta.touched) ? 
+                    (meta.error === 'Required' ? t('Required') : meta.error) : <>&nbsp;</>}
                   />
-                </FieldContent>
+                </FormFieldRow>
               )}
             </Field>
 
@@ -146,6 +156,7 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
               submitDescription={isForEdit ? 'Edit note' : 'Add note'}
               disabled={isSending}
             />
+            
           </form>
         )}
       />

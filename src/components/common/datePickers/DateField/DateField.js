@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { KeyboardDatePicker } from '@material-ui/pickers';
+import { CustomDatePicker } from '../CustomDatePicker.styles';
 import useReactFinalForm from '../useReactFinalForm';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,7 @@ const DateField = props => {
     onBlur } = useReactFinalForm(props);
 
   return (
-    <KeyboardDatePicker
+    <CustomDatePicker
       {...inputProps}
       {...others}
       autoOk={true}

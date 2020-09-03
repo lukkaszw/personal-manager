@@ -4,19 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles({
   select: {
     width: '130px',
-  }
+  },
 });
 
 export const Root = styled.div`
-  max-width: 600px;
-  margin: 50px auto;
-
-  @media (max-height: 800px) {
-    margin: 20px auto;
-  }
-`;
-
-export const FieldContent = styled.div`
-  min-height: 70px;
-  margin: 20px 0;
+  width: ${props => props.theme.sizes.formsWidth.task};
+  max-width: 100%;
 `;

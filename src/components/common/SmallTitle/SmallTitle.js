@@ -14,7 +14,7 @@ const SmallTitle = ({ margin, title, textAlign }) => {
 }
 
 SmallTitle.propTypes = {
-  margin: PropTypes.oneOf(['small', 'normal', 'big']),
+  margin: PropTypes.oneOf(['none', 'small', 'normal', 'big', 'smallBottom', 'normalBottom']),
   title: PropTypes.string.isRequired,
   textAlign: PropTypes.oneOf(['center', 'right', 'left']),
 };

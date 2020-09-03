@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Page from 'components/layout/Page';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
 import SELECTORS from 'store/selectors';
 
@@ -11,12 +12,14 @@ const TaskEdit = ({ token }) => {
   const { id } = useParams();
 
   return ( 
-    <SuspenseErrorBundary>
-      <TaskEditData
-        token={token} 
-        id={id}
-      />
-    </SuspenseErrorBundary>
+    <Page centeredContent>
+      <SuspenseErrorBundary>
+        <TaskEditData
+          token={token} 
+          id={id}
+        />
+      </SuspenseErrorBundary>
+    </Page>
    );
 }
 

@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import ActionsPanel from 'components/common/ActionsPanel';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import SmallTitle from 'components/common/SmallTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
@@ -64,7 +64,11 @@ const QuerySettings = ({
         onClose={handleCloseSettings}
         aria-labelledby='query-settings'
       >
-        <DialogTitle id="query-settings">{t('Tasks settings')}</DialogTitle>
+        <SmallTitle 
+          margin="small"
+          title={t('Tasks settings')}
+          id="query-settings"
+        />
         <DialogContent>
           <Form noValidate>
             <div>

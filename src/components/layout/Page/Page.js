@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Root } from './Page.styles';
 
-const Page = ({ children }) => {
+const Page = ({ children, centeredContent  }) => {
   return ( 
-    <Root>
+    <Root centeredContent={centeredContent}>
       {children}
     </Root>
    );
 }
  
+Page.propTypes = {
+  centeredContent: PropTypes.bool,
+};
+
 export default Page;

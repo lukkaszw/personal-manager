@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Page from 'components/layout/Page';
 import TaskForm from 'components/common/TaskForm';
 import API from 'store/api';
 import SELECTORS from 'store/selectors';
@@ -23,11 +24,13 @@ const TaskAdd = ({ token }) => {
   };
 
   return ( 
-    <TaskForm 
-      token={token}
-      apiAction={API.tasks.addTask}
-      initialValues={initialValues}
-    />
+    <Page centeredContent>
+      <TaskForm 
+        token={token}
+        apiAction={API.tasks.addTask}
+        initialValues={initialValues}
+      />
+    </Page>
    );
 }
 

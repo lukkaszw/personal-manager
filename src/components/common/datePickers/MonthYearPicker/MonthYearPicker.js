@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { KeyboardDatePicker } from "@material-ui/pickers";
+import { CustomDatePicker } from '../CustomDatePicker.styles';
 import useReactFinalForm from '../useReactFinalForm';
 
 const MonthYearPicker = (props) => {
@@ -16,7 +16,7 @@ const MonthYearPicker = (props) => {
     onBlur } = useReactFinalForm(props);
 
   return ( 
-    <KeyboardDatePicker
+    <CustomDatePicker
       {...inputProps}
       {...others}
       autoOk={true}
@@ -30,6 +30,9 @@ const MonthYearPicker = (props) => {
       onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
       disabled={submitting}
       onChange={onChange}
+      inputProps={{
+        width: '100px',
+      }}
     />
    );
 }
