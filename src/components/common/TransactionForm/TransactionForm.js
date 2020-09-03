@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import TextField from '@material-ui/core/TextField';
 import DateField from 'components/common/datePickers/DateField';
 import FormControl from '@material-ui/core/FormControl';
 import FormSubmitBtns from 'components/common/FormSubmitBtns';
@@ -11,6 +10,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
 import Modal from '@material-ui/core/Modal';
 import { useTranslation } from 'react-i18next';
+import CustomTextField from 'components/common/CustomTextField'
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { 
   Root, 
@@ -90,14 +90,14 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
                 <FieldContainer>
                   <Field name="description">
                     {({ input, meta }) => (
-                      <TextField 
+                      <CustomTextField 
                         fullWidth={true}
                         {...input}
                         label={t('Description')}
                         placeholder={t('Description')}
                         error={meta.error && meta.touched}
-                        helperText={(meta.error && meta.touched) && 
-                        (meta.error === 'Required' ? t('Required') : meta.error)}
+                        helperText={(meta.error && meta.touched) ? 
+                        (meta.error === 'Required' ? t('Required') : meta.error) : <>&nbsp;</>}
                       />
                     )}
                   </Field>
@@ -164,7 +164,7 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
                 <CostContainer align="right">
                   <Field name="cost">
                     {({ input, meta }) => (
-                      <TextField 
+                      <CustomTextField 
                         className={classes.costInput}
                         fullWidth={true}
                         {...input}
@@ -179,7 +179,7 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
                             min: 0,
                           },
                         }}
-                        helperText={(meta.error && meta.touched) && t(meta.error)}
+                        helperText={(meta.error && meta.touched) ? t(meta.error) : <>&nbsp;</>}
                       />
                       )}
                   </Field>  

@@ -1,6 +1,7 @@
 const headerHeight = '36px';
 const smallHeaderHeight = '30px';
 const stretchedFooterHeight = '215px';
+const smallFooterHeight = '100px';
 
 const theme = {
   palette: {
@@ -52,7 +53,7 @@ const theme = {
       // min. page height for big screen = 100vh - header height - stretched footer height
       big: `calc(100vh - ${headerHeight} - ${stretchedFooterHeight})`,
       //min. page height for small screen = 100vh - header height
-      small: `calc(100vh - ${smallHeaderHeight})`,
+      small: `calc(100vh - ${smallHeaderHeight} - ${smallFooterHeight})`,
     },
     header: {
       normal: {
@@ -101,7 +102,13 @@ const theme = {
       small: '18px',
     },
     smallTitle: {
-      font: '22px',
+      font: '20px',
+    },
+    formsWidth: {
+      budget: '320px',
+      note: '600px',
+      task: '600px',
+      transaction: '280px',
     },
   },
   fonts: {

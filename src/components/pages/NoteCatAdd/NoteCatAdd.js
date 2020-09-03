@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NotesCatForm from 'components/common/NotesCatForm';
+import Page from 'components/layout/Page';
 import SELECTORS from 'store/selectors';
 import API from 'store/api';
 
@@ -12,11 +13,13 @@ const NoteCatAdd = ({ token }) => {
   };
 
   return ( 
-    <NotesCatForm 
-      token={token}
-      initialValues={initialValues}
-      apiAction={API.notes.addNoteCategory}
-    />
+    <Page centeredContent>
+      <NotesCatForm 
+        token={token}
+        initialValues={initialValues}
+        apiAction={API.notes.addNoteCategory}
+      />
+    </Page>
   );
 }
 

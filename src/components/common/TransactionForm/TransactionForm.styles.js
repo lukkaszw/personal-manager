@@ -14,7 +14,7 @@ export const Root = styled.div`
   max-height: 98vh;
   transform: translate(-50%, -50%);
   padding: 10px 20px;
-  width: 280px;
+  width: ${props => props.theme.sizes.formsWidth.transaction};
   background-color: ${props => props.theme.palette.background.main};
   border-radius: 5px;
   overflow-y: auto;
@@ -25,16 +25,14 @@ export const Root = styled.div`
 `;
 
 export const FieldContainer = styled.div`
-  min-height: 69px;
+  min-height: 65px;
 `;
 
 export const CostContainer = styled.div`
-  min-height: 60px;
-  margin: 24px 0;
+  margin: 16px 0;
   text-align: right;
 
   @media (max-height: 430px) {
-    min-height: 50px;
     margin-top: 0;
     margin-bottom: 10px;
   }

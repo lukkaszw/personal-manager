@@ -2,10 +2,9 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { Form, Field } from 'react-final-form';
-import TextField from '@material-ui/core/TextField';
+import CustomTextField from 'components/common/CustomTextField';
 import FormSubmitBtns from 'components/common/FormSubmitBtns';
 import SmallTitle from 'components/common/SmallTitle';
-import { Root } from './NotesCatForm.styles';
 import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -34,11 +33,11 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id, category
   const handleSubmit = useCallback((data) => submitAction({ data, token, id }), [submitAction, token, id]);
 
   return ( 
-    <Root>
+    <div>
       <LoaderIndicator isOpen={isSending} />
       <SmallTitle 
-        title={isForEdit ? categoryName : t('New category')}
-        margin="big"
+        title={isForEdit ? categoryName : t('Add notes category')}
+        margin="normalBottom"
       />
       <Form
         onSubmit={handleSubmit}
@@ -46,16 +45,17 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id, category
         validate={validateNoteCat}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
+
             <Field name="name">
               {({ input, meta }) => (
-                  <TextField 
+                  <CustomTextField 
                     fullWidth={true}
                     {...input}
                     label={t('Category name')}
                     placeholder={t('Category name')}
                     error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && 
-                    (meta.error === 'Required' ? t('Required') : meta.error)}
+                    helperText={(meta.error && meta.touched) ? 
+                    (meta.error === 'Required' ? t('Required') : meta.error) : <>&nbsp;</>}
                   />
               )}
             </Field>
@@ -67,11 +67,12 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id, category
               submitDescription={isForEdit ? 'Edit category' : 'Add category'}
               center={true}
             />
+            
           </form>
         )}
       />
       {children}
-    </Root>
+    </div>
    );
 }
 

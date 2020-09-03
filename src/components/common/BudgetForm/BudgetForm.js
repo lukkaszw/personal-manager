@@ -2,18 +2,21 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
-import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
+import CustomTextField from 'components/common/CustomTextField';
+import FormFieldRow from 'components/common/FormFieldRow';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormSubmitBtns from 'components/common/FormSubmitBtns';
 import MonthYearPicker from 'components/common/datePickers/MonthYearPicker';
+import SmallTitle from 'components/common/SmallTitle';
 import { 
   Root, ErrorsWrapper, 
-  FieldContent, CategoryField, CategoryLabel, ImportantText,
+  CategoryField, CategoryLabel, ImportantText,
   useStyles,  } from './BudgetForm.styles';
 import { TYPE, TYPE_ } from 'utils/budget.statuses';
 import { useTranslation } from 'react-i18next';
@@ -59,6 +62,10 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
 
   return ( 
     <Root>
+      <SmallTitle 
+        margin="smallBottom"
+        title={isForEdit ? initialValues.name : t('Add a budget')}
+      />
       <Form
         onSubmit={handleSubmit}
         initialValues={initialValues}
@@ -71,69 +78,75 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
 
           return (
             <form onSubmit={handleSubmit}>
+              
               <Field name="name">      
                 {({ input, meta }) => (
-                  <FieldContent>
-                    <TextField 
+                  <FormFieldRow>
+                    <CustomTextField 
                       fullWidth={true}
                       {...input}
                       label={t('Budget name')}
                       placeholder={t('Budget name')}
                       error={meta.error && meta.touched}
-                      helperText={(meta.error && meta.touched) && 
-                      (meta.error === 'Required' ? t('Required') : meta.error)}
+                      helperText={(meta.error && meta.touched) ?
+                      (meta.error === 'Required' ? t('Required') : meta.error) : <>&nbsp;</>}
                     />
-                  </FieldContent>
+                  </FormFieldRow>
                 )}
               </Field>
-              <Field name="type" parse = {value => parseInt(value)}>
-                  {({ input, meta }) => (
-                    <FieldContent>
-                      <FormControl>
-                      <InputLabel id="budget-type-label">{t('Type')}</InputLabel>
-                      <Select
-                        className={classes.select}
-                        labelId="budget-type-label"
-                        id="budget-type-select"
-                        {...input}
-                        onChange={(e) => {
-                          input.onChange(e);
-                          setType(Number(e.target.value));
-                        }}
-                      >
-                        {
-                          Object.entries(TYPE).map(([value, text]) => (
-                            <MenuItem 
-                              key={text}
-                              value={value}
-                            >
-                              {t(text)}
-                            </MenuItem>
-                          ))
-                        }
-                      </Select>
-                    </FormControl>
-                  </FieldContent>
-                )}
-              </Field>
-              {
-                type === TYPE_.monthly &&
-                  <Field name="date">
-                    {(props) => (     
-                      <FieldContent>
-                          <MonthYearPicker 
-                            {...props}
-                            label={t('Budget for')}
-                            minDate={minDate}
-                          />
-                      </FieldContent>
+
+              <FormFieldRow inlineGroup>
+
+                <div>
+                  <Field name="type" parse = {value => parseInt(value)}>
+                    {({ input, meta }) => (
+                      
+                        <FormControl>
+                        <InputLabel id="budget-type-label">{t('Type')}</InputLabel>
+                        <Select
+                          className={classes.select}
+                          labelId="budget-type-label"
+                          id="budget-type-select"
+                          {...input}
+                          onChange={(e) => {
+                            input.onChange(e);
+                            setType(Number(e.target.value));
+                          }}
+                        >
+                          {
+                            Object.entries(TYPE).map(([value, text]) => (
+                              <MenuItem 
+                                key={text}
+                                value={value}
+                              >
+                                {t(text)}
+                              </MenuItem>
+                            ))
+                          }
+                        </Select>
+                      </FormControl>
                     )}
                   </Field>
-              }
+                </div>
+
+                {
+                  type === TYPE_.monthly &&
+                    <Field name="date">
+                      {(props) => (     
+                        <MonthYearPicker 
+                          {...props}
+                          label={t('for month')}
+                          minDate={minDate}
+                        />
+                      )}
+                    </Field>
+                }
+              </FormFieldRow>
+
               <Field name="totalAmount">
                 {({ input, meta }) => (
-                    <FieldContent>
-                      <TextField 
+                    <FormFieldRow>
+                      <CustomTextField 
                         className={classes.totalAmountInput}
                         fullWidth={true}
                         {...input}
@@ -148,11 +161,12 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                             min: 0,
                           },
                         }}
-                        helperText={(meta.error && meta.touched) && t(meta.error)}
+                        helperText={(meta.error && meta.touched) ? t(meta.error) : <>&nbsp;</>}
                       />
-                    </FieldContent>
+                    </FormFieldRow>
                   )}
               </Field>
+
               {
                 categories.map(category => (
                   <Field 
@@ -164,7 +178,7 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                         <CategoryLabel htmlFor={category.name}>
                           {t(category.name)}
                         </CategoryLabel>
-                        <TextField 
+                        <CustomTextField 
                           className={classes.catInput}
                           {...input}
                           onChange={(e) => parseMoneyInput(e.target.value, input.onChange)}
@@ -184,11 +198,16 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                   </Field>
                 ))
               }
-              <Divider />
+
+              <Box my={2}>
+                <Divider/>
+              </Box>
+              
               <CategoryField >
                 <ImportantText>{t('Planned savings')}: </ImportantText>
                 <span>{savingText} zł</span>
               </CategoryField >
+
               <ErrorsWrapper>
                 <p>
                   {errors.toBigSum ? t(errors.toBigSum) : ''}
@@ -197,8 +216,10 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
                   {errors.negative ? t(errors.negative) : ''}
                 </p>
               </ErrorsWrapper>
+
               <FormSubmitBtns 
                 onCancel={history.goBack}
+                smallMargin={true}
                 isForEdit={isForEdit}
                 submitDescription={isForEdit ? 'Edit budget' : 'Add budget'}
                 disabled={submitting || isSending}

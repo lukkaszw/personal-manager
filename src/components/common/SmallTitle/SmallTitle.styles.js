@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 const margins = {
-  small: '16px',
+  none: '0',
+  small: '12px',
   normal: '24px',
   big: '36px',
+  smallBottom: '0 0 12px',
+  normalBottom: '0 0 24px',
 };
 
 export const Root = styled.div`

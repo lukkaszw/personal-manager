@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
+import Page from 'components/layout/Page';
 import PropTypes from 'prop-types';
 import SELECTORS from 'store/selectors';
 
@@ -11,13 +12,15 @@ const NoteEdit = ({ token }) => {
   
   const { id } = useParams();
 
-  return ( 
-    <SuspenseErrorBundary>
-      <NoteEditData 
-        id={id}
-        token={token}
-      />
-    </SuspenseErrorBundary>
+  return (
+    <Page centeredContent>
+      <SuspenseErrorBundary>
+        <NoteEditData 
+          id={id}
+          token={token}
+        />
+      </SuspenseErrorBundary>
+    </Page>
   );
 }
 

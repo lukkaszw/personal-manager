@@ -9,20 +9,6 @@ export const useStyles = makeStyles({
 
 
 export const Root = styled.div`
-  min-height: calc(100vh - 36px - 112px);
-  padding: 18px 0;
-`;
-
-export const FieldContent = styled.div`
-  min-height: 70px;
-  margin: 20px 0;
-`;
-
-export const ButtonWrapper = styled.div`
-  margin-top: 30px;
-  text-align: right;
-
-  & > * {
-    margin-right: 10px;
-  }
+  width: ${props => props.theme.sizes.formsWidth.note};
+  max-width: 100%;
 `;

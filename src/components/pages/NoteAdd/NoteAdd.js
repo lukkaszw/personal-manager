@@ -2,18 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NoteAddData from './components/NoteAddData';
+import Page from 'components/layout/Page';
 import SuspenseErrorBundary from 'components/common/SuspenseErrorBundary';
 import SELECTORS from 'store/selectors';
 
 const NoteAdd = ({ token }) => {
 
   return ( 
-    <SuspenseErrorBundary>
-      <NoteAddData 
-        token={token}
-      />
-    </SuspenseErrorBundary>
-   );
+    <Page centeredContent>
+      <SuspenseErrorBundary>
+        <NoteAddData 
+          token={token}
+        />
+      </SuspenseErrorBundary>
+    </Page>
+  );
 }
 
 NoteAdd.propTypes = {

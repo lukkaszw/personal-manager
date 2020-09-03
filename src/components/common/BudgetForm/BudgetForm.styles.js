@@ -14,20 +14,16 @@ export const useStyles = makeStyles({
 });
 
 export const Root = styled.div`
-  max-width: 300px;
-  margin: 30px auto;
-`;
-
-export const FieldContent = styled.div`
-  min-height: 70px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  width: ${props => props.theme.sizes.formsWidth.budget};
+  max-width: 100%;
 `;
 
 export const CategoryField = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 20px 0;
+  margin: 6px 0;
 `;
 
 export const CategoryLabel = styled.label`
@@ -36,9 +32,13 @@ export const CategoryLabel = styled.label`
 
 export const ErrorsWrapper = styled.div`
   color: red;
-  text-align: right;
+  text-align: center;
   font-size: 12px;
-  height: 40px;
+  height: 30px;
+
+  p {
+    line-height: 14px;
+  }
 `;
 
 export const ImportantText = styled.span`

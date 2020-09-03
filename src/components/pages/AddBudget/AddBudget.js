@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SuspenseErroBundary from 'components/common/SuspenseErrorBundary';
+import Page from 'components/layout/Page';
 import PropTypes from 'prop-types';
 import SELECTORS from 'store/selectors';
 
@@ -9,11 +10,13 @@ const AddBudgetData= React.lazy(() => import('./components/AddBudgetData'));
 const AddBudget = ({ token }) => {
 
   return ( 
-    <SuspenseErroBundary>
-      <AddBudgetData 
-        token={token}
-      />
-    </SuspenseErroBundary>
+    <Page centeredContent>
+      <SuspenseErroBundary>
+        <AddBudgetData 
+          token={token}
+        />
+      </SuspenseErroBundary>
+    </Page>
    );
 }
 
