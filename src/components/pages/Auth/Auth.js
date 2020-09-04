@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Root, InputWrapper, ButtonWrapper, useStyles, DividedLine, Info } from './Auth.styles';
 import { TEXTS } from './data';
+import CustomTextField from 'components/common/CustomTextField';
 import { useTranslation } from 'react-i18next';
 import useAuthForm from './useAuthForm';
+import Page from 'components/layout/Page';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import ResponseModal from 'components/common/ResponseModal';
 
@@ -39,133 +40,132 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
   const modalMessage = Messages[errorCode];
 
   return ( 
-    <Root>
-      <div>
-        
-      </div>
-      <LoaderIndicator isOpen={isSending} />
-      <ResponseModal 
-        isOpen={isModalOpen}
-        isError={!!errorCode}
-        title={modalTitle}
-        message={modalMessage}
-        onClose={resetAction}
-      />
-      <Form
-        onSubmit={onSubmit}
-        validate={validateInputs}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
-          <form onSubmit={handleSubmit}>
-            <Field name="login">
-              {({ input, meta }) => (
-                <InputWrapper>
-                  <TextField 
-                    {...input}
-                    className={classes.input}
-                    label="Email"
-                    placeholder='Email'
-                    error={meta.error && meta.touched}
-                  />
-                </InputWrapper>
-              )}
-            </Field>
-            <Field name="password">
-              {({ input, meta }) => (
-                <InputWrapper>
-                  <TextField 
-                    {...input}
-                    className={classes.input}
-                    placeholder={t("Password")}
-                    label={t("Password")}
-                    type="password"
-                    error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && 
-                    t(meta.error)}
-                  />
-                </InputWrapper>
-              )}
-            </Field>
-            {
-              formDestination === 'register' &&
-                <>
+    <Page centeredContent>
+      <Root>
+        <LoaderIndicator isOpen={isSending} />
+        <ResponseModal 
+          isOpen={isModalOpen}
+          isError={!!errorCode}
+          title={modalTitle}
+          message={modalMessage}
+          onClose={resetAction}
+        />
+        <Form
+          onSubmit={onSubmit}
+          validate={validateInputs}
+          render={({ handleSubmit, form, submitting, pristine, values }) => (
+            <form onSubmit={handleSubmit}>
+              <Field name="login">
+                {({ input, meta }) => (
                   <InputWrapper>
-                    <Field name="confirmPassword">
-                      {({ input, meta }) => (
-                        <div>
-                          <br/>
-                          <TextField 
-                            {...input}
-                            className={classes.input}
-                            placeholder={t("Confirm password")}
-                            type="password"
-                            error={meta.error && meta.touched}
-                          />
-                        </div>
-                      )}
-                    </Field>
+                    <CustomTextField 
+                      {...input}
+                      className={classes.input}
+                      label="Email"
+                      placeholder='Email'
+                      error={(meta.error && meta.touched)}
+                    />
                   </InputWrapper>
+                )}
+              </Field>
+              <Field name="password">
+                {({ input, meta }) => (
+                  <InputWrapper>
+                    <CustomTextField 
+                      {...input}
+                      className={classes.input}
+                      placeholder={t("Password")}
+                      label={t("Password")}
+                      type="password"
+                      error={meta.error && meta.touched}
+                      helperText={(meta.error && meta.touched) &&
+                      t(meta.error)}
+                    />
+                  </InputWrapper>
+                )}
+              </Field>
+              {
+                formDestination === 'register' &&
+                  <>
+                    <InputWrapper>
+                      <Field name="confirmPassword">
+                        {({ input, meta }) => (
+                          <div>
+                            <br/>
+                            <CustomTextField 
+                              {...input}
+                              className={classes.input}
+                              placeholder={t("Confirm password")}
+                              type="password"
+                              error={meta.error && meta.touched}
+                            />
+                          </div>
+                        )}
+                      </Field>
+                    </InputWrapper>
 
-                  <DividedLine />
+                    <DividedLine />
 
-                  <Field name="name">
-                      {({ input, meta }) => (
-                        <InputWrapper>
-                          <TextField 
-                            {...input}
-                            className={classes.input}
-                            label={t("Name")}
-                            placeholder={t("Name")}
-                            error={meta.error && meta.touched}
-                          />
-                        </InputWrapper>
-                      )}
-                  </Field>
-                  <Field name="surname">
-                      {({ input, meta }) => (
-                        <InputWrapper>
-                        <TextField 
-                            {...input}
-                            className={classes.input}
-                            label={t("Surname")}
-                            placeholder={t("Surname")}
-                            error={meta.error && meta.touched}
-                          />
-                        </InputWrapper>
-                      )}
-                  </Field>
-                </>
-            }
-            <ButtonWrapper>
-              <Button 
-                size="small"
-                variant="contained"
-                color="primary"
-                type="submit" 
-                disabled={isSending}
-              >
-                {t(TEXTS[formDestination].submitBtnText)}
-              </Button>
-            </ButtonWrapper>
-          </form>
-        )}
-      />
-      <ButtonWrapper>
-        <p>
-          {t(TEXTS[formDestination].question)}
-        </p>
-        <Button 
-          size="small"
-          color="secondary"
-          onClick={changeDestination}
-        >
-          {t(TEXTS[formDestination].switchBtnText)}
-        </Button>
-      </ButtonWrapper>
-      <Info>
-        {`${t('This app was created only for development purpose')}. 
-        ${t('You can register nonexistent email address for testing')}`}! 
-      </Info>
-    </Root>
+                    <Field name="name">
+                        {({ input, meta }) => (
+                          <InputWrapper>
+                            <CustomTextField 
+                              {...input}
+                              className={classes.input}
+                              label={t("Name")}
+                              placeholder={t("Name")}
+                              error={meta.error && meta.touched}
+                            />
+                          </InputWrapper>
+                        )}
+                    </Field>
+                    <Field name="surname">
+                        {({ input, meta }) => (
+                          <InputWrapper>
+                            <CustomTextField 
+                              {...input}
+                              className={classes.input}
+                              label={t("Surname")}
+                              placeholder={t("Surname")}
+                              error={meta.error && meta.touched}
+                            />
+                          </InputWrapper>
+                        )}
+                    </Field>
+                  </>
+              }
+              <ButtonWrapper>
+                <Button 
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  type="submit" 
+                  disabled={isSending}
+                >
+                  {t(TEXTS[formDestination].submitBtnText)}
+                </Button>
+              </ButtonWrapper>
+            </form>
+          )}
+        />
+        <ButtonWrapper>
+          <p>
+            {t(TEXTS[formDestination].question)}
+          </p>
+          <Button 
+            size="small"
+            color="secondary"
+            onClick={changeDestination}
+          >
+            {t(TEXTS[formDestination].switchBtnText)}
+          </Button>
+        </ButtonWrapper>
+        <Info>
+          {`${t('This app was created only for development purpose')}. 
+          ${t('You can register nonexistent email address for testing')}`}! 
+        </Info>  
+      </Root>
+    </Page>
    );
 }
 

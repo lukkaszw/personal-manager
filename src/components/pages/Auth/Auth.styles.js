@@ -8,13 +8,7 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 export const Root = styled.div`
-  min-height: 73vh;
-  padding: 20px 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 `;
 
 export const InputWrapper = styled.div`
