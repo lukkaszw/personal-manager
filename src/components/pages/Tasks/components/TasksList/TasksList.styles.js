@@ -8,8 +8,16 @@ export const useStyles = makeStyles({
     textAlign: 'center',
     maxWidth: '100%',
   },
+  statuses: {
+    '@media (max-width: 510px)': {
+      maxWidth: '55px',
+    },
+  },
   cell: {
     textAlign: 'center',
+    '@media (max-width: 510px)': {
+      padding: '14px 8px',
+    },
   },
   statusCell: {
     fontWeight: 'bold',
@@ -18,19 +26,38 @@ export const useStyles = makeStyles({
   nr: {
     width: '20px',
     padding: 0,
+    '@media (max-width: 510px)': {
+      display: 'none',
+    },
   },  
   titleCell: {
-    minWidth: '120px',
+    minWidth: '100px',
+    '@media (max-width: 510px)': {
+      textAlign: 'left',
+    },
   }, 
   title: {
     maxWidth: '150px',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    '@media (max-width: 510px)': {
+      textAlign: 'left',
+      maxWidth: '100px',
+    },
   },
   bold: {
     fontWeight: 'bold',
     width: '100px',
+  },
+  sortLabel: {
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    '@media (max-width: 510px)': {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
   },
 });
 

@@ -42,6 +42,7 @@ const TasksList = ({
                 className={clsx([classes.cell, classes.titleCell])}
               >
                 <TableSortLabel
+                  className={classes.sortLabel}
                   active={sortBy === 'title'}
                   direction={sortBy === 'title' ? sortOrder : 'asc'}
                   onClick={() => onChangeSort('title')}
@@ -49,8 +50,9 @@ const TasksList = ({
                   {t('Title')}
                 </TableSortLabel>
               </TableCell>
-              <TableCell  className={classes.cell}>
+              <TableCell  className={clsx([classes.cell, classes.statuses])}>
                 <TableSortLabel
+                    className={classes.sortLabel}
                     active={sortBy === 'priority'}
                     direction={sortBy === 'priority' ? sortOrder : 'asc'}
                     onClick={() => onChangeSort('priority')}
@@ -58,8 +60,9 @@ const TasksList = ({
                     {t('Priority')}
                   </TableSortLabel>
               </TableCell>
-              <TableCell  className={classes.cell}>
+              <TableCell  className={clsx([classes.cell, classes.statuses])}>
                   <TableSortLabel
+                    className={classes.sortLabel}
                     active={sortBy === 'status'}
                     direction={sortBy === 'status' ? sortOrder : 'asc'}
                     onClick={() => onChangeSort('status')}
@@ -69,6 +72,7 @@ const TasksList = ({
               </TableCell>
               <TableCell  className={classes.cell}>
                 <TableSortLabel
+                  className={classes.sortLabel}
                   active={sortBy === 'endDate'}
                   direction={sortBy === 'endDate' ? sortOrder : 'asc'}
                   onClick={() => onChangeSort('endDate')}
