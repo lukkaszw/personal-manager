@@ -2,15 +2,16 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
-import TextField from '@material-ui/core/TextField';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import FormSubmitBtns from 'components/common/FormSubmitBtns';
+import CustomTextField from 'components/common/CustomTextField';
+import FormFieldRow from 'components/common/FormFieldRow';
 import SmallTitle from 'components/common/SmallTitle';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { validatePersonalData } from 'utils/validators';
-import { Root, FieldContent } from './PersonalDataForm.styles';
+import { Root } from './PersonalDataForm.styles';
 import API from 'store/api';
 
 const PersonalDataForm = ({ token, initialValues, onChangeUserData }) => {
@@ -38,7 +39,6 @@ const PersonalDataForm = ({ token, initialValues, onChangeUserData }) => {
         size="small"
       />
       <SmallTitle 
-        margin="big" 
         title={t('Personal data form')}
       />
       <Form
@@ -50,37 +50,38 @@ const PersonalDataForm = ({ token, initialValues, onChangeUserData }) => {
 
             <Field name="name">
               {({ input, meta }) => (
-                <FieldContent>
-                  <TextField 
+                <FormFieldRow>
+                  <CustomTextField 
                     fullWidth={true}
                     {...input}
                     label={t('Name')}
                     placeholder={t('Name')}
                     error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && 
-                    (meta.error === 'Required' ? t('Required') : meta.error)}
+                    helperText={(meta.error && meta.touched) ?
+                    (meta.error === 'Required' ? t('Required') : meta.error) : <>&nbsp;</>}
                   />
-                </FieldContent>
+                </FormFieldRow>
               )}
             </Field>
 
             <Field name="surname">
               {({ input, meta }) => (
-                <FieldContent>
-                  <TextField 
+                <FormFieldRow>
+                  <CustomTextField 
                     fullWidth={true}
                     {...input}
                     label={t('Surname')}
                     placeholder={t('Surname')}
                     error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && 
-                    (meta.error === 'Required' ? t('Required') : meta.error)}
+                    helperText={(meta.error && meta.touched) ? 
+                    (meta.error === 'Required' ? t('Required') : meta.error) : <>&nbsp;</>}
                   />
-                </FieldContent>
+                </FormFieldRow>
               )}
             </Field>
 
             <FormSubmitBtns 
+              center={true}
               isForEdit={true}
               onCancel={history.goBack}
               submitDescription='Update'

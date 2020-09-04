@@ -110,6 +110,7 @@ const theme = {
       task: '600px',
       transaction: '280px',
       passwordUpdate: '260px',
+      personalData: '260px',
     },
   },
   fonts: {
