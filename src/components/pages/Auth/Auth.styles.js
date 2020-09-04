@@ -11,10 +11,6 @@ export const Root = styled.div`
   text-align: center;
 `;
 
-export const InputWrapper = styled.div`
-  height: 62px;
-`;
-
 export const ButtonWrapper = styled.div`
   margin-top: 20px;
   text-align: center;

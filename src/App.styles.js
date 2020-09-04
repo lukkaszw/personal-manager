@@ -109,6 +109,7 @@ const theme = {
       note: '600px',
       task: '600px',
       transaction: '280px',
+      passwordUpdate: '260px',
     },
   },
   fonts: {

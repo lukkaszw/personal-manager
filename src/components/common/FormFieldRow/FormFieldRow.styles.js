@@ -14,4 +14,8 @@ const FormFieldRow = styled.div`
   }
 `;
 
+export const FormFieldRowB = styled.div`
+  height: 62px;
+`;
+
 export default FormFieldRow;

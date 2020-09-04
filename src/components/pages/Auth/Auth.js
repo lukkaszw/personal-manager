@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import Button from '@material-ui/core/Button';
-import { Root, InputWrapper, ButtonWrapper, useStyles, DividedLine, Info } from './Auth.styles';
+import { Root, ButtonWrapper, useStyles, DividedLine, Info } from './Auth.styles';
+import { FormFieldRowB } from 'components/common/FormFieldRow';
 import { TEXTS } from './data';
 import CustomTextField from 'components/common/CustomTextField';
 import { useTranslation } from 'react-i18next';
@@ -57,7 +58,7 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
             <form onSubmit={handleSubmit}>
               <Field name="login">
                 {({ input, meta }) => (
-                  <InputWrapper>
+                  <FormFieldRowB>
                     <CustomTextField 
                       {...input}
                       className={classes.input}
@@ -65,12 +66,12 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                       placeholder='Email'
                       error={(meta.error && meta.touched)}
                     />
-                  </InputWrapper>
+                  </FormFieldRowB>
                 )}
               </Field>
               <Field name="password">
                 {({ input, meta }) => (
-                  <InputWrapper>
+                  <FormFieldRowB>
                     <CustomTextField 
                       {...input}
                       className={classes.input}
@@ -81,13 +82,13 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                       helperText={(meta.error && meta.touched) &&
                       t(meta.error)}
                     />
-                  </InputWrapper>
+                  </FormFieldRowB>
                 )}
               </Field>
               {
                 formDestination === 'register' &&
                   <>
-                    <InputWrapper>
+                    <FormFieldRowB>
                       <Field name="confirmPassword">
                         {({ input, meta }) => (
                           <div>
@@ -102,13 +103,13 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                           </div>
                         )}
                       </Field>
-                    </InputWrapper>
+                    </FormFieldRowB>
 
                     <DividedLine />
 
                     <Field name="name">
                         {({ input, meta }) => (
-                          <InputWrapper>
+                          <FormFieldRowB>
                             <CustomTextField 
                               {...input}
                               className={classes.input}
@@ -116,12 +117,12 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                               placeholder={t("Name")}
                               error={meta.error && meta.touched}
                             />
-                          </InputWrapper>
+                          </FormFieldRowB>
                         )}
                     </Field>
                     <Field name="surname">
                         {({ input, meta }) => (
-                          <InputWrapper>
+                          <FormFieldRowB>
                             <CustomTextField 
                               {...input}
                               className={classes.input}
@@ -129,7 +130,7 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                               placeholder={t("Surname")}
                               error={meta.error && meta.touched}
                             />
-                          </InputWrapper>
+                          </FormFieldRowB>
                         )}
                     </Field>
                   </>

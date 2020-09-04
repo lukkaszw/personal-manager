@@ -2,15 +2,16 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
-import TextField from '@material-ui/core/TextField';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import FormSubmitBtns from 'components/common/FormSubmitBtns';
+import { FormFieldRowB } from 'components/common/FormFieldRow';
+import CustomTextField from 'components/common/CustomTextField';
 import SmallTitle from 'components/common/SmallTitle';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { validatePassword } from 'utils/validators';
-import { Root, FieldContent } from './PasswordForm.styles';
+import { Root } from './PasswordForm.styles';
 import API from 'store/api';
 
 const PasswordForm = ({ token }) => {
@@ -41,8 +42,7 @@ const PasswordForm = ({ token }) => {
         size="small"
         color="secondary"
       />
-      <SmallTitle 
-        margin="big" 
+      <SmallTitle  
         title={t('Change your password')}
       />
       <Form
@@ -53,8 +53,8 @@ const PasswordForm = ({ token }) => {
 
             <Field name="password">
               {({ input, meta }) => (
-                <FieldContent>
-                  <TextField 
+                <FormFieldRowB>
+                  <CustomTextField 
                     autoComplete="off"
                     fullWidth={true}
                     {...input}
@@ -62,32 +62,36 @@ const PasswordForm = ({ token }) => {
                     type="password"
                     placeholder={t('New password')}
                     error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && t(meta.error)}
+                    helperText={(meta.error && meta.touched) ? t(meta.error) : <>	&nbsp;</>}
                   />
-                </FieldContent>
+                </FormFieldRowB>
               )}
             </Field>
 
             <Field name="confirmPassword">
               {({ input, meta }) => (
-                <FieldContent>
-                  <TextField 
-                    fullWidth={true}
-                    autoComplete="off"
-                    {...input}
-                    type="password"
-                    placeholder={t('Confirm new password')}
-                    error={meta.error && meta.touched}
-                    helperText={(meta.error && meta.touched) && t(meta.error)}
-                  />
-                </FieldContent>
+                <div>
+                  <br/>
+                  <FormFieldRowB>
+                    <CustomTextField 
+                      fullWidth={true}
+                      autoComplete="off"
+                      {...input}
+                      type="password"
+                      placeholder={t('Confirm new password')}
+                      error={meta.error && meta.touched}
+                      helperText={(meta.error && meta.touched) && t(meta.error)}
+                    />
+                  </FormFieldRowB>
+                </div>
+         
               )}
             </Field>
 
             <Field name="currentPassword">
               {({ input, meta }) => (
-                <FieldContent>
-                  <TextField 
+                <FormFieldRowB>
+                  <CustomTextField 
                     fullWidth={true}
                     autoComplete="off"
                     {...input}
@@ -97,11 +101,12 @@ const PasswordForm = ({ token }) => {
                     error={meta.error && meta.touched}
                     helperText={(meta.error && meta.touched) && t(meta.error)}
                   />
-                </FieldContent>
+                </FormFieldRowB>
               )}
             </Field>
 
             <FormSubmitBtns 
+              center={true}
               isForEdit={true}
               onCancel={history.goBack}
               submitDescription='Update'

@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PasswordForm from './components/PasswordForm';
-import { Root } from './UpdatePassword.styles';
+import Page from 'components/layout/Page';
 import SELECTORS from 'store/selectors';
 
 const UpdatePassword = ({ token }) => {
   return ( 
-    <Root>
+    <Page centeredContent>
       <PasswordForm 
         token={token}
       />
-    </Root>
+    </Page>
   );
 }
 
