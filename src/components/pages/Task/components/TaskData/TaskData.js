@@ -4,11 +4,10 @@ import { useQuery } from 'react-query';
 import API from 'store/api';
 import TaskActions from '../TaskActions/TaskActions';
 import { 
-  StatusName,
-  StatusContent, StartDate, Header, EndTime } from './TaskData.styles';
+  Root, StatusName,
+  StatusContent, StartDate, EndTime } from './TaskData.styles';
 import SmallTitle from 'components/common/SmallTitle';
 import Description from 'components/common/Description';
-import { TaskDataRoot } from '../../Task.styles';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { STATUS, PRIORITY } from 'utils/tasks.statuses';
@@ -51,16 +50,16 @@ const TaskData = ({ id, token }) => {
   }, [i18n.language, data, t]);
 
   return ( 
-    <TaskDataRoot>
-      <div>
-        <Header>
+    <>
+      <Root>
+        <div>
           <StartDate>
             {t('Last update')}: {updateDate}
           </StartDate>
           <SmallTitle 
             title={data.title}
           />
-        </Header>
+        </div>
         <StatusContent>
           <EndTime>
             <span className='time'>
@@ -97,13 +96,13 @@ const TaskData = ({ id, token }) => {
           </div>
         </StatusContent>
         <Description text={data.description} />
-      </div>
+      </Root>
       <TaskActions 
         id={id}
         token={token}
         status={data.status || 0}
       />
-    </TaskDataRoot>
+    </>
    );
 }
 

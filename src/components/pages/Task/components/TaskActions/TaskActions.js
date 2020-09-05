@@ -5,8 +5,11 @@ import IconButton from '@material-ui/core/IconButton';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import AskDialog from 'components/common/AskDialog';
 import { faCheck, faTimes, faTrash, faEdit, faList  } from '@fortawesome/free-solid-svg-icons';
+import HideBtn from 'components/common/HideBtn';
+import Portal from 'components/layout/Portal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TaskActionsRoot, useStyles } from '../../Task.styles';
+import { useStyles } from '../../Task.styles';
+import { Root, ShowPanelButton } from './TaskActions.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation, queryCache } from 'react-query';
 import { toast } from 'react-toastify';
@@ -17,6 +20,8 @@ const TaskActions = ({ id, token, status }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const history = useHistory();
+
+  const [areActionsHidden, setActionsVisibility] = useState(false);
   const [isDeletModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const [updateTask, { isLoading: isUpdateLoading }] = useMutation(API.tasks.updateTask, {
@@ -34,6 +39,8 @@ const TaskActions = ({ id, token, status }) => {
       toast.error(`${'Error'}! ${t('You can not delete a task now')}! ${t('Try again later')}!`);
     }
   });
+
+  const handleActionsVisibility = useCallback(() => setActionsVisibility(prevHidden => !prevHidden), [setActionsVisibility]);
  
   const handleSetTaskAsDone = useCallback(() => {
     const data = { status: 2 };
@@ -55,76 +62,86 @@ const TaskActions = ({ id, token, status }) => {
 
   const isSending = isUpdateLoading || isDeleteLoading;
 
-  return ( 
-    <TaskActionsRoot>
-      <LoaderIndicator isOpen={isSending}/>
-      <IconButton
-        className={classes.iconButton}
-        aria-label={t('back to list')}
-        component={Link}
-        to='/tasks'
-        disabled={isSending}
-      >
-        <FontAwesomeIcon 
-          className={clsx('neutral', isSending && 'disabled')}
-          icon={faList}
+  return (
+    <Portal domId="modals">
+      <Root className={clsx([areActionsHidden && 'hidden'])}>
+        <LoaderIndicator isOpen={isSending}/>
+        <IconButton
+          className={classes.iconButton}
+          aria-label={t('back to list')}
+          component={Link}
+          to='/tasks'
+          disabled={isSending}
+        >
+          <FontAwesomeIcon 
+            className={clsx('neutral', isSending && 'disabled')}
+            icon={faList}
+          />
+        </IconButton>
+        <IconButton
+          className={classes.iconButton}
+          aria-label={t('done')}
+          onClick={handleSetTaskAsDone}
+          disabled={isSending || (status === 2)}
+        >
+          <FontAwesomeIcon 
+            className='positive'
+            icon={faCheck}
+          />
+        </IconButton>
+        <IconButton
+          className={classes.iconButton}
+          aria-label={t('failed')}
+          onClick={handleSetTaskAsFailed}
+          disabled={isSending || (status === 3)}
+        >
+          <FontAwesomeIcon 
+            className='negative'
+            icon={faTimes}
+          />
+        </IconButton>
+        <IconButton
+          className={classes.iconButton}
+          aria-label={t('edit')}
+          component={Link}
+          to={`/tasks/edit/${id}`}
+          disabled={isSending}
+        >
+          <FontAwesomeIcon 
+            className={clsx('neutral', isSending && 'disabled')}
+            icon={faEdit}
+          />
+        </IconButton>
+        <IconButton
+          className={classes.iconButton}
+          aria-label={t('delete')}
+          onClick={handleOpenDeleteModal}
+          disabled={isSending}
+        >
+          <FontAwesomeIcon 
+            className='negative'
+            icon={faTrash}
+          />
+        </IconButton>
+        <AskDialog 
+          isOpen={isDeletModalOpen}
+          onClose={handleCloseDeleteModal}
+          question={t('Do you want to delete this task?')}
+          noAnswear={t('No')}
+          yesAnswear={t('Yes')}
+          onNoAction={handleCloseDeleteModal}
+          onYesAction={handleDeleteTask}
         />
-      </IconButton>
-      <IconButton
-        className={classes.iconButton}
-        aria-label={t('done')}
-        onClick={handleSetTaskAsDone}
-        disabled={isSending || (status === 2)}
-      >
-        <FontAwesomeIcon 
-          className='positive'
-          icon={faCheck}
+      </Root>
+
+      <ShowPanelButton>
+        <HideBtn
+          ariaLabel={t('open/close settings')}
+          onClick={handleActionsVisibility}
+          isHide={areActionsHidden}
         />
-      </IconButton>
-      <IconButton
-        className={classes.iconButton}
-        aria-label={t('failed')}
-        onClick={handleSetTaskAsFailed}
-        disabled={isSending || (status === 3)}
-      >
-        <FontAwesomeIcon 
-          className='negative'
-          icon={faTimes}
-        />
-      </IconButton>
-      <IconButton
-        className={classes.iconButton}
-        aria-label={t('edit')}
-        component={Link}
-        to={`/tasks/edit/${id}`}
-        disabled={isSending}
-      >
-        <FontAwesomeIcon 
-          className={clsx('neutral', isSending && 'disabled')}
-          icon={faEdit}
-        />
-      </IconButton>
-      <IconButton
-        className={classes.iconButton}
-        aria-label={t('delete')}
-        onClick={handleOpenDeleteModal}
-        disabled={isSending}
-      >
-        <FontAwesomeIcon 
-          className='negative'
-          icon={faTrash}
-        />
-      </IconButton>
-      <AskDialog 
-        isOpen={isDeletModalOpen}
-        onClose={handleCloseDeleteModal}
-        question={t('Do you want to delete this task?')}
-        noAnswear={t('No')}
-        yesAnswear={t('Yes')}
-        onNoAction={handleCloseDeleteModal}
-        onYesAction={handleDeleteTask}
-      />
-    </TaskActionsRoot>
+      </ShowPanelButton>
+    </Portal>
    );
 }
 

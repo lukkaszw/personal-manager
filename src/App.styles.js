@@ -54,6 +54,8 @@ const theme = {
       big: `calc(100vh - ${headerHeight} - ${stretchedFooterHeight})`,
       //min. page height for small screen = 100vh - header height
       small: `calc(100vh - ${smallHeaderHeight} - ${smallFooterHeight})`,
+      // min. page height for small horizontal
+      smallHorizontal: `calc(100vh - ${smallHeaderHeight})`,
     },
     header: {
       normal: {

@@ -10,4 +10,8 @@ export const Root = styled.div`
   @media (max-width: 640px) {
     min-height: ${props => props.theme.sizes.pageHeight.small};
   }
+
+  @media (max-height: 500px) {
+    min-height: ${props => props.theme.sizes.pageHeight.smallHorizontal};
+  }
 `;

@@ -1,13 +1,12 @@
 import styled from 'styled-components';
+import { Colors } from '../../Task.styles';
+
+export const Root = styled(Colors)``;
 
 export const StartDate = styled.p`
   font-size: 12px;
   text-align: right;
   margin-bottom: 10px;
-`;
-
-export const Header = styled.div`
-  margin: 20px 0;
 `;
 
 export const EndTime = styled.div`
