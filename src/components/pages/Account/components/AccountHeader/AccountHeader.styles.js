@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Root = styled.header`
-  margin: 40px 0;
+  margin: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;

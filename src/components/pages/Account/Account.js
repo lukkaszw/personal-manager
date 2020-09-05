@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Page from 'components/layout/Page';
 import AccountHeader from './components/AccountHeader';
 import AccountActions from './components/AccountActions';
 import SELECTORS from 'store/selectors';
 
 const Account = ({ userName, userSurname, token }) => {
   return ( 
-    <section>
+    <Page>
       <AccountHeader 
         name={userName}
         surname={userSurname}
@@ -15,7 +16,7 @@ const Account = ({ userName, userSurname, token }) => {
       <AccountActions 
         token={token}
       />
-    </section>
+    </Page>
    );
 }
 
