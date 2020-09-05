@@ -16,18 +16,18 @@ const Tasks = ({
 
   return ( 
     <Page>
+    <QuerySettings 
+        priority={priority}
+        status={status}
+        onChangePriority={onChangePriority}
+        onChangeStatus={onChangeStatus}
+        dateFrom={dateFrom}
+        dateTo={dateTo}
+        onChangeDateFrom={onChangeDateFrom}
+        onChangeDateTo={onChangeDateTo}
+        onResetQuerySettings={onResetQuerySettings}
+      />
       <SuspenseErrorBundary>
-        <QuerySettings 
-          priority={priority}
-          status={status}
-          onChangePriority={onChangePriority}
-          onChangeStatus={onChangeStatus}
-          dateFrom={dateFrom}
-          dateTo={dateTo}
-          onChangeDateFrom={onChangeDateFrom}
-          onChangeDateTo={onChangeDateTo}
-          onResetQuerySettings={onResetQuerySettings}
-        />
         <TasksList
           token={token}
           priority={priority}
