@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 import API from 'store/api';
 
-const NoteCatData = ({ token, id }) => {
+const NoteCatData = ({ token, id, onResetCategory }) => {
 
   const { data } = useQuery(
     ['note_cat', { id, token }], 
@@ -27,6 +27,7 @@ const NoteCatData = ({ token, id }) => {
         apiAction={API.notes.editNoteCategory}
       >
         <DeleteNoteCat 
+          onResetCategory={onResetCategory}
           token={token}
           id={id}
         />
@@ -37,6 +38,7 @@ const NoteCatData = ({ token, id }) => {
 NoteCatData.propTypes = {
   token: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onResetCategory: PropTypes.func.isRequired,
 };
  
 export default NoteCatData;

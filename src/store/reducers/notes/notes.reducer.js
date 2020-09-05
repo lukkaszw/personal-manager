@@ -31,6 +31,16 @@ const notesReducer = (statePart = {}, action = {}) => {
         }
       }
     }
+    case ACTIONS.notes.RESET_CATEGORY: {
+      return {
+        ...statePart,
+        query: {
+          ...statePart.query,
+          page: 1,
+          category: 'all',
+        },
+      }
+    }
     default: 
       return statePart;
   }

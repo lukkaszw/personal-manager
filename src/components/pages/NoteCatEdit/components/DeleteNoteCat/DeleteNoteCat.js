@@ -9,7 +9,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import API from 'store/api';
 
-const DeleteNoteCat = ({ token, id }) => {
+const DeleteNoteCat = ({ token, id, onResetCategory }) => {
 
   const history = useHistory();
   const { t } = useTranslation();
@@ -21,6 +21,7 @@ const DeleteNoteCat = ({ token, id }) => {
 
   const [deleteCategory, { isLoading: isSending }] = useMutation(API.notes.deleteNoteCategory, {
     onSuccess: data => {
+      onResetCategory();
       history.goBack();
       toast.success(`${t('You have deleted category')} ${data.name}!`);
     },
@@ -62,6 +63,7 @@ const DeleteNoteCat = ({ token, id }) => {
 
 DeleteNoteCat.propTypes = {
   token: PropTypes.string.isRequired,
+  onResetCategory: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
  
