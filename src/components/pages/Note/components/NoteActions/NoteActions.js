@@ -5,8 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import AskDialog from 'components/common/AskDialog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash, faList, faEyeSlash, faCog } from '@fortawesome/free-solid-svg-icons';
-import { Root, HideBtn, Panel } from './NoteActions.styles';
+import { faEdit, faTrash, faList } from '@fortawesome/free-solid-svg-icons';
+import HideBtn from 'components/common/HideBtn';
+import Portal from 'components/layout/Portal';
+import { Root, HideBtnWrapper, Panel } from './NoteActions.styles';
 import { useMutation } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -37,19 +39,16 @@ const NoteActions = ({ id, token }) => {
   }, [deleteNote, handleCloseDeleteModal, id, token]);
 
   return ( 
-    <>
+    <Portal domId="modals">
       <LoaderIndicator isOpen={isDeleteLoading} />
       <Root>
-        <HideBtn
-          className={clsx([isHide && 'hide'])}
-        >
-          <IconButton
-            aria-label={t('open/close settings')}
+        <HideBtnWrapper>
+          <HideBtn
+            ariaLabel={t('open/close settings')}
             onClick={handleTogglePanel}
-          >
-            <FontAwesomeIcon icon={isHide ? faCog : faEyeSlash}/>
-          </IconButton>
-        </HideBtn>
+            isHide={isHide}
+          />
+        </HideBtnWrapper>
     
         <Panel
           className={clsx([isHide && 'hide'])}
@@ -97,7 +96,7 @@ const NoteActions = ({ id, token }) => {
           />
         </Panel>
       </Root>
-    </>
+    </Portal>
    );
 }
 

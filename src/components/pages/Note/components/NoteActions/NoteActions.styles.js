@@ -1,23 +1,35 @@
 import styled from 'styled-components';
 
 export const Root = styled.div`
-  position: absolute;
-  bottom: 15px;
-  right: 30px;
-  width: 150px;
+  position: fixed;
+  bottom: 220px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 200px;
+
+  @media (max-width: 1280px) {
+    width: 150px;
+    transform: translateX(0);
+    right: 10px;
+  }
 
   @media (max-width: 640px) {
-    bottom: 5px;
-    right: 0;
+    bottom: 110px;
+  }
+
+  @media (max-height: 500px) {
+    bottom: 30px;
   }
 `;
 
 export const Panel = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: space-between;
   height: 50px;
   background-color: ${props => props.theme.palette.background.lighten};
-  box-shadow: 4px 4px 4px #555;
-  border-radius: 5px;
+  box-shadow: 4px 4px 10px black;
+  border-radius: 10px;
 
   &.hide {
     visibility: hidden;
@@ -32,10 +44,10 @@ export const Panel = styled.div`
   }
 `;
 
-export const HideBtn = styled.div`
-  text-align: right;
+export const HideBtnWrapper = styled.div`
+  text-align: center;
 
-  &.hide {
-    opacity: .5;
+  @media (max-width: 1280px) {
+    text-align: right;
   }
 `;

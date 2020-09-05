@@ -12,7 +12,8 @@ const HideBtn = ({ onClick, ariaLabel, isHide }) => {
       <IconButton
         aria-label={ariaLabel}
         onClick={onClick}
-        >
+        color={isHide ? 'primary' : 'secondary'}
+      >
         <FontAwesomeIcon icon={isHide ? faCog : faEyeSlash}/>
       </IconButton>
     </Root> 

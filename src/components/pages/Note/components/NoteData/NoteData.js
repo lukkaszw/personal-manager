@@ -4,7 +4,7 @@ import Description from 'components/common/Description';
 import NoteActions from '../NoteActions';
 import { useQuery } from 'react-query';
 import SmallTitle from 'components/common/SmallTitle';
-import { Root, Header, ModifyDate, Content } from './NoteData.styles';
+import { ModifyDate, Content } from './NoteData.styles';
 import { useTranslation } from 'react-i18next';
 import API from 'store/api';
 
@@ -17,8 +17,8 @@ const NoteData = ({ token, id }) => {
   const modifyDate =  new Intl.DateTimeFormat(lang).format(new Date(data.updatedAt));
 
   return ( 
-    <Root>
-      <Header>
+    <div>
+      <div>
         <ModifyDate>
           {t('Last update')}: {modifyDate}
         </ModifyDate>
@@ -26,7 +26,7 @@ const NoteData = ({ token, id }) => {
           margin="small"
           title={data.title}
         />
-      </Header>
+      </div>
       <Content>
         <Description 
           text={data.description}
@@ -36,7 +36,7 @@ const NoteData = ({ token, id }) => {
         id={id}
         token={token}
       />
-    </Root>
+    </div>
    );
 }
 
