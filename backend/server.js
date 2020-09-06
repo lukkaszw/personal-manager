@@ -3,8 +3,9 @@ const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-require('./database');
+const compression = require('compression');
 const auth = require('./middlewares/auth');
+require('./database');
 
 const port = process.env.PORT || 8000;
 
@@ -16,6 +17,7 @@ app.use(cors({
 app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(compression());
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(mongoSanitize());
 
