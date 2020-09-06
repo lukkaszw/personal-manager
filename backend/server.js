@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
 require('./database');
 const auth = require('./middlewares/auth');
 
@@ -15,6 +16,7 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(mongoSanitize());
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.listen(port, () => {
