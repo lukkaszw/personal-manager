@@ -4,12 +4,8 @@ import MainLayout from 'components/layout/MainLayout';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { ReactQueryConfigProvider } from 'react-query';
 import Main from 'components/pages/Main';
-import Budget from 'components/pages/Budget';
 import EditBudget from 'components/pages/EditBudget';
 import AddBudget from 'components/pages/AddBudget';
-import OneBudget from 'components/pages/OneBudget';
-import Notes from 'components/pages/Notes';
-import Calendar from 'components/pages/Calendar';
 import Auth from 'components/pages/Auth';
 import Account from 'components/pages/Account';
 import Logout from 'components/pages/Logout';
@@ -21,7 +17,6 @@ import TaskEdit from 'components/pages/TaskEdit';
 import NoteCatAdd from 'components/pages/NoteCatAdd';
 import NoteCatEdit from 'components/pages/NoteCatEdit';
 import EditPersonalData from 'components/pages/EditPersonalData';
-import Note from 'components/pages/Note';
 import MainLoaderIndicator from 'components/layout/MainLoaderIndicator';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { ThemeProvider } from 'styled-components';
@@ -41,14 +36,17 @@ import "moment/locale/en-gb";
 import "moment/locale/pl";
 import moment from 'moment';
 
+const Notes = React.lazy(() => import('components/pages/Notes'));
+const Calendar = React.lazy(() => import('components/pages/Calendar'));
+const Budget = React.lazy(() => import('components/pages/Budget'));
+const Task = React.lazy(() => import('components/pages/Task'));
+const Tasks = React.lazy(() => import('components/pages/Tasks'));
+const Note = React.lazy(() => import('components/pages/Note'));
+const OneBudget = React.lazy(() => import('components/pages/OneBudget'));
 
 moment.locale('pl');
 
 const materialUITheme = createMuiTheme(theme);
-
-
-const Tasks = React.lazy(() => import('components/pages/Tasks'));
-const Task = React.lazy(() => import('components/pages/Task'));
 
 const queryConfig = {
   suspense: true,
