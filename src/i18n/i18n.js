@@ -17,8 +17,8 @@ i18n
 
     backend: {
       // cors-anywhere is a trick. Don't use it in production
-      loadPath: process.env.NODE_ENV === 'production' ? '/lang' : 'http://localhost:8000/lang',
-      addPath: process.env.NODE_ENV === 'production' ? '/lang/add' : 'http://localhost:8000/lang/add',
+      loadPath: process.env.NODE_ENV === 'production' ? '/api/lang' : 'http://localhost:8000/api/lang',
+      addPath: process.env.NODE_ENV === 'production' ? '/api/lang/add' : 'http://localhost:8000/api/lang/add',
       crossDomain: true,
       parse: data => {
         const parsedData = JSON.parse(data);
