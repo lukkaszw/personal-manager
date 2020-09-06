@@ -98,6 +98,7 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                               className={classes.input}
                               placeholder={t("Confirm password")}
                               type="password"
+                              autoComplete="off"
                               error={meta.error && meta.touched}
                             />
                           </div>
