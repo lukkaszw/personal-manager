@@ -78,6 +78,7 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                       placeholder={t("Password")}
                       label={t("Password")}
                       type="password"
+                      autoComplete="off"
                       error={meta.error && meta.touched}
                       helperText={(meta.error && meta.touched) &&
                       t(meta.error)}
