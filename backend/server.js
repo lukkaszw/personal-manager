@@ -10,14 +10,14 @@ const port = process.env.PORT || 8000;
 
 const app = express();
 
-app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' ? 'https://lukkiasz-pm.herokuapp.com' : 'http://localhost:3000',
 }));
-app.use(express.json());
+app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
-app.use(mongoSanitize());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(mongoSanitize());
 
 app.listen(port, () => {
   console.log(`Server is listening on port: ${port}.`);
