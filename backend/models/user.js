@@ -50,27 +50,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     maxlength: 20,
   },
-  tasks: {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Task'
-    }],
-    default: [],
-  },
-  notes: {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Note'
-    }],
-    default: [],
-  },
-  budgets:  {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Budget'
-    }],
-    default: [],
-  },
 }, {
   timestamps: true,
 });
