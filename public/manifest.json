@@ -1,6 +1,6 @@
 {
   "short_name": "Personal Manager",
-  "name": "Personal Manager",
+  "name": "PM",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/index.html",
   "description": "Personal Manager",
   "display": "standalone",
   "theme_color": "#000000",
