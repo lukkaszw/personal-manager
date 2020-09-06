@@ -1,5 +1,5 @@
 const headerHeight = '36px';
-const smallHeaderHeight = '30px';
+const smallHeaderHeight = '36px';
 const stretchedFooterHeight = '215px';
 const smallFooterHeight = '100px';
 
@@ -64,7 +64,7 @@ const theme = {
       },
       small: {
         height: smallHeaderHeight,
-        linkFont: '12px',
+        linkFont: '14px',
       },
     },
     mobileMenu: {
