@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AskDialog from 'components/common/AskDialog';
 import LoaderIndicator from 'components/common/LoaderIndicator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash, faList } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faList, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Root } from './BudgetActions.styles';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
@@ -74,6 +74,14 @@ const BudgetActions = ({ id, token }) => {
             <FontAwesomeIcon 
               icon={faTrash}
             />
+          </IconButton>
+          <IconButton 
+            aria-label={t('Add transaction')}
+            color="secondary"
+            component={Link}
+            to={`/budget/${id}/add-transaction`}
+          >
+            <FontAwesomeIcon icon={faPlus} />
           </IconButton>
         </div>
         <IconButton

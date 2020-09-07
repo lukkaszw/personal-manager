@@ -6,11 +6,11 @@ import SELECTORS from 'store/selectors';
 import API from 'store/api';
 
 
-const AddTransaction = ({ categories, token, budgetId }) => {
+const AddTransaction = ({ categories, token, budgetId, subcategoryId }) => {
 
   const initialValues = {
     description: '',
-    category: 'others',
+    category: subcategoryId || 'others',
     cost: 0,
   };
 
@@ -26,12 +26,15 @@ const AddTransaction = ({ categories, token, budgetId }) => {
 }
 
 AddTransaction.propTypes = {
+  token: PropTypes.string.isRequired,
   budgetId: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
+  subcategoryId: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   token: SELECTORS.user.getToken(state),
+  subcategoryId: SELECTORS.transactions.getQuerySubcategory(state),
 });
  
 export default connect(mapStateToProps)(AddTransaction);
