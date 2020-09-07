@@ -33,6 +33,11 @@ export const Root = styled.button`
       color:${props => props.theme.palette.font.secondary.main};
     }
   }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${props => props.theme.palette.special.linkHover};
+  }
 `;
 
 export const TasksWrapper = styled.div`
