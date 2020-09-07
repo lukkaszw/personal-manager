@@ -76,6 +76,7 @@ const OneBudgetData = ({
         <TransactionsList
           budgetId={id} 
           token={token}
+          categories={categories}
           transactions={transactions}
           selectedCategory={selectedCategory}
           selectedSubcategory={selectedSubcategory}

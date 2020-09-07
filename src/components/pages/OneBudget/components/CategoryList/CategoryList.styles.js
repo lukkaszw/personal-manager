@@ -7,9 +7,10 @@ export const Root = styled.div`
 export const SubCatList = styled.div`
   height: 0;
   overflow: hidden;
+  transition: .3s;
 
   &.active {
-    height: auto;
+    height: ${props => `${props.height}px`};
   }
 `;
 

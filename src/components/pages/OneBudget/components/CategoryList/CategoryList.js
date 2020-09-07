@@ -34,6 +34,7 @@ const CategoryList = ({
               isActive={selectedCategory === cat.category._id}
             />
             <SubCatList
+              height={(cat.category.subCategories.length + 1) * 37}
               className={clsx([selectedCategory === cat.category._id && 'active'])}
             >
               {

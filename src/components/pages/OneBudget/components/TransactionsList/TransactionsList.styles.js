@@ -4,7 +4,19 @@ export const Root = styled.div`
   flex: 3;
   
   @media (max-width: 870px) {
-    margin-top: 40px;
+    margin-top: 20px;
+  }
+`;
+
+export const CategoryName = styled.div`
+  display: none;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+
+  @media (max-width: 870px) {
+    display: block;
   }
 `;
 

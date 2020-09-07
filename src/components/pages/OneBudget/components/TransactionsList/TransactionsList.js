@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Root, Sum, TableContainer } from './TransactionsList.styles';
+import { Root, Sum, TableContainer, CategoryName } from './TransactionsList.styles';
 import TransactionsActions from '../TransactionsActions';
 import Table from '@material-ui/core/Table';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -12,7 +12,7 @@ import TransactionRow from '../TransactionRow';
 import { useTranslation } from 'react-i18next';
 import useCheckedTransactions from './useCheckedTransactions';
 
-const TransactionsList = ({ token, budgetId, selectedCategory, selectedSubcategory, transactions }) => {
+const TransactionsList = ({ token, budgetId, selectedCategory, selectedSubcategory, transactions, categories }) => {
 
   const { t, i18n } = useTranslation();
 
@@ -36,6 +36,25 @@ const TransactionsList = ({ token, budgetId, selectedCategory, selectedSubcatego
     return { filteredTransactions, transactionsSum };
   }, [transactions, selectedSubcategory, selectedCategory]);
 
+  const { categoryName, subcategoryName } = useMemo(() => {
+
+    console.log('categories: ', categories);
+
+    if(selectedCategory === 'others') {
+      return { categoryName: 'Others', subcategoryName: null };
+    } else if (selectedCategory === 'all') {
+      return { categoryName: 'All', subcategoryName: null };
+    } else {
+      const category = categories.find(category => category.category._id === selectedCategory);
+      const categoryName = category.category.name;
+      const subcategory = category.category.subCategories.find(subcategory => subcategory._id === selectedSubcategory);
+      const subcategoryName = subcategory ? subcategory.name : null;
+
+      return { categoryName, subcategoryName };
+    }
+
+  }, [categories, selectedCategory, selectedSubcategory]);
+
   const { 
     checkedTransactions,
     handleToggleAllTransactions,
@@ -43,8 +62,20 @@ const TransactionsList = ({ token, budgetId, selectedCategory, selectedSubcatego
 
     const lang = i18n.language === 'pl-PL' ? i18n.language : 'eng-Gb';
 
+  console.log('category: ', categoryName);
+  console.log('subcategory: ', subcategoryName);
+
   return ( 
     <Root>
+      <CategoryName>
+        {t(categoryName)}
+        {
+          subcategoryName &&
+          <>
+            {` - ${t(subcategoryName)}`}
+          </>
+        }
+      </CategoryName>
       <TransactionsActions
         budgetId={budgetId} 
         token={token}
@@ -96,6 +127,7 @@ TransactionsList.propTypes = {
   transactions: PropTypes.array.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   selectedSubcategory: PropTypes.string.isRequired,
+  categories: PropTypes.array.isRequired,
 };
  
 export default TransactionsList;
