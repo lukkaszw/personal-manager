@@ -1,5 +1,5 @@
 import React from 'react';
-import { CategoryPart } from '../../Footer.styles';
+import { CategoryPart, CategoryLink, ItemIcon, ItemName } from '../../Footer.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobile, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,21 +7,25 @@ const Contact = () => {
   return ( 
     <>
       <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faEnvelope}
-        />
-        <span>
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faEnvelope}
+          />
+        </ItemIcon>
+        <ItemName>
           lukkiaszwoj.dev@gmail.com
-        </span>
+        </ItemName>
       </CategoryPart>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faMobile}
-        />
-        <a href="tel:603640252">
+      <CategoryLink href="tel:603640252">
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faMobile}
+          />
+        </ItemIcon>
+        <ItemName>
           603 640 252
-        </a>
-      </CategoryPart>
+        </ItemName>
+      </CategoryLink>
     </>
    );
 }

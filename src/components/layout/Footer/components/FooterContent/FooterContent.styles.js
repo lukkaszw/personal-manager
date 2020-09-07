@@ -14,9 +14,8 @@ export const Wrapper = styled.div`
     height: ${props => props.theme.sizes.footer.footerContent.big};
   }
 
-  @media (max-width: 600px) {
-    flex-direction: column;
-    justify-content: center;
+  @media (max-width: 640px) {
+    justify-content: space-between;
 
     &.active {
       height: ${props => props.theme.sizes.footer.footerContent.small};

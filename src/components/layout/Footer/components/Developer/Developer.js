@@ -2,43 +2,63 @@ import React from 'react';
 import { faPortrait, faFilm, faGamepad } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CategoryPart } from '../../Footer.styles';
+import { CategoryLink, ItemIcon, ItemName } from '../../Footer.styles';
 
 const Developer = () => {
   return ( 
     <>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faGithub}
-        />
-        <a href="https://github.com/lukkaszw?tab=repositories" target="__blank">
+      <CategoryLink
+        href="https://github.com/lukkaszw?tab=repositories" 
+        target="__blank"
+      >
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faGithub}
+          />
+        </ItemIcon>
+        <ItemName >
           Github
-        </a>
-      </CategoryPart>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faPortrait}
-        />
-        <a href="https://lukkiasz-cinema.herokuapp.com" target="__blank">
+        </ItemName>
+      </CategoryLink>
+      <CategoryLink
+        href="https://lukkiasz-cinema.herokuapp.com" 
+        target="__blank"
+      >
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faPortrait}
+          />
+        </ItemIcon>
+        <ItemName >
           Portfolio
-        </a>
-      </CategoryPart>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faFilm}
-        />
-        <a href="https://lukkiasz-cinema.herokuapp.com" target="__blank">
+        </ItemName>
+      </CategoryLink>
+      <CategoryLink
+        href="https://lukkiasz-cinema.herokuapp.com" 
+        target="__blank"
+      >
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faFilm}
+          />
+        </ItemIcon>
+        <ItemName >
           Cinema app
-        </a>
-      </CategoryPart>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faGamepad}
-        />
-        <a href="https://lukkiasz-shop-store.herokuapp.com" target="__blank">
+        </ItemName>
+      </CategoryLink>
+      <CategoryLink
+        href="https://lukkiasz-shop-store.herokuapp.com" 
+        target="__blank"
+      >
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faGamepad}
+          />
+        </ItemIcon>
+        <ItemName >
           Games shop
-        </a>
-      </CategoryPart>
+        </ItemName>
+      </CategoryLink>
     </>
    );
 }

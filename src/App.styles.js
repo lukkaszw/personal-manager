@@ -46,6 +46,7 @@ const theme = {
     },
     special: {
       titleBackground: 'linear-gradient(to right, #ffaa00, #f2e86d 10%, #22a726, #006ba6)',
+      linkHover: 'gold',
     },
   },
   sizes: {
@@ -87,11 +88,11 @@ const theme = {
       categoryPart: {
         icon: {
           big: '24px',
-          small: '20px',
+          small: '30px',
         },
         link: {
           big: '16px',
-          small: '14px',
+          small: '12px',
         }
       },
       footerContent: {

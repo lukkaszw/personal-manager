@@ -1,8 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const FooterWrapper = styled.footer`
   background-color: ${props => props.theme.palette.primary.main};
   padding: 30px 20px 10px 20px;
+
+  @media (max-width: 400px) {
+    padding: 30px 0 10px 0;
+  }
 `;
 
 export const CopyRights = styled.div`
@@ -11,36 +15,51 @@ export const CopyRights = styled.div`
   font-size: ${props => props.theme.sizes.footer.copyright.font};
 `;
 
-export const CategoryPart = styled.div`
+const CategoryPartStyles = css`
   flex: 1;
   text-align: center;
+  line-height: 1;
   display: flex;
   align-items: center;
+  color: ${props => props.theme.palette.font.secondary.main};
   justify-content: center;
+  text-decoration: none;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+`;
+
+export const CategoryPart = styled.div`
+  ${CategoryPartStyles}
+`;
+
+export const CategoryLink = styled.a`
+  ${CategoryPartStyles}
+  cursor: pointer;
+
+  &:hover {
+    color: ${props => props.theme.palette.special.linkHover};
+  }
+`;
+
+export const ItemIcon = styled.span`
   font-size: ${props => props.theme.sizes.footer.categoryPart.icon.big};
+  margin-right: 10px;
 
-  span, a {
-    lin-height: 1;
-    font-size: ${props => props.theme.sizes.footer.categoryPart.link.big};
-    margin-left: 10px;
-    color: ${props => props.theme.palette.font.secondary.main};
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: gold;
-  }
-
-  @media (max-width: 800px) {
+  @media (max-width: 640px) {
     font-size: ${props => props.theme.sizes.footer.categoryPart.icon.small};
-
-    span, a {
-      font-size: ${props => props.theme.sizes.footer.categoryPart.link.small};
-    }
+    margin-right: 0;
+    margin-bottom: 5px;
   }
+`;
 
-  @media (max-width: 600px) {
-    flex: 0;
-    margin: 5px 0;
+export const ItemName = styled.span`
+  lin-height: 1;
+  font-size: ${props => props.theme.sizes.footer.categoryPart.link.big};
+  text-decoration: none;
+
+  @media (max-width: 640px) {
+    font-size: ${props => props.theme.sizes.footer.categoryPart.link.small};
   }
 `;

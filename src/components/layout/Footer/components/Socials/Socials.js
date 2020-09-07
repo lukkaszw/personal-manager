@@ -1,35 +1,50 @@
 import React from 'react';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CategoryPart } from '../../Footer.styles';
+import { CategoryLink, ItemName, ItemIcon } from '../../Footer.styles';
 
 const Socials = () => {
   return ( 
     <>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faFacebook}
-        />
-        <a href="https://facebook.com" target="__blank">
+      <CategoryLink
+        href="https://facebook.com" 
+        target="__blank"
+      >
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faFacebook}
+          />
+        </ItemIcon>
+        <ItemName >
           Facebook
-        </a>
-      </CategoryPart>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faInstagram}
-        />
-        <a href="https://instagram.com" target="__blank">
+        </ItemName>
+      </CategoryLink>
+      <CategoryLink
+        href="https://instagram.com" 
+        target="__blank"
+      >
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faInstagram}
+          />
+        </ItemIcon>
+        <ItemName >
           Instagram
-        </a>
-      </CategoryPart>
-      <CategoryPart>
-        <FontAwesomeIcon 
-          icon={faTwitter}
-        />
-        <a href="https://twitter.com" target="__blank">
+        </ItemName>
+      </CategoryLink>
+      <CategoryLink
+        href="https://twitter.com" 
+        target="__blank"
+      >
+        <ItemIcon>
+          <FontAwesomeIcon 
+            icon={faTwitter}
+          />
+        </ItemIcon>
+        <ItemName >
           Twitter
-        </a>
-      </CategoryPart>
+        </ItemName>
+      </CategoryLink>
     </>
    );
 }
