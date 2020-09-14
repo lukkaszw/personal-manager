@@ -26,7 +26,7 @@ const BudgetActions = ({ id, token }) => {
       toast.success(`${t('You have deleted a budget')}`);
     },
     onError: () => {
-      toast.error(`${'Error'}! ${t('You can not delete a budget now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete this budget now')}! ${t('Try again later')}!`);
     }
   });
 

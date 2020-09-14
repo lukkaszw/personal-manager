@@ -32,7 +32,7 @@ const TaskForm = ({ token, initialValues, apiAction, isForEdit, id }) => {
         queryCache.setQueryData(['task', { id, token }], data);
       }
       history.goBack();
-      const message = isForEdit ? 'You have edited the task' : 'You have added a task'; 
+      const message = isForEdit ? 'You have edited a task' : 'You have added a task'; 
       toast.success(`${t(message)}!`);
     },
     onError: data => {

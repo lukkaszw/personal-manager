@@ -34,7 +34,7 @@ const TransactionForm = ({ token, id, budgetId, initialValues, apiAction, isForE
       queryCache.invalidateQueries('transactions', { refetchActive: true })
 
       history.goBack();
-      const message = isForEdit ? 'You have edited the transaction' : 'You have added a transaction'; 
+      const message = isForEdit ? 'You have edited a transaction' : 'You have added a transaction'; 
       toast.success(`${t(message)}!`);
     },
     onError: data => {

@@ -21,10 +21,10 @@ const NoteActions = ({ id, token }) => {
   const [deleteNote, { isLoading: isDeleteLoading }] = useMutation(API.notes.deleteNote, {
     onSuccess: data => {
       history.goBack();
-      toast.success(`${t('You have deleted note')} ${data.title}`);
+      toast.success(`${t('You have deleted a note')} ${data.title}`);
     },
     onError: () => {
-      toast.error(`${'Error'}! ${t('You can not delete a note now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete this note now')}! ${t('Try again later')}!`);
     }
   });
 

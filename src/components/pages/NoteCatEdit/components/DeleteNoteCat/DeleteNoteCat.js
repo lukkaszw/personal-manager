@@ -23,7 +23,7 @@ const DeleteNoteCat = ({ token, id, onResetCategory }) => {
     onSuccess: data => {
       onResetCategory();
       history.goBack();
-      toast.success(`${t('You have deleted category')} ${data.name}!`);
+      toast.success(`${t('You have deleted a category')} ${data.name}!`);
     },
     onError: data => {
       toast.error(`${'Error'}! ${t('You can not delete this category now')}! ${t('Try again later')}!`);

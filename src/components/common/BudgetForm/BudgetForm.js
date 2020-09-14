@@ -49,7 +49,7 @@ const BudgetForm = ({ id, token, apiAction, initialValues, categories, isForEdit
         console.log('isFor Edit!');
       }
       history.goBack();
-      const message = isForEdit ? 'You have edited the budget' : 'You have added a budget'; 
+      const message = isForEdit ? 'You have edited a budget' : 'You have added a budget'; 
       toast.success(`${t(message)}!`);
     },
     onError: data => {

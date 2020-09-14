@@ -17,12 +17,12 @@ const DayTasks = ({ tasks, isActiveDay, month, year, day }) => {
     <div>
       <Description>
         { !tasks ?
-          t(`Chose a day to see tasks for it`)
+          t(`Chose a date to see tasks for it`)
           :
             tasks.length > 0 ?
-              t('Tasks in this day')
+              t('Tasks for this day')
               :
-              t('No tasks in this day')
+              t('No tasks for this day')
         }
       </Description>
       {

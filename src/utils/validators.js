@@ -99,7 +99,7 @@ export const validateBudgetForm = (values) => {
   const totalAmount = parseFloat(Number(values.totalAmount).toFixed(2));
 
   if(totalAmount  <= 0 || Number.isNaN(totalAmount)) {
-    errors.totalAmount = 'Must be positive value!';
+    errors.totalAmount = 'Must be a positive value!';
   }
 
   const categories = getCategoriesFromFields(values);

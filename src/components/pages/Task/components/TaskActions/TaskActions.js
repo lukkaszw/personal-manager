@@ -33,10 +33,10 @@ const TaskActions = ({ id, token, status }) => {
   const [deleteTask, { isLoading: isDeleteLoading }] = useMutation(API.tasks.deleteTask, {
     onSuccess: data => {
       history.goBack();
-      toast.success(`${t('You have deleted task')} ${data.title}`);
+      toast.success(`${t('You have deleted a task')} ${data.title}`);
     },
     onError: () => {
-      toast.error(`${'Error'}! ${t('You can not delete a task now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete this task now')}! ${t('Try again later')}!`);
     }
   });
 

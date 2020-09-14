@@ -30,7 +30,7 @@ const NoteForm = ({ token, apiAction, initialValues, isForEdit, id, categories }
         queryCache.setQueryData(['note', { id, token }], data);
       }
       history.goBack();
-      const message = isForEdit ? 'You have edited the note' : 'You have added a note'; 
+      const message = isForEdit ? 'You have edited a note' : 'You have added a note'; 
       toast.success(`${t(message)}!`);
     },
     onError: data => {

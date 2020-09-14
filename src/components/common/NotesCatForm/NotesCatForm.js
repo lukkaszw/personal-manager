@@ -20,7 +20,7 @@ const NotesCatForm = ({ token, initialValues, apiAction, isForEdit, id, category
   const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
       history.goBack();
-      const message = isForEdit ? 'You have edited the category' : 'You have added a category'; 
+      const message = isForEdit ? 'You have edited a category' : 'You have added a category'; 
       toast.success(`${t(message)}!`);
     },
     onError: data => {

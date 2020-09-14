@@ -36,10 +36,10 @@ const NotesList = ({
   const [deleteNote, { isLoading: isDeleteLoading }] = useMutation(API.notes.deleteNote, {
     onSuccess: data => {
       queryCache.invalidateQueries('notes');
-      toast.success(`${t('You have deleted note')} ${data.title}`);
+      toast.success(`${t('You have deleted a note')} ${data.title}`);
     },
     onError: () => {
-      toast.error(`${'Error'}! ${t('You can not delete a note now')}! ${t('Try again later')}!`);
+      toast.error(`${'Error'}! ${t('You can not delete this note now')}! ${t('Try again later')}!`);
     }
   });
 
@@ -113,7 +113,7 @@ const NotesList = ({
       <AskDialog 
         isOpen={!!noteToDelete}
         onClose={handleCloseDeleteModal}
-        question={`${t('Are you sure you want to delete note')} "${deleteNoteTitle}"`}
+        question={`${t('Are you sure you want to delete the note')}: "${deleteNoteTitle}"`}
         noAnswear={t('No')}
         yesAnswear={t('Yes')}
         onNoAction={handleCloseDeleteModal}
