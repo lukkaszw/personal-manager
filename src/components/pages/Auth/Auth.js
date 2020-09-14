@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import Button from '@material-ui/core/Button';
-import { Root, ButtonWrapper, useStyles, DividedLine, Info } from './Auth.styles';
+import { Root, ButtonWrapper, useStyles, Info } from './Auth.styles';
 import { FormFieldRowB } from 'components/common/FormFieldRow';
 import { TEXTS } from './data';
 import CustomTextField from 'components/common/CustomTextField';
@@ -106,35 +106,6 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                         )}
                       </Field>
                     </FormFieldRowB>
-
-                    <DividedLine />
-
-                    <Field name="name">
-                        {({ input, meta }) => (
-                          <FormFieldRowB>
-                            <CustomTextField 
-                              {...input}
-                              className={classes.input}
-                              label={t("Name")}
-                              placeholder={t("Name")}
-                              error={meta.error && meta.touched}
-                            />
-                          </FormFieldRowB>
-                        )}
-                    </Field>
-                    <Field name="surname">
-                        {({ input, meta }) => (
-                          <FormFieldRowB>
-                            <CustomTextField 
-                              {...input}
-                              className={classes.input}
-                              label={t("Surname")}
-                              placeholder={t("Surname")}
-                              error={meta.error && meta.touched}
-                            />
-                          </FormFieldRowB>
-                        )}
-                    </Field>
                   </>
               }
               <ButtonWrapper>

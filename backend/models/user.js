@@ -38,18 +38,6 @@ const userSchema = new mongoose.Schema({
         required: true,
       },
   }],
-  name: {
-    type: String,
-    trim: true,
-    required: true,
-    maxlength: 20,
-  },
-  surname: {
-    type: String,
-    trim: true,
-    required: true,
-    maxlength: 20,
-  },
 }, {
   timestamps: true,
 });
@@ -97,9 +85,6 @@ userSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
 
-  userObject.email = userObject.login;
-
-  delete userObject.login;
   delete userObject.password;
   delete userObject.tokens;
   delete userObject.tasks;

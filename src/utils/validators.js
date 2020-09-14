@@ -15,12 +15,6 @@ export const validateAuthInputs = (values, destination) => {
       errors.password = 'Required';
     }
     if(isForRegister) {
-      if(!values.name) {
-        errors.name = 'Required';
-      }
-      if(!values.surname) {
-        errors.surname = 'Required';
-      }
       if (!values.password || !passwordRegExp.test(values.password)) {
         errors.password = 'Required minimum 8 chars (include capital, small letters, number, special char)';
       }

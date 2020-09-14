@@ -6,12 +6,11 @@ import AccountHeader from './components/AccountHeader';
 import AccountActions from './components/AccountActions';
 import SELECTORS from 'store/selectors';
 
-const Account = ({ userName, userSurname, token }) => {
+const Account = ({ login, token }) => {
   return ( 
     <Page>
       <AccountHeader 
-        name={userName}
-        surname={userSurname}
+        login={login}
       />
       <AccountActions 
         token={token}
@@ -22,14 +21,12 @@ const Account = ({ userName, userSurname, token }) => {
 
 Account.propTypes = {
   token: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  userSurname: PropTypes.string.isRequired,
+  login: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   token: SELECTORS.user.getToken(state),
-  userName: SELECTORS.user.getName(state),
-  userSurname: SELECTORS.user.getSurname(state),
+  login: SELECTORS.user.getLogin(state),
 });
  
 export default connect(mapStateToProps)(Account);

@@ -3,13 +3,13 @@ const bcrypt = require('bcryptjs');
 const ERRORS = require('../errors/user.errors');
 
 const signUp = async (req, res) => {
-  const { login, password, confirmPassword, name, surname } = req.body;
+  const { login, password, confirmPassword } = req.body;
 
   try {
     if(password !== confirmPassword) {
       throw new Error('Passwords do not match!');
     }
-    const user = new User({ login, password, name, surname });
+    const user = new User({ login, password });
 
     await user.save();
     res.status(201).json({

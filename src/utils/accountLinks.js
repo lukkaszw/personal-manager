@@ -19,18 +19,12 @@ export const ACCOUNT_PAGE_LINKS = [
   },
   {
     id: 4,
-    to: '/account/update',
-    text: 'Update account data',
-    color: 'primary',
-  },
-  {
-    id: 5,
     to: '/account/pswd',
     text: 'Change password',
     color: 'secondary',
   },
   {
-    id: 6,
+    id: 5,
     to: '/logout',
     text: 'Logout',
     color: 'default',
