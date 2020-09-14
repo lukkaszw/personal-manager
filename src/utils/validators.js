@@ -20,7 +20,7 @@ export const validateAuthInputs = (values, destination) => {
       }
 
       if (!values.password || !passwordRegExp.test(values.password)) {
-        errors.password = 'Required minimum 8 chars (include capital, small letters, number, special char)';
+        errors.password = 'Required minimum 8 characters (including capital letters, small letters, numbers, special characters)';
       }
       if (!values.confirmPassword) {
         errors.confirmPassword = 'Required'
@@ -169,7 +169,7 @@ export const validatePassword = (values) => {
   const errors = {};
 
   if (!values.password || !passwordRegExp.test(values.password)) {
-    errors.password = 'Required minimum 8 chars (include capital, small letters, number, special char)';
+    errors.password = 'Required minimum 8 characters (including capital letters, small letters, numbers, special characters)';
   }
   if (!values.confirmPassword) {
     errors.confirmPassword = 'Required';
