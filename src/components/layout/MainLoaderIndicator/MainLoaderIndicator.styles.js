@@ -12,7 +12,6 @@ export const MainLoaderRoot = styled.div`
   align-items: center;
 `;
 
-export const Text = styled.p`
-  margin-bottom: 10px;
-  text-align: center;
+export const LoaderWrapper = styled.div`
+  margin-top: 30px;
 `;
