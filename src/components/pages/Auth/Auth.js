@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import Button from '@material-ui/core/Button';
 import { Root, ButtonWrapper, useStyles, Info } from './Auth.styles';
-import { FormFieldRowB } from 'components/common/FormFieldRow';
+import FormFieldRow from 'components/common/FormFieldRow';
 import { TEXTS } from './data';
 import CustomTextField from 'components/common/CustomTextField';
 import { useTranslation } from 'react-i18next';
@@ -23,7 +23,7 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
   const classes = useStyles();
 
   const Messages = {
-    1: t('Provided email is in use! Please use another one!'),
+    1: t('Provided login is in use! Please use another one!'),
     2: t('Incorrect form data! Correct and try again!'),
     3: t('Internal server error! Please try again later!'),
   };
@@ -58,20 +58,21 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
             <form onSubmit={handleSubmit}>
               <Field name="login">
                 {({ input, meta }) => (
-                  <FormFieldRowB>
+                  <FormFieldRow>
                     <CustomTextField 
                       {...input}
                       className={classes.input}
-                      label="Email"
-                      placeholder='Email'
-                      error={(meta.error && meta.touched)}
+                      label="Login"
+                      placeholder='Login'
+                      error={meta.error && meta.touched}
+                      helperText={(meta.touched && (meta.error === 'Required' || (formDestination === 'register' && meta.error))) ? t(meta.error) : <>&nbsp;</>}
                     />
-                  </FormFieldRowB>
+                  </FormFieldRow>
                 )}
               </Field>
               <Field name="password">
                 {({ input, meta }) => (
-                  <FormFieldRowB>
+                  <FormFieldRow>
                     <CustomTextField 
                       {...input}
                       className={classes.input}
@@ -80,32 +81,30 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
                       type="password"
                       autoComplete="off"
                       error={meta.error && meta.touched}
-                      helperText={(meta.error && meta.touched) &&
-                      t(meta.error)}
+                      helperText={((meta.error && meta.touched) &&
+                      t(meta.error)) || <>&nbsp;</>}
                     />
-                  </FormFieldRowB>
+                  </FormFieldRow>
                 )}
               </Field>
               {
                 formDestination === 'register' &&
                   <>
-                    <FormFieldRowB>
+                    <FormFieldRow>
                       <Field name="confirmPassword">
                         {({ input, meta }) => (
-                          <div>
-                            <br/>
-                            <CustomTextField 
-                              {...input}
-                              className={classes.input}
-                              placeholder={t("Confirm password")}
-                              type="password"
-                              autoComplete="off"
-                              error={meta.error && meta.touched}
-                            />
-                          </div>
+                          <CustomTextField 
+                            {...input}
+                            className={classes.input}
+                            label={t("Confirm password")}
+                            placeholder={t("Confirm password")}
+                            type="password"
+                            autoComplete="off"
+                            error={meta.error && meta.touched}
+                          />
                         )}
                       </Field>
-                    </FormFieldRowB>
+                    </FormFieldRow>
                   </>
               }
               <ButtonWrapper>
@@ -134,10 +133,13 @@ const Auth = ({ onSendCredentials, isSending, onResetRequest, errorCode, isSucce
             {t(TEXTS[formDestination].switchBtnText)}
           </Button>
         </ButtonWrapper>
-        <Info>
-          {`${t('This app was created only for development purpose')}. 
-          ${t('You can register nonexistent email address for testing')}`}! 
-        </Info>  
+        {
+          formDestination === 'register' && 
+          <Info>
+            {`${t('This app was created only for development purposes')}. 
+            ${t('Please do not provide your personal data')}`}! 
+          </Info>  
+        }
       </Root>
     </Page>
    );

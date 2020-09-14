@@ -16,19 +16,20 @@ const userSchema = new mongoose.Schema({
   login: {
     type: String,
     validate: {
-      validator: (value) => _v.isEmail(value),
-      message: props => 'Login should be an email!',
+      validator: (value) => !/[\s]+/.test(value),
+      message: props => 'Login should be one word with minimum 3 and maximum 12 characters!',
     },
     required: true,
-    unique: [true, 'Provided email is in use!'],
-    lowercase: true,
+    minlength: 3,
+    maxlength: 12,
+    unique: [true, 'Provided login is in use!'],
     trim: true,
   },
   password: {
     type: String,
     validate: {
       validator: (value) => passwordRegExp.test(value),
-      message: () => 'Password must contain at least 8 characters and: one capital letter, one small letter, special character, one number!',
+      message: () => 'Password must contain at least 8 characters: one capital letter, one small letter, special character, one number!',
     },
     required: true,
   },
@@ -75,7 +76,7 @@ userSchema.statics.sendRegistrationErrors = (error, res) => {
 
 
   if(error.message.indexOf('duplicate key error') !== -1) {
-    return res.json({ isError: true, message: 'Provided email is in use!', errorCode: ERRORS.USER_EXISTS });
+    return res.json({ isError: true, message: 'Provided login is in use!', errorCode: ERRORS.USER_EXISTS });
   }
 
   res.status(500).json({ message: error.message, errorCode: ERRORS.SERVER_ERROR });

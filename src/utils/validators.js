@@ -1,4 +1,3 @@
-import _v from 'validator';
 import { getCategoriesFromFields } from './getCategoriesFromFields';
 import { TYPE_ } from 'utils/budget.statuses';
 
@@ -8,13 +7,18 @@ export const validateAuthInputs = (values, destination) => {
   const isForRegister = destination === 'register';
 
   const errors = {};
-    if (!values.login || !_v.isEmail(values.login)) {
-      errors.login = 'Has to be an email';
+    if (!values.login) {
+      errors.login = 'Required';
     }
     if (!values.password) {
       errors.password = 'Required';
     }
     if(isForRegister) {
+      if (!values.login || /[\s]+/.test(values.login) || 
+      values.login.length > 12 || values.login.length < 3) {
+        errors.login = 'Login should be one word with minimum 3 and maximum 12 characters!';
+      }
+
       if (!values.password || !passwordRegExp.test(values.password)) {
         errors.password = 'Required minimum 8 chars (include capital, small letters, number, special char)';
       }

@@ -12,7 +12,7 @@ export const Root = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: center;
 `;
 
