@@ -1,4 +1,4 @@
-# Cinema App
+# Personel Manager App
 
 The project is deployed on heroku: [https://lukkiasz-pm.herokuapp.com](https://lukkiasz-pm.herokuapp.com).
 
